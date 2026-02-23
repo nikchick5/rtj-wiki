@@ -3,9 +3,9 @@
 // ONLY articles sourced from RTJ SOPs B (Source of Truth folder) are included.
 
 const MODULES = {
-  REGISTER:    { id: 'register',    label: 'Register',    icon: '🛒', color: '#1b6d37' },
-  TEE_SHEET:   { id: 'tee-sheet',   label: 'Tee Sheet',   icon: '📅', color: '#0066cc' },
-  MEMBERSHIP:  { id: 'membership',  label: 'Membership',  icon: '🏌️', color: '#7d3c98' },
+  REGISTER:    { id: 'register',    label: 'Register',    icon: '<i class="fa-solid fa-cash-register"></i>', color: '#1b6d37' },
+  TEE_SHEET:   { id: 'tee-sheet',   label: 'Tee Sheet',   icon: '<i class="fa-solid fa-calendar-days"></i>', color: '#0066cc' },
+  MEMBERSHIP:  { id: 'membership',  label: 'Membership',  icon: '<i class="fa-solid fa-id-card"></i>', color: '#7d3c98' },
 };
 
 // role values: 'manager' | 'frontdesk' | 'fb' | 'all'
