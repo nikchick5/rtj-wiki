@@ -10,30 +10,34 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:      #1b6d37;
-      --green-dark: #145229;
-      --green-pale: #eaf4ee;
+      --primary:    #089247;
+      --primary-dark: #06733a;
+      --primary-pale: #e8f5ee;
+      --navy:       #1a365d;
       --gold:       #c9a227;
       --gold-pale:  #fdf8ec;
       --blue:       #0066cc;
       --blue-pale:  #e8f0fe;
       --red:        #c0392b;
-      --purple:     #7d3c98;
       --orange:     #e67e22;
       --gray-50:    #f8f9fa;
       --gray-100:   #f1f3f5;
       --gray-200:   #e9ecef;
+      --gray-300:   #dee2e6;
       --gray-400:   #adb5bd;
+      --gray-500:   #868e96;
       --gray-600:   #6c757d;
+      --gray-700:   #495057;
       --gray-800:   #343a40;
       --white:      #ffffff;
       --text:       #212529;
       --radius:     8px;
-      --shadow:     0 2px 12px rgba(0,0,0,0.09);
-      --shadow-lg:  0 6px 24px rgba(0,0,0,0.13);
+      --shadow:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md:  0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+      --shadow-lg:  0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
       --transition: 0.18s ease;
-      --sidebar-w:  260px;
-      --header-h:   60px;
+      --sidebar-w:  250px;
+      --header-h:   56px;
     }
 
     html { font-size: 16px; scroll-behavior: smooth; }
@@ -60,113 +64,94 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--header-h);
-      background: var(--green);
-      color: var(--white);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 200;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    #header-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 0 16px;
-      z-index: 200;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    #menu-toggle {
+      display: none;
+      color: var(--gray-700);
+      font-size: 20px;
+      padding: 4px;
     }
 
     #logo {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
+      gap: 10px;
       text-decoration: none;
     }
 
-    #logo-icon {
-      height: 36px;
-      display: flex;
-      align-items: center;
-    }
+    #logo:hover { text-decoration: none; }
 
     #logo-icon img {
-      height: 36px;
+      height: 34px;
       width: auto;
     }
 
     #logo-text {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     #logo-name {
       font-weight: 700;
       font-size: 15px;
-      color: var(--white);
+      color: var(--text);
     }
 
     #logo-sub {
       font-size: 10px;
-      color: rgba(255,255,255,0.75);
+      color: var(--gray-500);
       letter-spacing: 0.04em;
-      text-transform: uppercase;
     }
 
-    #search-wrapper {
-      flex: 1;
-      max-width: 520px;
-      margin: 0 auto;
-      position: relative;
+    #header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    #search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gray-400);
-      pointer-events: none;
-      font-size: 15px;
-    }
-
-    #search {
-      width: 100%;
-      padding: 9px 36px 9px 36px;
-      border: none;
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 14px;
-      background: rgba(255,255,255,0.15);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .nav-pill:hover { text-decoration: none; }
+
+    .nav-pill.kb {
+      background: var(--primary);
       color: var(--white);
-      outline: none;
-      transition: background var(--transition);
     }
 
-    #search::placeholder { color: rgba(255,255,255,0.6); }
+    .nav-pill.kb:hover { background: var(--primary-dark); }
 
-    #search:focus {
-      background: var(--white);
-      color: var(--text);
-    }
-
-    #search:focus ~ #search-icon { color: var(--gray-600); }
-    #search:focus + #search-icon { color: var(--gray-600); }
-
-    #search-clear {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gray-400);
-      font-size: 18px;
-      display: none;
-      padding: 2px 4px;
-      line-height: 1;
-    }
-
-    #search-clear:hover { color: var(--gray-800); }
-
-    #menu-toggle {
-      display: none;
+    .nav-pill.admin {
+      background: var(--navy);
       color: var(--white);
-      font-size: 22px;
-      padding: 4px;
     }
+
+    .nav-pill.admin:hover { background: #15294a; }
 
     /* ── Layout ──────────────────────────────────────────────── */
     #layout {
@@ -188,8 +173,11 @@
       overflow-y: auto;
       z-index: 100;
       transition: transform var(--transition);
-      padding-bottom: 24px;
+      display: flex;
+      flex-direction: column;
     }
+
+    .sidebar-inner { flex: 1; padding-bottom: 16px; }
 
     .sidebar-section {
       padding: 16px 0 4px;
@@ -212,7 +200,7 @@
       padding: 9px 16px;
       font-size: 14px;
       font-weight: 500;
-      color: var(--gray-800);
+      color: var(--gray-700);
       border-radius: 0;
       text-align: left;
       transition: background var(--transition), color var(--transition);
@@ -222,8 +210,8 @@
     .module-btn:hover { background: var(--gray-100); }
 
     .module-btn.active {
-      background: var(--green-pale);
-      color: var(--green-dark);
+      background: var(--primary-pale);
+      color: var(--primary-dark);
       font-weight: 600;
     }
 
@@ -232,11 +220,11 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 3px;
-      background: var(--green);
+      background: var(--primary);
       border-radius: 0 2px 2px 0;
     }
 
-    .module-icon { font-size: 16px; }
+    .module-icon { font-size: 15px; width: 20px; text-align: center; }
 
     .module-count {
       margin-left: auto;
@@ -249,39 +237,97 @@
     }
 
     .module-btn.active .module-count {
-      background: var(--green);
+      background: var(--primary);
       color: var(--white);
     }
 
     .sidebar-divider {
       height: 1px;
       background: var(--gray-200);
-      margin: 8px 0;
+      margin: 8px 16px;
     }
 
-    .role-filter-row {
-      padding: 8px 16px;
+    /* Role filter */
+    .role-filter-list {
       display: flex;
-      gap: 6px;
+      flex-direction: column;
+      gap: 2px;
+      padding: 4px 8px 8px;
     }
 
-    .role-chip {
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
+    .role-filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: 500;
-      border: 1.5px solid var(--gray-200);
-      color: var(--gray-600);
-      background: var(--white);
-      transition: all var(--transition);
+      color: var(--gray-700);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+      text-align: left;
+      position: relative;
     }
 
-    .role-chip:hover { border-color: var(--gray-400); }
+    .role-filter-btn:hover { background: var(--gray-100); }
 
-    .role-chip.active {
-      background: var(--green);
-      border-color: var(--green);
-      color: var(--white);
+    .role-filter-btn.active {
+      background: var(--primary-pale);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .role-filter-btn.active::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px; bottom: 4px;
+      width: 3px;
+      background: var(--primary);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .role-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .role-filter-btn[data-role="all"]       .role-dot { background: var(--gray-400); }
+    .role-filter-btn[data-role="manager"]   .role-dot { background: var(--orange); }
+    .role-filter-btn[data-role="frontdesk"] .role-dot { background: var(--blue); }
+    .role-filter-btn[data-role="fb"]        .role-dot { background: var(--red); }
+    .role-filter-btn.active[data-role="all"]     .role-dot { background: var(--primary); }
+
+    /* Manage section */
+    .manage-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-700);
+      text-align: left;
+      transition: background var(--transition);
+      cursor: pointer;
+    }
+
+    .manage-btn:hover { background: var(--gray-100); }
+    .manage-btn i { font-size: 14px; width: 20px; text-align: center; }
+
+    /* Sidebar footer */
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--gray-200);
+      font-size: 11px;
+      color: var(--gray-400);
+      line-height: 1.5;
+      text-align: center;
     }
 
     /* ── Main content ────────────────────────────────────────── */
@@ -289,61 +335,282 @@
       margin-left: var(--sidebar-w);
       flex: 1;
       min-width: 0;
-      padding: 24px;
     }
 
-    /* ── Search results overlay ──────────────────────────────── */
-    #search-results {
+    /* ── Hero Section ────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0a5c2e 0%, #089247 50%, #0a7a3c 100%);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      padding: 48px 24px 52px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .hero.has-image {
+      background-image: url('hero-golf.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero.has-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .hero-search-wrapper {
+      position: relative;
+      max-width: 540px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+    }
+
+    .hero-search-wrapper input {
+      flex: 1;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 15px;
+      outline: none;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    .hero-search-wrapper input::placeholder {
+      color: var(--gray-400);
+    }
+
+    .hero-search-btn {
+      padding: 14px 24px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 0 8px 8px 0;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background var(--transition);
+    }
+
+    .hero-search-btn:hover { background: var(--primary-dark); }
+
+    .hero-shortcut {
+      margin-top: 12px;
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    .hero-shortcut kbd {
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-family: inherit;
+    }
+
+    /* Autocomplete dropdown (hero) */
+    #autocomplete {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      z-index: 300;
+      overflow: hidden;
       display: none;
+      border: 1px solid var(--gray-200);
+      max-height: 380px;
+      overflow-y: auto;
+      text-align: left;
     }
 
-    #search-results.active {
-      display: block;
-    }
+    #autocomplete.open { display: block; }
 
-    .search-header {
-      font-size: 13px;
-      color: var(--gray-600);
-      margin-bottom: 14px;
-      padding-bottom: 10px;
+    .ac-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      padding: 10px 14px 4px;
+      background: var(--gray-50);
       border-bottom: 1px solid var(--gray-200);
     }
 
-    .search-header strong { color: var(--text); }
+    .ac-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      border-bottom: 1px solid var(--gray-100);
+      color: var(--text);
+    }
 
-    .search-no-results {
+    .ac-item:last-child { border-bottom: none; }
+    .ac-item:hover, .ac-item.focused { background: var(--primary-pale); }
+
+    .ac-item-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      width: 20px;
       text-align: center;
-      padding: 48px 24px;
       color: var(--gray-600);
     }
 
-    .search-no-results .no-results-icon { font-size: 40px; margin-bottom: 12px; }
-    .search-no-results h3 { font-size: 18px; margin-bottom: 8px; color: var(--gray-800); }
+    .ac-item-body { flex: 1; min-width: 0; }
 
-    /* ── Article cards (list view) ───────────────────────────── */
+    .ac-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ac-item-sub {
+      font-size: 11px;
+      color: var(--gray-500);
+      margin-top: 1px;
+    }
+
+    .ac-item-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 8px;
+      background: var(--gray-100);
+      color: var(--gray-600);
+      flex-shrink: 0;
+    }
+
+    .ac-item.suggestion .ac-item-title { color: var(--blue); font-weight: 500; }
+    .ac-item.suggestion .ac-item-icon { color: var(--blue); }
+
+    mark {
+      background: #fff3cd;
+      color: #664d00;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+
+    /* ── Home content area ───────────────────────────────────── */
+    .home-body {
+      padding: 24px;
+    }
+
+    /* ── Recently Updated — horizontal scroll ────────────────── */
+    .recent-scroll-wrapper {
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 32px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .recent-scroll-wrapper::-webkit-scrollbar { height: 4px; }
+    .recent-scroll-wrapper::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 4px; }
+
+    .recent-scroll {
+      display: flex;
+      gap: 14px;
+      min-width: min-content;
+    }
+
+    .recent-card {
+      min-width: 260px;
+      max-width: 280px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      cursor: pointer;
+      transition: box-shadow var(--transition), transform var(--transition);
+      border: 1px solid var(--gray-200);
+      flex-shrink: 0;
+    }
+
+    .recent-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .recent-card .card-module-badge { margin-bottom: 8px; }
+    .recent-card .card-title { margin-bottom: 8px; }
+
+    .recent-card .card-date {
+      font-size: 11px;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── Section heading ─────────────────────────────────────── */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .section-heading h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-800);
+    }
+
+    .section-heading span {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    /* ── Article cards (grid) ────────────────────────────────── */
     #article-list {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+      gap: 14px;
     }
 
     .article-card {
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 20px;
+      padding: 18px;
       cursor: pointer;
       transition: box-shadow var(--transition), transform var(--transition);
-      border: 1.5px solid transparent;
+      border: 1px solid var(--gray-200);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .article-card:hover {
-      box-shadow: var(--shadow-lg);
+      box-shadow: var(--shadow-md);
       transform: translateY(-2px);
-      border-color: var(--green-pale);
     }
 
     .card-module-badge {
@@ -353,19 +620,18 @@
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 3px 8px;
-      border-radius: 10px;
-      background: var(--gray-100);
-      color: var(--gray-600);
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 4px;
       width: fit-content;
+      color: var(--white);
     }
 
     .card-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--text);
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .card-snippet {
@@ -388,6 +654,13 @@
       margin-top: 4px;
     }
 
+    .card-meta .date-text {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Role badges */
     .role-badge {
       padding: 2px 8px;
       border-radius: 10px;
@@ -396,126 +669,57 @@
       text-transform: capitalize;
     }
 
-    .role-badge.manager {
-      background: #fdf2e9;
-      color: #a04000;
-    }
+    .role-badge.manager   { background: #fdf2e9; color: #a04000; }
+    .role-badge.frontdesk { background: var(--blue-pale); color: var(--blue); }
+    .role-badge.fb        { background: #fdf0f0; color: #a02020; }
+    .role-badge.all       { background: var(--primary-pale); color: var(--primary-dark); }
+    .role-badge.staff     { background: var(--blue-pale); color: var(--blue); }
 
-    .role-badge.staff {
-      background: var(--blue-pale);
-      color: var(--blue);
-    }
+    /* ── Search results ──────────────────────────────────────── */
+    #search-results { display: none; }
+    #search-results.active { display: block; }
 
-    .role-badge.all {
-      background: var(--green-pale);
-      color: var(--green-dark);
-    }
-
-    /* ── Page hero / intro ───────────────────────────────────── */
-    #page-home {
-      display: block;
-    }
-
-    .home-hero {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
-      color: var(--white);
-      border-radius: var(--radius);
-      padding: 32px 36px;
-      margin-bottom: 28px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .home-hero::after {
-      content: '\f450';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      right: 24px;
-      bottom: -8px;
-      font-size: 80px;
-      opacity: 0.12;
-    }
-
-    .home-hero h1 {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .home-hero p {
-      font-size: 14px;
-      opacity: 0.85;
-      max-width: 500px;
-      line-height: 1.6;
-    }
-
-    .home-stats {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-
-    .stat-pill {
-      background: rgba(255,255,255,0.15);
-      border-radius: 20px;
-      padding: 6px 14px;
+    .search-header {
       font-size: 13px;
-      font-weight: 500;
-    }
-
-    /* module grid on home */
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 14px;
-      margin-bottom: 32px;
-    }
-
-    .module-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      cursor: pointer;
-      text-align: center;
-      transition: box-shadow var(--transition), transform var(--transition);
-      border: 1.5px solid var(--gray-200);
-    }
-
-    .module-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .module-card-icon { font-size: 28px; margin-bottom: 8px; }
-    .module-card-name { font-weight: 600; font-size: 14px; color: var(--text); }
-    .module-card-count { font-size: 12px; color: var(--gray-600); margin-top: 4px; }
-
-    /* ── Section heading ─────────────────────────────────────── */
-    .section-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
-
-    .section-heading h2 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--gray-800);
-    }
-
-    .section-heading span {
-      font-size: 12px;
       color: var(--gray-600);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .search-header strong { color: var(--text); }
+
+    .search-no-results {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--gray-600);
+    }
+
+    .search-no-results .no-results-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.4; }
+    .search-no-results h3 { font-size: 18px; margin-bottom: 8px; color: var(--gray-800); }
+
+    #search-result-list .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .card-quick-answer {
+      background: var(--primary-pale);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 6px 6px 0;
+      padding: 8px 10px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #2a5a3a;
+      margin-top: 2px;
     }
 
     /* ── Article view ────────────────────────────────────────── */
     #article-view {
       display: none;
       max-width: 820px;
+      padding: 24px;
     }
 
     #article-view.active { display: block; }
@@ -530,21 +734,17 @@
       flex-wrap: wrap;
     }
 
-    .breadcrumb-link {
-      color: var(--blue);
-      cursor: pointer;
-    }
-
+    .breadcrumb-link { color: var(--blue); cursor: pointer; }
     .breadcrumb-link:hover { text-decoration: underline; }
-
     .breadcrumb-sep { color: var(--gray-400); }
 
     .article-header {
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 28px 32px;
-      margin-bottom: 20px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      border: 1px solid var(--gray-200);
     }
 
     .article-title-row {
@@ -585,18 +785,19 @@
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 28px 32px;
-      margin-bottom: 20px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      border: 1px solid var(--gray-200);
     }
 
-    /* Markdown-like article content styles */
+    /* Markdown content */
     .article-content h2 {
       font-size: 16px;
       font-weight: 700;
-      color: var(--green-dark);
+      color: var(--primary-dark);
       margin: 24px 0 10px;
       padding-bottom: 6px;
-      border-bottom: 2px solid var(--green-pale);
+      border-bottom: 2px solid var(--primary-pale);
     }
 
     .article-content h2:first-child { margin-top: 0; }
@@ -643,7 +844,7 @@
       color: var(--red);
     }
 
-    /* Step styling */
+    /* Steps */
     .step-block {
       border: 1px solid var(--gray-200);
       border-radius: 8px;
@@ -661,7 +862,7 @@
     }
 
     .step-num {
-      background: var(--green);
+      background: var(--primary);
       color: var(--white);
       border-radius: 50%;
       width: 22px; height: 22px;
@@ -687,12 +888,35 @@
     .step-body ul { margin-left: 16px; }
     .step-body li { margin-bottom: 3px; }
 
+    /* Back button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-700);
+      cursor: pointer;
+      transition: all var(--transition);
+      margin-bottom: 16px;
+    }
+
+    .back-btn:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-400);
+    }
+
     /* Related articles */
     .related-section {
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 20px 24px;
+      border: 1px solid var(--gray-200);
     }
 
     .related-section h3 {
@@ -720,349 +944,11 @@
     }
 
     .related-item:hover { background: var(--gray-50); }
-
     .related-item-icon { font-size: 16px; }
-
     .related-item-text { font-size: 13px; font-weight: 500; color: var(--text); }
     .related-item-module { font-size: 11px; color: var(--gray-600); }
 
-    /* ── Back button ─────────────────────────────────────────── */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 20px;
-      border: 1.5px solid var(--gray-200);
-      background: var(--white);
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gray-700);
-      cursor: pointer;
-      transition: all var(--transition);
-      margin-bottom: 16px;
-    }
-
-    .back-btn:hover {
-      background: var(--gray-100);
-      border-color: var(--gray-400);
-    }
-
-    /* ── Empty state ─────────────────────────────────────────── */
-    .empty-state {
-      text-align: center;
-      padding: 60px 24px;
-      color: var(--gray-600);
-    }
-
-    .empty-state .icon { font-size: 44px; margin-bottom: 12px; }
-    .empty-state h3 { font-size: 18px; color: var(--gray-800); margin-bottom: 8px; }
-
-    /* ── Highlight match ─────────────────────────────────────── */
-    mark {
-      background: #fff3cd;
-      color: #664d00;
-      border-radius: 2px;
-      padding: 0 2px;
-    }
-
-    /* ── Responsive ──────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      :root { --sidebar-w: 240px; }
-
-      #sidebar {
-        transform: translateX(-100%);
-      }
-
-      #sidebar.open {
-        transform: translateX(0);
-        box-shadow: var(--shadow-lg);
-      }
-
-      #main { margin-left: 0; padding: 16px; }
-
-      #menu-toggle { display: flex; }
-
-      #overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.35);
-        z-index: 99;
-      }
-
-      #overlay.active { display: block; }
-
-      #article-list {
-        grid-template-columns: 1fr;
-      }
-
-      .home-hero { padding: 22px 20px; }
-      .home-hero h1 { font-size: 20px; }
-
-      .article-header, .article-body { padding: 18px 16px; }
-      .article-title { font-size: 18px; }
-
-      .module-grid { grid-template-columns: repeat(2, 1fr); }
-
-      #search-wrapper { max-width: none; }
-
-      #logo-sub { display: none; }
-    }
-
-    @media (max-width: 400px) {
-      .module-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Scrollbar styling ───────────────────────────────────── */
-    #sidebar::-webkit-scrollbar { width: 4px; }
-    #sidebar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
-
-    /* ── Autocomplete dropdown ───────────────────────────────── */
-    #autocomplete {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0; right: 0;
-      background: var(--white);
-      border-radius: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-      z-index: 300;
-      overflow: hidden;
-      display: none;
-      border: 1px solid var(--gray-200);
-      max-height: 420px;
-      overflow-y: auto;
-    }
-
-    #autocomplete.open { display: block; }
-
-    .ac-group-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      padding: 10px 14px 4px;
-      background: var(--gray-50);
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .ac-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: background var(--transition);
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .ac-item:last-child { border-bottom: none; }
-    .ac-item:hover, .ac-item.focused { background: var(--green-pale); }
-
-    .ac-item-icon {
-      font-size: 15px;
-      flex-shrink: 0;
-      width: 20px;
-      text-align: center;
-    }
-
-    .ac-item-body { flex: 1; min-width: 0; }
-
-    .ac-item-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .ac-item-title mark {
-      background: #fff3cd;
-      color: #664d00;
-      border-radius: 2px;
-      padding: 0 1px;
-    }
-
-    .ac-item-sub {
-      font-size: 11px;
-      color: var(--gray-600);
-      margin-top: 1px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .ac-item-badge {
-      font-size: 10px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 8px;
-      background: var(--gray-100);
-      color: var(--gray-600);
-      flex-shrink: 0;
-    }
-
-    /* question-pattern suggestions */
-    .ac-item.suggestion .ac-item-title { color: var(--blue); font-weight: 500; }
-    .ac-item.suggestion .ac-item-icon { color: var(--blue); }
-
-    /* ── Popular Right Now section ───────────────────────────── */
-    #popular-section {
-      margin-bottom: 32px;
-    }
-
-    .popular-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .popular-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 12px 16px;
-      cursor: pointer;
-      border: 1.5px solid transparent;
-      transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
-    }
-
-    .popular-item:hover {
-      box-shadow: var(--shadow-lg);
-      border-color: var(--green-pale);
-      transform: translateX(2px);
-    }
-
-    .popular-rank {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--gray-200);
-      width: 24px;
-      text-align: center;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-
-    .popular-item:nth-child(1) .popular-rank { color: var(--gold); }
-    .popular-item:nth-child(2) .popular-rank { color: var(--gray-400); }
-    .popular-item:nth-child(3) .popular-rank { color: #c07020; }
-
-    .popular-info { flex: 1; min-width: 0; }
-
-    .popular-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .popular-meta {
-      font-size: 11px;
-      color: var(--gray-600);
-      margin-top: 2px;
-    }
-
-    .popular-views {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gray-400);
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-
-    /* ── Role filter (expanded, vertical list) ───────────────── */
-    .role-filter-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 4px 8px 8px;
-    }
-
-    .role-filter-btn {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gray-700);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-      text-align: left;
-      position: relative;
-    }
-
-    .role-filter-btn:hover { background: var(--gray-100); }
-
-    .role-filter-btn.active {
-      background: var(--green-pale);
-      color: var(--green-dark);
-      font-weight: 600;
-    }
-
-    .role-filter-btn.active::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 4px; bottom: 4px;
-      width: 3px;
-      background: var(--green);
-      border-radius: 0 2px 2px 0;
-    }
-
-    .role-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .role-filter-btn[data-role="all"]       .role-dot { background: var(--gray-400); }
-    .role-filter-btn[data-role="manager"]   .role-dot { background: #e67e22; }
-    .role-filter-btn[data-role="frontdesk"] .role-dot { background: var(--blue); }
-    .role-filter-btn[data-role="fb"]        .role-dot { background: var(--red); }
-
-    .role-filter-btn.active[data-role="all"]       .role-dot { background: var(--green); }
-    .role-filter-btn.active[data-role="manager"]   .role-dot { background: #e67e22; }
-    .role-filter-btn.active[data-role="frontdesk"] .role-dot { background: var(--blue); }
-    .role-filter-btn.active[data-role="fb"]        .role-dot { background: var(--red); }
-
-    /* Updated role badge colors */
-    .role-badge.manager   { background: #fdf2e9; color: #a04000; }
-    .role-badge.frontdesk { background: var(--blue-pale); color: var(--blue); }
-    .role-badge.fb        { background: #fdf0f0; color: #a02020; }
-    .role-badge.all       { background: var(--green-pale); color: var(--green-dark); }
-    .role-badge.staff     { background: var(--blue-pale); color: var(--blue); } /* legacy */
-
-    /* ── Search result list layout (list not grid in results) ── */
-    #search-result-list .results-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-    }
-
-    /* Quick-answer preview box inside search result card */
-    .card-quick-answer {
-      background: var(--green-pale);
-      border-left: 3px solid var(--green);
-      border-radius: 0 6px 6px 0;
-      padding: 8px 10px;
-      font-size: 12px;
-      line-height: 1.55;
-      color: #2a5a3a;
-      margin-top: 2px;
-    }
-
-    /* ── Was this helpful? ───────────────────────────────────── */
+    /* Feedback bar */
     .feedback-bar {
       background: var(--gray-50);
       border: 1px solid var(--gray-200);
@@ -1072,7 +958,7 @@
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .feedback-bar-label {
@@ -1103,9 +989,9 @@
     .feedback-btn:hover { border-color: var(--gray-400); background: var(--gray-50); }
 
     .feedback-btn.yes:hover, .feedback-btn.yes.voted {
-      background: var(--green-pale);
-      border-color: var(--green);
-      color: var(--green-dark);
+      background: var(--primary-pale);
+      border-color: var(--primary);
+      color: var(--primary-dark);
     }
 
     .feedback-btn.no:hover, .feedback-btn.no.voted {
@@ -1130,29 +1016,14 @@
       margin-left: auto;
     }
 
-    /* Helpfulness indicator on article cards */
-    .helpful-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 8px;
-      margin-left: 4px;
-      vertical-align: middle;
-    }
-
-    .helpful-badge.good { background: var(--green-pale); color: var(--green-dark); }
-    .helpful-badge.low  { background: #fdf0f0; color: #a02020; }
-
-    /* ── People Also Asked ───────────────────────────────────── */
+    /* People Also Asked */
     .paa-section {
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 20px 24px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      border: 1px solid var(--gray-200);
     }
 
     .paa-section h3 {
@@ -1182,7 +1053,7 @@
     .paa-item-icon { font-size: 14px; flex-shrink: 0; }
     .paa-item-arrow { margin-left: auto; color: var(--gray-400); }
 
-    /* ── Media embeds inside articles ────────────────────────── */
+    /* Media */
     .media-block {
       margin: 16px 0;
       border-radius: 8px;
@@ -1233,7 +1104,6 @@
     .video-link-title { font-size: 13px; font-weight: 600; }
     .video-link-sub   { font-size: 11px; opacity: 0.7; margin-top: 2px; }
 
-    /* ── Screenshot placeholders (shown when src is empty) ─────────── */
     .screenshot-pending {
       margin: 16px 0;
       border-radius: 8px;
@@ -1253,17 +1123,8 @@
       min-height: 100px;
     }
 
-    .screenshot-placeholder-icon {
-      font-size: 28px;
-      opacity: 0.45;
-    }
-
-    .screenshot-placeholder-text {
-      font-size: 13px;
-      color: var(--gray-500);
-      font-style: italic;
-    }
-
+    .screenshot-placeholder-icon { font-size: 28px; opacity: 0.45; }
+    .screenshot-placeholder-text { font-size: 13px; color: var(--gray-500); font-style: italic; }
     .screenshot-placeholder-filename {
       font-size: 11px;
       color: var(--gray-400);
@@ -1273,7 +1134,22 @@
       border-radius: 4px;
     }
 
-    /* Trending badge on article cards */
+    /* Helpfulness + trending badges */
+    .helpful-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 8px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+
+    .helpful-badge.good { background: var(--primary-pale); color: var(--primary-dark); }
+    .helpful-badge.low  { background: #fdf0f0; color: #a02020; }
+
     .trending-badge {
       display: inline-flex;
       align-items: center;
@@ -1287,39 +1163,95 @@
       margin-left: 6px;
       vertical-align: middle;
     }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--gray-600);
+    }
+
+    .empty-state .icon { font-size: 44px; margin-bottom: 12px; opacity: 0.35; }
+    .empty-state h3 { font-size: 18px; color: var(--gray-800); margin-bottom: 8px; }
+
+    /* ── Admin Panel ─────────────────────────────────────────── */
+    #admin-view {
+      display: none;
+      padding: 24px;
+    }
+
+    #admin-view.active { display: block; }
+
+    /* ── Mobile overlay ──────────────────────────────────────── */
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 99;
+    }
+
+    #overlay.active { display: block; }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      :root { --sidebar-w: 260px; }
+
+      #sidebar {
+        transform: translateX(-100%);
+      }
+
+      #sidebar.open {
+        transform: translateX(0);
+        box-shadow: var(--shadow-lg);
+      }
+
+      #main { margin-left: 0; }
+
+      #menu-toggle { display: flex; }
+
+      .hero { padding: 32px 16px 36px; }
+      .hero h1 { font-size: 20px; }
+
+      #article-list { grid-template-columns: 1fr; }
+
+      .article-header, .article-body { padding: 18px 16px; }
+      .article-title { font-size: 18px; }
+
+      #logo-sub { display: none; }
+
+      .nav-pill span.pill-label { display: none; }
+    }
+
+    /* ── Scrollbar styling ───────────────────────────────────── */
+    #sidebar::-webkit-scrollbar { width: 4px; }
+    #sidebar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
   </style>
 </head>
 <body>
 
 <!-- ── Header ─────────────────────────────────────────────────── -->
 <header id="header">
-  <button id="menu-toggle" aria-label="Open menu" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
-
-  <a id="logo" href="#" onclick="showHome(); return false;">
-    <div id="logo-icon"><img src="rtj-logo.png" alt="RTJ Golf Trail" /></div>
-    <div id="logo-text">
-      <span id="logo-name">RTJ Wiki</span>
-      <span id="logo-sub">Club Caddie Knowledge Base</span>
-    </div>
-  </a>
-
-  <div id="search-wrapper">
-    <span id="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-    <input
-      type="search"
-      id="search"
-      placeholder="Search Club Caddie procedures…"
-      autocomplete="off"
-      spellcheck="false"
-      aria-label="Search articles"
-      role="combobox"
-      aria-expanded="false"
-      aria-controls="autocomplete"
-      aria-autocomplete="list"
-    />
-    <button id="search-clear" onclick="clearSearch()" aria-label="Clear search">×</button>
-    <div id="autocomplete" role="listbox" aria-label="Search suggestions"></div>
+  <div id="header-left">
+    <button id="menu-toggle" aria-label="Open menu" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+    <a id="logo" href="#" onclick="showHome(); return false;">
+      <div id="logo-icon"><img src="rtj-logo.png" alt="RTJ Golf Trail" /></div>
+      <div id="logo-text">
+        <span id="logo-name">RTJ Wiki</span>
+        <span id="logo-sub">Club Caddie Knowledge Base</span>
+      </div>
+    </a>
   </div>
+  <nav id="header-nav">
+    <a class="nav-pill kb" href="#" onclick="showHome(); return false;">
+      <i class="fa-solid fa-book-open"></i>
+      <span class="pill-label">Knowledge Base</span>
+    </a>
+    <a class="nav-pill admin" href="#" onclick="showAdmin(); return false;">
+      <i class="fa-solid fa-gear"></i>
+      <span class="pill-label">Admin</span>
+    </a>
+  </nav>
 </header>
 
 <!-- ── Mobile overlay ─────────────────────────────────────────── -->
@@ -1330,33 +1262,48 @@
 
   <!-- Sidebar -->
   <nav id="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">Browse by Module</div>
-      <button class="module-btn active" data-module="all" onclick="filterModule('all')">
-        <span class="module-icon"><i class="fa-solid fa-book-open"></i></span> All Modules
-        <span class="module-count" id="count-all">0</span>
-      </button>
-    </div>
-    <div id="module-buttons"></div>
-
-    <div class="sidebar-divider"></div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">My Role</div>
-      <div class="role-filter-list">
-        <button class="role-filter-btn active" data-role="all" onclick="filterRole('all')">
-          <span class="role-dot"></span> All Roles
-        </button>
-        <button class="role-filter-btn" data-role="manager" onclick="filterRole('manager')">
-          <span class="role-dot"></span> Manager
-        </button>
-        <button class="role-filter-btn" data-role="frontdesk" onclick="filterRole('frontdesk')">
-          <span class="role-dot"></span> Front Desk
-        </button>
-        <button class="role-filter-btn" data-role="fb" onclick="filterRole('fb')">
-          <span class="role-dot"></span> F&amp;B Staff
+    <div class="sidebar-inner">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Modules</div>
+        <button class="module-btn active" data-module="all" onclick="filterModule('all')">
+          <span class="module-icon"><i class="fa-solid fa-book-open"></i></span> All Modules
+          <span class="module-count" id="count-all">0</span>
         </button>
       </div>
+      <div id="module-buttons"></div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Role</div>
+        <div class="role-filter-list">
+          <button class="role-filter-btn active" data-role="all" onclick="filterRole('all')">
+            <span class="role-dot"></span> All Roles
+          </button>
+          <button class="role-filter-btn" data-role="manager" onclick="filterRole('manager')">
+            <span class="role-dot"></span> Manager
+          </button>
+          <button class="role-filter-btn" data-role="frontdesk" onclick="filterRole('frontdesk')">
+            <span class="role-dot"></span> Front Desk
+          </button>
+          <button class="role-filter-btn" data-role="fb" onclick="filterRole('fb')">
+            <span class="role-dot"></span> F&amp;B Staff
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Manage</div>
+        <button class="manage-btn" onclick="showAdmin()">
+          <i class="fa-solid fa-gear"></i> Admin Panel
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      Robert Trent Jones Golf Trail<br/>Club Caddie Documentation
     </div>
   </nav>
 
@@ -1365,50 +1312,62 @@
 
     <!-- Search results panel -->
     <div id="search-results">
-      <div class="search-header" id="search-header-text"></div>
-      <div id="search-result-list"></div>
+      <div class="home-body">
+        <div class="search-header" id="search-header-text"></div>
+        <div id="search-result-list"></div>
+      </div>
     </div>
 
     <!-- Home page -->
     <div id="page-home">
-      <div class="home-hero">
-        <h1>RTJ Club Caddie Knowledge Base</h1>
-        <p>Step-by-step procedures for Robert Trent Jones Golf Trail staff. Find answers fast — browse by module or search above.</p>
-        <div class="home-stats">
-          <span class="stat-pill" id="stat-total">0 articles</span>
-          <span class="stat-pill" id="stat-modules">3 modules</span>
-          <span class="stat-pill">Updated Feb 2026</span>
+
+      <!-- Hero -->
+      <div class="hero" id="hero-section">
+        <div class="hero-content">
+          <h1>How can we help you?</h1>
+          <div class="hero-search-wrapper" id="hero-search-wrapper">
+            <input
+              type="search"
+              id="search"
+              placeholder="Search articles, procedures, how-tos..."
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Search articles"
+              role="combobox"
+              aria-expanded="false"
+              aria-controls="autocomplete"
+              aria-autocomplete="list"
+            />
+            <button class="hero-search-btn" onclick="doSearch(document.getElementById('search').value)">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+            <div id="autocomplete" role="listbox" aria-label="Search suggestions"></div>
+          </div>
+          <div class="hero-shortcut">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search anytime</div>
         </div>
       </div>
 
-      <div class="section-heading">
-        <h2>Browse by Module</h2>
-      </div>
-      <div class="module-grid" id="home-module-grid"></div>
+      <!-- Home body -->
+      <div class="home-body">
 
-      <!-- Popular Right Now -->
-      <div id="popular-section" style="display:none;">
+        <!-- Recently Updated (horizontal scroll) -->
+        <div id="recent-section">
+          <div class="section-heading">
+            <h2>Recently Updated</h2>
+            <span>Last 60 days</span>
+          </div>
+          <div class="recent-scroll-wrapper">
+            <div class="recent-scroll" id="recent-list"></div>
+          </div>
+        </div>
+
+        <!-- All Articles -->
         <div class="section-heading">
-          <h2><i class="fa-solid fa-fire" style="color:var(--orange);"></i> Popular Right Now</h2>
-          <span id="popular-subtitle"></span>
+          <h2>All Articles</h2>
+          <span id="list-count-label"></span>
         </div>
-        <div class="popular-list" id="popular-list"></div>
+        <div id="article-list"></div>
       </div>
-
-      <!-- Recently Updated -->
-      <div id="recent-section">
-        <div class="section-heading">
-          <h2>Recently Updated</h2>
-          <span>Last 60 days</span>
-        </div>
-        <div id="recent-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:32px;"></div>
-      </div>
-
-      <div class="section-heading">
-        <h2>All Articles</h2>
-        <span id="list-count-label"></span>
-      </div>
-      <div id="article-list"></div>
     </div>
 
     <!-- Article detail -->
@@ -1442,6 +1401,9 @@
       </div>
     </div>
 
+    <!-- Admin panel (placeholder — built in next step) -->
+    <div id="admin-view"></div>
+
   </main>
 </div>
 
@@ -1454,7 +1416,8 @@ const state = {
   activeRole:   'all',
   query:        '',
   articleId:    null,
-  prevView:     'home', // 'home' | 'search'
+  prevView:     'home',
+  view:         'home', // 'home' | 'article' | 'search' | 'admin'
 };
 
 // ── Article lookup map ─────────────────────────────────────────────
@@ -1479,7 +1442,6 @@ function getViewCount(id) {
   return getViews()[id] || 0;
 }
 
-// Returns articles sorted by view count descending, top N
 function getPopularArticles(n = 5) {
   const v = getViews();
   return articles
@@ -1494,7 +1456,7 @@ const ROLE_LABELS = {
   frontdesk: 'Front Desk',
   fb:        'F&B Staff',
   all:       'All Staff',
-  staff:     'Staff',       // legacy fallback
+  staff:     'Staff',
 };
 
 function roleLabel(role) {
@@ -1507,7 +1469,6 @@ function getMod(moduleId) {
 }
 
 // ── Extract first prose paragraph from article content ─────────────
-// Used for quick-answer previews. Skips headings and finds first real text.
 function getOverviewParagraph(content) {
   const lines = content.split('\n');
   for (const line of lines) {
@@ -1517,7 +1478,6 @@ function getOverviewParagraph(content) {
     if (t.startsWith('- ') || t.startsWith('* ')) continue;
     if (t.startsWith('> ')) return t.slice(2);
     if (t.startsWith('**Step')) continue;
-    // Has real text — strip markdown
     return t.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
   }
   return '';
@@ -1555,29 +1515,19 @@ function init() {
 
   document.getElementById('count-all').textContent = counts.all;
 
-  // Build home module grid
-  const grid = document.getElementById('home-module-grid');
-  Object.values(MODULES).forEach(mod => {
-    const card = document.createElement('div');
-    card.className = 'module-card';
-    card.onclick = () => filterModule(mod.id);
-    card.innerHTML = `
-      <div class="module-card-icon">${mod.icon}</div>
-      <div class="module-card-name">${mod.label}</div>
-      <div class="module-card-count">${counts[mod.id]} article${counts[mod.id] !== 1 ? 's' : ''}</div>
-    `;
-    grid.appendChild(card);
-  });
-
-  document.getElementById('stat-total').textContent = `${counts.all} articles`;
+  // Check if hero image exists
+  const heroImg = new Image();
+  heroImg.onload = () => {
+    document.getElementById('hero-section').classList.add('has-image');
+  };
+  heroImg.src = 'hero-golf.jpg';
 
   renderRecentlyUpdated();
-  renderPopular();
   renderList(articles);
   setupSearch();
 }
 
-// ── Recently Updated ───────────────────────────────────────────────
+// ── Recently Updated (horizontal scroll cards) ─────────────────────
 function renderRecentlyUpdated() {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - 60);
@@ -1585,7 +1535,7 @@ function renderRecentlyUpdated() {
   const recent = articles
     .filter(a => new Date(a.dateUpdated + 'T00:00:00') >= cutoff)
     .sort((a, b) => b.dateUpdated.localeCompare(a.dateUpdated))
-    .slice(0, 5);
+    .slice(0, 8);
 
   const container = document.getElementById('recent-list');
   if (recent.length === 0) {
@@ -1596,54 +1546,17 @@ function renderRecentlyUpdated() {
   container.innerHTML = '';
   recent.forEach(article => {
     const mod = getMod(article.module);
-    const item = document.createElement('div');
-    item.className = 'popular-item';
-    item.onclick = () => showArticle(article.id);
-    item.innerHTML = `
-      <span style="font-size:16px;flex-shrink:0;">${mod.icon}</span>
-      <div class="popular-info">
-        <div class="popular-title">${article.title}</div>
-        <div class="popular-meta">${mod.label} · v${article.version}</div>
-      </div>
-      <div class="popular-views" style="color:var(--green);font-weight:600;">
-        Updated ${formatDate(article.dateUpdated)}
-      </div>
+    const overview = getOverviewParagraph(article.content);
+    const snippet = overview.slice(0, 80) + (overview.length > 80 ? '...' : '');
+    const card = document.createElement('div');
+    card.className = 'recent-card';
+    card.onclick = () => showArticle(article.id);
+    card.innerHTML = `
+      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
+      <div class="card-title">${escHtml(article.title)}</div>
+      <div class="card-date"><i class="fa-regular fa-calendar"></i> Updated ${formatDate(article.dateUpdated)}</div>
     `;
-    container.appendChild(item);
-  });
-}
-
-// ── Popular Right Now ──────────────────────────────────────────────
-function renderPopular() {
-  const popular = getPopularArticles(5);
-  const section = document.getElementById('popular-section');
-  const container = document.getElementById('popular-list');
-
-  if (popular.length === 0) {
-    section.style.display = 'none';
-    return;
-  }
-
-  section.style.display = 'block';
-  document.getElementById('popular-subtitle').textContent =
-    `Based on ${popular.reduce((s, a) => s + getViewCount(a.id), 0)} views this session`;
-
-  container.innerHTML = '';
-  popular.forEach((article, i) => {
-    const mod = getMod(article.module);
-    const views = getViewCount(article.id);
-    const item = document.createElement('div');
-    item.className = 'popular-item';
-    item.onclick = () => showArticle(article.id);
-    item.innerHTML = `
-      <div class="popular-rank">${i + 1}</div>
-      <div class="popular-info">
-        <div class="popular-title">${article.title}</div>
-        <div class="popular-meta">${mod.icon} ${mod.label} · <span class="role-badge ${article.role}" style="font-size:10px;padding:1px 6px;">${roleLabel(article.role)}</span></div>
-      </div>
-      <div class="popular-views">${views} view${views !== 1 ? 's' : ''}</div>
-    `;
-    container.appendChild(item);
+    container.appendChild(card);
   });
 }
 
@@ -1672,14 +1585,14 @@ function renderList(list) {
   list.forEach(article => {
     const mod = getMod(article.module);
     const overview = getOverviewParagraph(article.content);
-    const snippet = overview.slice(0, 120) + (overview.length > 120 ? '…' : '');
+    const snippet = overview.slice(0, 120) + (overview.length > 120 ? '...' : '');
     const isTrending = topIds.has(article.id) && getViewCount(article.id) > 0;
 
     const card = document.createElement('div');
     card.className = 'article-card';
     card.onclick = () => showArticle(article.id);
     card.innerHTML = `
-      <div class="card-module-badge">${mod.icon} ${mod.label}</div>
+      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
       <div class="card-title">
         ${escHtml(article.title)}
         ${isTrending ? '<span class="trending-badge"><i class="fa-solid fa-fire"></i> Trending</span>' : ''}
@@ -1688,7 +1601,7 @@ function renderList(list) {
       <div class="card-snippet">${escHtml(snippet)}</div>
       <div class="card-meta">
         <span class="role-badge ${article.role}">${roleLabel(article.role)}</span>
-        <span>Updated ${formatDate(article.dateUpdated)}</span>
+        <span class="date-text"><i class="fa-regular fa-calendar"></i> ${formatDate(article.dateUpdated)}</span>
       </div>
     `;
     container.appendChild(card);
@@ -1709,7 +1622,6 @@ function filterModule(moduleId) {
   state.activeModule = moduleId;
   state.query = '';
   document.getElementById('search').value = '';
-  document.getElementById('search-clear').style.display = 'none';
   closeAutocomplete();
 
   document.querySelectorAll('.module-btn').forEach(btn => {
@@ -1745,44 +1657,41 @@ function showArticle(id) {
   if (!article) return;
 
   closeAutocomplete();
-  recordView(id);   // track popularity
+  recordView(id);
 
   state.articleId = id;
+  state.view = 'article';
 
   const mod = getMod(article.module);
 
-  // ── Breadcrumb: Club Caddie > Module > Article ──
   document.getElementById('article-breadcrumb').innerHTML = `
     <span class="breadcrumb-link" onclick="showHome()">Club Caddie</span>
-    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-sep">></span>
     <span class="breadcrumb-link" onclick="filterModule('${article.module}')">${mod.icon} ${mod.label}</span>
-    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-sep">></span>
     <span>${escHtml(article.title)}</span>
   `;
 
-  // ── Header with version indicator ──
   document.getElementById('article-header').innerHTML = `
     <div class="article-title-row">
       <div class="article-title">${escHtml(article.title)}</div>
     </div>
     <div class="article-meta-row">
-      <span class="meta-chip">${mod.icon} ${mod.label}</span>
+      <span class="meta-chip" style="background:${mod.color};color:#fff;">${mod.icon} ${mod.label}</span>
       <span class="role-badge ${article.role}">${roleLabel(article.role)}</span>
-      <span class="meta-chip"><i class="fa-solid fa-calendar"></i> Updated ${formatDate(article.dateUpdated)}</span>
-      <span class="meta-chip" title="Club Caddie version this article was verified against">
-        <i class="fa-solid fa-circle-check" style="color:var(--green);"></i> Club Caddie v${article.version}
+      <span class="meta-chip"><i class="fa-regular fa-calendar"></i> Updated ${formatDate(article.dateUpdated)}</span>
+      <span class="meta-chip" title="Club Caddie version">
+        <i class="fa-solid fa-circle-check" style="color:var(--primary);"></i> v${article.version}
       </span>
     </div>
   `;
 
-  // ── Body ──
   document.getElementById('article-body').innerHTML =
     `<div class="article-content">${renderContent(article.content)}</div>`;
 
-  // ── Related articles (keyword-based, not just relatedIds) ──
+  // Related articles
   const relatedContainer = document.getElementById('related-section');
   const relatedList      = document.getElementById('related-list');
-
   const relatedArticles = findRelated(article, 4);
   if (relatedArticles.length > 0) {
     relatedList.innerHTML = '';
@@ -1797,7 +1706,7 @@ function showArticle(id) {
           <div class="related-item-text">${escHtml(rel.title)}</div>
           <div class="related-item-module">${relMod.label} · <span class="role-badge ${rel.role}" style="font-size:10px;padding:1px 5px;">${roleLabel(rel.role)}</span></div>
         </div>
-        <span style="margin-left:auto;color:var(--gray-400);">›</span>
+        <span style="margin-left:auto;color:var(--gray-400);">></span>
       `;
       relatedList.appendChild(item);
     });
@@ -1806,17 +1715,13 @@ function showArticle(id) {
     relatedContainer.style.display = 'none';
   }
 
-  // ── People Also Asked ──
   renderPAA(article);
-
-  // ── Media (screenshots / videos) ──
   renderMedia(article);
-
-  // ── Feedback bar ──
   renderFeedbackBar(id);
 
   document.getElementById('page-home').style.display = 'none';
   document.getElementById('search-results').classList.remove('active');
+  document.getElementById('admin-view').classList.remove('active');
   document.getElementById('article-view').classList.add('active');
 
   window.scrollTo(0, 0);
@@ -1827,14 +1732,12 @@ function findRelated(article, max) {
   const seen = new Set([article.id]);
   const results = [];
 
-  // 1. Explicit relatedIds first
   (article.relatedIds || []).forEach(rid => {
     if (seen.has(rid)) return;
     const rel = articleMap[rid];
     if (rel) { results.push(rel); seen.add(rid); }
   });
 
-  // 2. Keyword overlap for the remainder
   if (results.length < max) {
     const myKeywords = new Set([
       ...article.title.toLowerCase().split(/\s+/),
@@ -1850,7 +1753,6 @@ function findRelated(article, max) {
         ]);
         let overlap = 0;
         myKeywords.forEach(k => { if (k.length > 3 && theirKw.has(k)) overlap++; });
-        // Bonus for same module
         if (a.module === article.module) overlap += 2;
         return { article: a, overlap };
       })
@@ -1868,11 +1770,27 @@ function findRelated(article, max) {
 function showHome() {
   state.articleId = null;
   state.prevView  = 'home';
+  state.view      = 'home';
   document.getElementById('article-view').classList.remove('active');
   document.getElementById('search-results').classList.remove('active');
+  document.getElementById('admin-view').classList.remove('active');
   document.getElementById('page-home').style.display = 'block';
-  renderPopular();        // refresh popular section with latest counts
   renderList(getFilteredList());
+}
+
+// ── Show admin ─────────────────────────────────────────────────────
+function showAdmin() {
+  state.view = 'admin';
+  document.getElementById('page-home').style.display = 'none';
+  document.getElementById('article-view').classList.remove('active');
+  document.getElementById('search-results').classList.remove('active');
+  document.getElementById('admin-view').classList.add('active');
+  renderAdmin();
+
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('active');
+  }
 }
 
 // ── Back button ────────────────────────────────────────────────────
@@ -2003,7 +1921,6 @@ function fuzzyScore(article, query) {
 
   let raw = allMatch ? score : (score > 0 ? score * 0.4 : 0);
 
-  // Popularity boost: up to +4 points for popular articles
   const views = getViewCount(article.id);
   if (views > 0) raw += Math.min(4, Math.log2(views + 1));
 
@@ -2028,7 +1945,6 @@ function levenshtein(a, b) {
 }
 
 // ── Autocomplete ───────────────────────────────────────────────────
-// Question patterns: "How do I…", "What is…", mapped to article keywords
 const QUESTION_PATTERNS = [
   { q: 'How do I issue a rain check?',           id: 'reg-007' },
   { q: 'How do I process a gift card?',          id: 'reg-004' },
@@ -2057,7 +1973,6 @@ function buildAutocomplete(val) {
 
   const input = document.getElementById('search');
 
-  // 1. Article title matches (up to 4)
   const titleMatches = articles
     .filter(a => {
       const roleOk = state.activeRole === 'all' || a.role === state.activeRole || a.role === 'all';
@@ -2065,7 +1980,6 @@ function buildAutocomplete(val) {
     })
     .slice(0, 4);
 
-  // 2. Question pattern matches (up to 3)
   const questionMatches = QUESTION_PATTERNS
     .filter(p => p.q.toLowerCase().includes(q))
     .slice(0, 3);
@@ -2127,7 +2041,6 @@ function closeAutocomplete() {
 function acSelectArticle(id) {
   closeAutocomplete();
   document.getElementById('search').value = '';
-  document.getElementById('search-clear').style.display = 'none';
   state.query = '';
   showArticle(id);
 }
@@ -2162,8 +2075,10 @@ function doSearch(query) {
     .sort((a, b) => b.score - a.score);
 
   state.prevView = 'search';
+  state.view = 'search';
   document.getElementById('page-home').style.display = 'none';
   document.getElementById('article-view').classList.remove('active');
+  document.getElementById('admin-view').classList.remove('active');
   document.getElementById('search-results').classList.add('active');
 
   const headerEl = document.getElementById('search-header-text');
@@ -2189,7 +2104,7 @@ function doSearch(query) {
   scored.forEach(({ article }) => {
     const mod      = getMod(article.module);
     const overview = getOverviewParagraph(article.content);
-    const quickAns = overview.slice(0, 150) + (overview.length > 150 ? '…' : '');
+    const quickAns = overview.slice(0, 150) + (overview.length > 150 ? '...' : '');
     const snippet  = highlightSnippet(article, q);
     const views    = getViewCount(article.id);
 
@@ -2197,13 +2112,13 @@ function doSearch(query) {
     card.className = 'article-card';
     card.onclick = () => { state.prevView = 'search'; showArticle(article.id); };
     card.innerHTML = `
-      <div class="card-module-badge">${mod.icon} ${mod.label}</div>
+      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
       <div class="card-title">${highlightText(article.title, q)}</div>
       ${quickAns ? `<div class="card-quick-answer">${highlightText(quickAns, q)}</div>` : ''}
       <div class="card-snippet">${snippet}</div>
       <div class="card-meta">
         <span class="role-badge ${article.role}">${roleLabel(article.role)}</span>
-        <span>${views > 0 ? `<i class="fa-solid fa-eye"></i> ${views} · ` : ''}Updated ${formatDate(article.dateUpdated)}</span>
+        <span class="date-text">${views > 0 ? `<i class="fa-solid fa-eye"></i> ${views} · ` : ''}<i class="fa-regular fa-calendar"></i> ${formatDate(article.dateUpdated)}</span>
       </div>
     `;
     grid.appendChild(card);
@@ -2233,8 +2148,8 @@ function highlightSnippet(article, query) {
   }
 
   let snippet = plain.slice(start, start + 160);
-  if (start > 0) snippet = '…' + snippet;
-  if (start + 160 < plain.length) snippet += '…';
+  if (start > 0) snippet = '...' + snippet;
+  if (start + 160 < plain.length) snippet += '...';
   return highlightText(snippet, query);
 }
 
@@ -2245,27 +2160,23 @@ function escHtml(s) {
 
 function escRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 
-// ── Search input wiring (with autocomplete) ───────────────────────
+// ── Search input wiring ────────────────────────────────────────────
 function setupSearch() {
-  const input    = document.getElementById('search');
-  const clearBtn = document.getElementById('search-clear');
+  const input = document.getElementById('search');
   let debounceTimer;
   let acTimer;
 
   input.addEventListener('input', () => {
     const val = input.value;
-    clearBtn.style.display = val ? 'block' : 'none';
 
-    // Autocomplete: fast, no debounce needed
     clearTimeout(acTimer);
     acTimer = setTimeout(() => buildAutocomplete(val), 80);
 
-    // Full search: debounced
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       closeAutocomplete();
       doSearch(val);
-    }, 220);
+    }, 300);
   });
 
   input.addEventListener('keydown', e => {
@@ -2279,13 +2190,18 @@ function setupSearch() {
       }
       if (e.key === 'Escape') { closeAutocomplete(); return; }
     } else {
-      if (e.key === 'Escape') clearSearch();
+      if (e.key === 'Escape') {
+        input.value = '';
+        state.query = '';
+        closeAutocomplete();
+        if (state.view === 'search') showHome();
+      }
     }
   });
 
   // Close autocomplete when clicking outside
   document.addEventListener('click', e => {
-    if (!document.getElementById('search-wrapper').contains(e.target)) {
+    if (!document.getElementById('hero-search-wrapper').contains(e.target)) {
       closeAutocomplete();
     }
   });
@@ -2293,15 +2209,18 @@ function setupSearch() {
   input.addEventListener('focus', () => {
     if (input.value.trim()) buildAutocomplete(input.value);
   });
-}
 
-function clearSearch() {
-  document.getElementById('search').value = '';
-  document.getElementById('search-clear').style.display = 'none';
-  closeAutocomplete();
-  state.query = '';
-  document.getElementById('search-results').classList.remove('active');
-  if (!state.articleId) showHome();
+  // Ctrl+K global shortcut
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      if (state.view !== 'home') showHome();
+      setTimeout(() => {
+        input.focus();
+        input.select();
+      }, 50);
+    }
+  });
 }
 
 // ── Mobile sidebar ─────────────────────────────────────────────────
@@ -2320,7 +2239,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-// ── Feedback (Was this helpful?) ───────────────────────────────────
+// ── Feedback ───────────────────────────────────────────────────────
 const FEEDBACK_KEY = 'rtj_wiki_feedback';
 
 function getFeedback() {
@@ -2328,7 +2247,6 @@ function getFeedback() {
   catch { return {}; }
 }
 
-// Returns { yes: n, no: n } for an article, or null if no votes
 function getArticleFeedback(id) {
   const f = getFeedback();
   return f[id] || null;
@@ -2340,7 +2258,7 @@ function voteFeedback(helpful) {
 
   const f = getFeedback();
   if (!f[id]) f[id] = { yes: 0, no: 0, userVote: null };
-  if (f[id].userVote !== null) return; // already voted
+  if (f[id].userVote !== null) return;
 
   f[id].userVote = helpful ? 'yes' : 'no';
   if (helpful) f[id].yes++; else f[id].no++;
@@ -2357,7 +2275,6 @@ function renderFeedbackBar(id) {
   const score  = document.getElementById('feedback-score');
 
   if (!f || f.userVote === null) {
-    // No vote yet — reset
     yesBtn?.classList.remove('voted');
     noBtn?.classList.remove('voted');
     result?.classList.remove('show');
@@ -2365,7 +2282,6 @@ function renderFeedbackBar(id) {
     return;
   }
 
-  // Show voted state
   const voted = f.userVote;
   yesBtn?.classList.toggle('voted', voted === 'yes');
   noBtn?.classList.toggle('voted',  voted === 'no');
@@ -2375,7 +2291,6 @@ function renderFeedbackBar(id) {
     result.classList.add('show');
   }
 
-  // Show aggregate score
   const total = (f.yes || 0) + (f.no || 0);
   if (total > 0 && score) {
     const pct = Math.round((f.yes / total) * 100);
@@ -2388,11 +2303,9 @@ function renderPAA(article) {
   const container = document.getElementById('paa-section');
   const list      = document.getElementById('paa-list');
 
-  // Find question patterns that link to related articles (not the current one)
   const relatedIds = new Set(findRelated(article, 6).map(a => a.id));
   const matches = QUESTION_PATTERNS.filter(p =>
     p.id !== article.id && (relatedIds.has(p.id) ||
-      // Also include patterns where the question keywords overlap with this article
       p.q.toLowerCase().split(/\s+/).some(w =>
         w.length > 4 && (article.keywords||[]).some(k => k.toLowerCase().includes(w))
       ))
@@ -2410,7 +2323,7 @@ function renderPAA(article) {
     item.innerHTML = `
       <span class="paa-item-icon"><i class="fa-solid fa-circle-question"></i></span>
       ${escHtml(p.q)}
-      <span class="paa-item-arrow">›</span>
+      <span class="paa-item-arrow">></span>
     `;
     list.appendChild(item);
   });
@@ -2419,9 +2332,6 @@ function renderPAA(article) {
 }
 
 // ── Media embed renderer ───────────────────────────────────────────
-// Articles can have an optional `media` array:
-// { type: 'image', src, caption } | { type: 'video', url, title, duration }
-// The renderer appends media blocks after the article body.
 function renderMedia(article) {
   const body = document.getElementById('article-body');
   if (!article.media || article.media.length === 0) return;
@@ -2429,7 +2339,6 @@ function renderMedia(article) {
   const mediaHtml = article.media.map(m => {
     if (m.type === 'image') {
       if (!m.src) {
-        // Placeholder shown until the real screenshot is added
         return `
           <div class="screenshot-pending">
             <div class="screenshot-placeholder">
@@ -2462,7 +2371,7 @@ function renderMedia(article) {
   if (mediaHtml) {
     const mediaSection = document.createElement('div');
     mediaSection.innerHTML = `
-      <h2 style="font-size:16px;font-weight:700;color:var(--green-dark);margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--green-pale);">
+      <h2 style="font-size:16px;font-weight:700;color:var(--primary-dark);margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--primary-pale);">
         Screenshots &amp; Videos
       </h2>` + mediaHtml;
     body.querySelector('.article-content').appendChild(mediaSection);
@@ -2479,6 +2388,311 @@ function getHelpfulnessBadge(id) {
   if (pct >= 75) return `<span class="helpful-badge good"><i class="fa-solid fa-thumbs-up"></i> ${pct}%</span>`;
   if (pct <= 40) return `<span class="helpful-badge low"><i class="fa-solid fa-thumbs-down"></i> ${pct}%</span>`;
   return '';
+}
+
+// ── Admin Panel ────────────────────────────────────────────────────
+const ADMIN_DRAFTS_KEY = 'rtj_wiki_admin_drafts';
+
+function getAdminDrafts() {
+  try { return JSON.parse(localStorage.getItem(ADMIN_DRAFTS_KEY)) || {}; }
+  catch { return {}; }
+}
+
+function saveAdminDraft(id, articleData) {
+  const drafts = getAdminDrafts();
+  drafts[id] = articleData;
+  try { localStorage.setItem(ADMIN_DRAFTS_KEY, JSON.stringify(drafts)); } catch {}
+}
+
+function deleteAdminDraft(id) {
+  const drafts = getAdminDrafts();
+  delete drafts[id];
+  try { localStorage.setItem(ADMIN_DRAFTS_KEY, JSON.stringify(drafts)); } catch {}
+}
+
+function getMergedArticles() {
+  const drafts = getAdminDrafts();
+  const merged = articles.map(a => drafts[a.id] ? { ...a, ...drafts[a.id] } : a);
+  // Add any new articles from drafts
+  Object.keys(drafts).forEach(id => {
+    if (!articleMap[id]) merged.push(drafts[id]);
+  });
+  return merged;
+}
+
+function renderAdmin() {
+  const view = document.getElementById('admin-view');
+  const allArticles = getMergedArticles();
+  const drafts = getAdminDrafts();
+  const draftCount = Object.keys(drafts).length;
+
+  view.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h1 style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">Admin Panel</h1>
+        <p style="font-size:13px;color:var(--gray-500);">${allArticles.length} articles${draftCount > 0 ? ` · <span style="color:var(--orange);font-weight:600;">${draftCount} unsaved draft${draftCount!==1?'s':''}</span>` : ''}</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="adminNewArticle()" style="padding:8px 16px;background:var(--primary);color:#fff;border-radius:6px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-plus"></i> New Article
+        </button>
+        <button onclick="adminExport()" style="padding:8px 16px;background:var(--navy);color:#fff;border-radius:6px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-download"></i> Export articles.js
+        </button>
+        ${draftCount > 0 ? `
+        <button onclick="adminResetDrafts()" style="padding:8px 16px;background:var(--white);color:var(--red);border:1.5px solid var(--red);border-radius:6px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
+          <i class="fa-solid fa-rotate-left"></i> Reset Drafts
+        </button>` : ''}
+      </div>
+    </div>
+
+    <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-200);overflow:hidden;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--gray-50);border-bottom:1px solid var(--gray-200);">
+            <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--gray-700);">Title</th>
+            <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--gray-700);width:110px;">Module</th>
+            <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--gray-700);width:90px;">Role</th>
+            <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--gray-700);width:100px;">Updated</th>
+            <th style="text-align:right;padding:10px 14px;font-weight:600;color:var(--gray-700);width:120px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${allArticles.map(a => {
+            const mod = getMod(a.module);
+            const isDraft = !!drafts[a.id];
+            return `
+            <tr style="border-bottom:1px solid var(--gray-100);${isDraft ? 'background:#fffbeb;' : ''}">
+              <td style="padding:10px 14px;font-weight:500;">
+                ${escHtml(a.title)}
+                ${isDraft ? '<span style="font-size:10px;background:var(--orange);color:#fff;padding:1px 6px;border-radius:4px;margin-left:6px;">draft</span>' : ''}
+              </td>
+              <td style="padding:10px 14px;">
+                <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:${mod.color};color:#fff;">${mod.icon} ${mod.label}</span>
+              </td>
+              <td style="padding:10px 14px;"><span class="role-badge ${a.role}">${roleLabel(a.role)}</span></td>
+              <td style="padding:10px 14px;color:var(--gray-500);font-size:12px;">${formatDate(a.dateUpdated)}</td>
+              <td style="padding:10px 14px;text-align:right;">
+                <button onclick="adminEditArticle('${a.id}')" style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:var(--primary-pale);color:var(--primary-dark);margin-right:4px;">
+                  <i class="fa-solid fa-pen"></i> Edit
+                </button>
+                <button onclick="adminDeleteArticle('${a.id}')" style="padding:4px 10px;border-radius:4px;font-size:12px;font-weight:600;background:#fdf0f0;color:var(--red);">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function adminNewArticle() {
+  const id = 'new-' + Date.now();
+  const newArticle = {
+    id,
+    title: 'New Article',
+    module: 'register',
+    role: 'all',
+    dateUpdated: new Date().toISOString().split('T')[0],
+    version: '2.0',
+    keywords: [],
+    relatedIds: [],
+    media: [],
+    content: '## Overview\n\nWrite your article content here.\n\n## Step-by-Step\n\n**Step 1: First Step**\nDescribe what to do.\n',
+  };
+  adminShowEditor(newArticle, true);
+}
+
+function adminEditArticle(id) {
+  const drafts = getAdminDrafts();
+  const base = articleMap[id] || getMergedArticles().find(a => a.id === id);
+  if (!base) return;
+  const article = drafts[id] ? { ...base, ...drafts[id] } : { ...base };
+  adminShowEditor(article, false);
+}
+
+function adminDeleteArticle(id) {
+  if (!confirm('Delete this article? This removes the draft. The original will reappear after a page refresh unless you export.')) return;
+  deleteAdminDraft(id);
+  // If it's a new article (not in base), remove from merged
+  renderAdmin();
+}
+
+function adminResetDrafts() {
+  if (!confirm('Discard all unsaved drafts and revert to the published articles.js?')) return;
+  try { localStorage.removeItem(ADMIN_DRAFTS_KEY); } catch {}
+  renderAdmin();
+}
+
+function adminShowEditor(article, isNew) {
+  const view = document.getElementById('admin-view');
+  const modules = Object.values(MODULES);
+
+  view.innerHTML = `
+    <button onclick="renderAdmin()" style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1.5px solid var(--gray-200);background:var(--white);font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:16px;cursor:pointer;">
+      <i class="fa-solid fa-arrow-left"></i> Back to Articles
+    </button>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <!-- Editor -->
+      <div>
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px;">${isNew ? 'New Article' : 'Edit Article'}</h2>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Title</label>
+            <input id="editor-title" type="text" value="${escHtml(article.title)}" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Module</label>
+              <select id="editor-module" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;">
+                ${modules.map(m => `<option value="${m.id}" ${m.id === article.module ? 'selected' : ''}>${m.label}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Role</label>
+              <select id="editor-role" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;">
+                <option value="all" ${article.role==='all'?'selected':''}>All Staff</option>
+                <option value="manager" ${article.role==='manager'?'selected':''}>Manager</option>
+                <option value="frontdesk" ${article.role==='frontdesk'?'selected':''}>Front Desk</option>
+                <option value="fb" ${article.role==='fb'?'selected':''}>F&B Staff</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Version</label>
+              <input id="editor-version" type="text" value="${escHtml(article.version)}" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Date Updated</label>
+              <input id="editor-date" type="date" value="${article.dateUpdated}" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Keywords (comma-separated)</label>
+            <input id="editor-keywords" type="text" value="${escHtml((article.keywords||[]).join(', '))}" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Content (Markdown)</label>
+            <textarea id="editor-content" style="width:100%;min-height:400px;padding:12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;font-family:'Consolas','Cascadia Code',monospace;line-height:1.6;resize:vertical;">${escHtml(article.content.trim())}</textarea>
+          </div>
+
+          <div style="display:flex;gap:8px;">
+            <button onclick="adminSaveArticle('${article.id}', ${isNew})" style="padding:10px 20px;background:var(--primary);color:#fff;border-radius:6px;font-size:14px;font-weight:600;">
+              <i class="fa-solid fa-floppy-disk"></i> Save Draft
+            </button>
+            <button onclick="renderAdmin()" style="padding:10px 20px;background:var(--gray-100);color:var(--gray-700);border-radius:6px;font-size:14px;font-weight:500;">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div>
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px;">Preview</h2>
+        <div id="editor-preview" style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;min-height:400px;overflow-y:auto;">
+          <div class="article-content" id="editor-preview-content"></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Wire up live preview
+  const contentEl = document.getElementById('editor-content');
+  const previewEl = document.getElementById('editor-preview-content');
+
+  function updatePreview() {
+    previewEl.innerHTML = renderContent(contentEl.value);
+  }
+
+  contentEl.addEventListener('input', updatePreview);
+  updatePreview();
+}
+
+function adminSaveArticle(id, isNew) {
+  const articleData = {
+    id,
+    title: document.getElementById('editor-title').value.trim(),
+    module: document.getElementById('editor-module').value,
+    role: document.getElementById('editor-role').value,
+    version: document.getElementById('editor-version').value.trim(),
+    dateUpdated: document.getElementById('editor-date').value,
+    keywords: document.getElementById('editor-keywords').value.split(',').map(k => k.trim()).filter(Boolean),
+    content: document.getElementById('editor-content').value,
+    relatedIds: [],
+    media: [],
+  };
+
+  saveAdminDraft(id, articleData);
+
+  // Update in-memory if editing existing
+  if (articleMap[id]) {
+    Object.assign(articleMap[id], articleData);
+  }
+
+  renderAdmin();
+}
+
+function adminExport() {
+  const allArticles = getMergedArticles();
+
+  let js = `// RTJ Club Caddie Wiki — Article Database
+// Each article: { id, title, module, role, content, keywords, relatedIds, dateUpdated, version }
+// ONLY articles sourced from RTJ SOPs B (Source of Truth folder) are included.
+
+const MODULES = {
+`;
+
+  Object.entries(MODULES).forEach(([key, mod]) => {
+    js += `  ${key}: { id: '${mod.id}', label: '${mod.label}', icon: '${mod.icon.replace(/'/g, "\\'")}', color: '${mod.color}' },\n`;
+  });
+
+  js += `};
+
+const ROLES = {
+  MANAGER:   'manager',
+  FRONTDESK: 'frontdesk',
+  FB:        'fb',
+  ALL:       'all',
+};
+
+const articles = [\n`;
+
+  allArticles.forEach((a, i) => {
+    js += `\n  {\n`;
+    js += `    id: '${a.id}',\n`;
+    js += `    title: ${JSON.stringify(a.title)},\n`;
+    js += `    module: '${a.module}',\n`;
+    js += `    role: '${a.role}',\n`;
+    js += `    dateUpdated: '${a.dateUpdated}',\n`;
+    js += `    version: '${a.version}',\n`;
+    js += `    keywords: ${JSON.stringify(a.keywords || [])},\n`;
+    js += `    relatedIds: ${JSON.stringify(a.relatedIds || [])},\n`;
+    js += `    media: ${JSON.stringify(a.media || [])},\n`;
+    js += `    content: ${JSON.stringify(a.content)},\n`;
+    js += `  },\n`;
+  });
+
+  js += `\n];\n`;
+
+  const blob = new Blob([js], { type: 'text/javascript' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'articles.js';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 // ── Boot ───────────────────────────────────────────────────────────
