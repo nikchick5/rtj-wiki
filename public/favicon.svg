@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path d="M10 12 C10 6, 16 0, 22 0 L78 0 C84 0, 90 6, 90 12 L90 62 C90 76, 76 88, 50 96 C24 88, 10 76, 10 62 Z" fill="#089247"/>
+  <path d="M16 14 C16 9, 21 5, 26 5 L74 5 C79 5, 84 9, 84 14 L84 59 C84 71, 72 82, 50 89 C28 82, 16 71, 16 59 Z" fill="none" stroke="white" stroke-width="2.5"/>
+  <text x="50" y="48" text-anchor="middle" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="white" letter-spacing="3">RTJ</text>
+  <circle cx="50" cy="66" r="7" fill="white" opacity="0.9"/>
+</svg>
