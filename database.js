@@ -4,15 +4,33 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = path.join(__dirname, 'wiki.db');
 const IS_VERCEL = !!process.env.VERCEL;
+
+// On Vercel, the bundled file may be in a different location
+function findDbPath() {
+  const candidates = [
+    path.join(__dirname, 'wiki.db'),
+    path.join(__dirname, '..', 'wiki.db'),
+    path.join(process.cwd(), 'wiki.db'),
+  ];
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return candidates[0];
+}
+
+const DB_PATH = findDbPath();
 
 let db = null;
 
 async function getDb() {
   if (db) return db;
 
-  const SQL = await initSqlJs();
+  // On Vercel, load WASM from CDN since bundled filesystem paths may not resolve
+  const initOptions = IS_VERCEL
+    ? { locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.11.0/${file}` }
+    : undefined;
+  const SQL = await initSqlJs(initOptions);
 
   if (fs.existsSync(DB_PATH)) {
     const buffer = fs.readFileSync(DB_PATH);
