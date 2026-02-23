@@ -26,11 +26,10 @@ let db = null;
 async function getDb() {
   if (db) return db;
 
-  // On Vercel, load WASM from CDN since bundled filesystem paths may not resolve
-  const initOptions = IS_VERCEL
-    ? { locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.11.0/${file}` }
-    : undefined;
-  const SQL = await initSqlJs(initOptions);
+  // Always load WASM from CDN to avoid filesystem issues in serverless environments
+  const SQL = await initSqlJs({
+    locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.11.0/${file}`
+  });
 
   if (fs.existsSync(DB_PATH)) {
     const buffer = fs.readFileSync(DB_PATH);

@@ -3,7 +3,7 @@
   "outputDirectory": "dist",
   "functions": {
     "api/index.js": {
-      "includeFiles": ["../wiki.db", "../database.js", "../server.js"],
+      "includeFiles": "../wiki.db",
       "maxDuration": 30
     }
   },
