@@ -618,13 +618,10 @@
       align-items: center;
       gap: 5px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      padding: 3px 9px;
-      border-radius: 4px;
       width: fit-content;
-      color: var(--white);
     }
 
     .card-title {
@@ -1494,7 +1491,7 @@ function renderRecentlyUpdated() {
     card.className = 'recent-card';
     card.onclick = () => showArticle(article.id);
     card.innerHTML = `
-      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
+      <div class="card-module-badge" style="color:${mod.color}">${mod.icon} ${mod.label}</div>
       <div class="card-title">${escHtml(article.title)}</div>
       <div class="card-date"><i class="fa-regular fa-calendar"></i> Updated ${formatDate(article.dateUpdated)}</div>
     `;
@@ -1534,7 +1531,7 @@ function renderList(list) {
     card.className = 'article-card';
     card.onclick = () => showArticle(article.id);
     card.innerHTML = `
-      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
+      <div class="card-module-badge" style="color:${mod.color}">${mod.icon} ${mod.label}</div>
       <div class="card-title">
         ${escHtml(article.title)}
         ${isTrending ? '<span class="trending-badge"><i class="fa-solid fa-fire"></i> Trending</span>' : ''}
@@ -2063,7 +2060,7 @@ function doSearch(query) {
     card.className = 'article-card';
     card.onclick = () => { state.prevView = 'search'; showArticle(article.id); };
     card.innerHTML = `
-      <div class="card-module-badge" style="background:${mod.color}">${mod.icon} ${mod.label}</div>
+      <div class="card-module-badge" style="color:${mod.color}">${mod.icon} ${mod.label}</div>
       <div class="card-title">${highlightText(article.title, q)}</div>
       ${quickAns ? `<div class="card-quick-answer">${highlightText(quickAns, q)}</div>` : ''}
       <div class="card-snippet">${snippet}</div>
