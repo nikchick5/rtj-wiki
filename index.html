@@ -247,61 +247,6 @@
       margin: 8px 16px;
     }
 
-    /* Role filter */
-    .role-filter-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 4px 8px 8px;
-    }
-
-    .role-filter-btn {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--gray-700);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition);
-      text-align: left;
-      position: relative;
-    }
-
-    .role-filter-btn:hover { background: var(--gray-100); }
-
-    .role-filter-btn.active {
-      background: var(--primary-pale);
-      color: var(--primary-dark);
-      font-weight: 600;
-    }
-
-    .role-filter-btn.active::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 4px; bottom: 4px;
-      width: 3px;
-      background: var(--primary);
-      border-radius: 0 2px 2px 0;
-    }
-
-    .role-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .role-filter-btn[data-role="all"]       .role-dot { background: var(--gray-400); }
-    .role-filter-btn[data-role="manager"]   .role-dot { background: var(--orange); }
-    .role-filter-btn[data-role="frontdesk"] .role-dot { background: var(--blue); }
-    .role-filter-btn[data-role="fb"]        .role-dot { background: var(--red); }
-    .role-filter-btn.active[data-role="all"]     .role-dot { background: var(--primary); }
-
     /* Manage section */
     .manage-btn {
       display: flex;
@@ -733,21 +678,6 @@
       align-items: center;
       gap: 4px;
     }
-
-    /* Role badges */
-    .role-badge {
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: capitalize;
-    }
-
-    .role-badge.manager   { background: #fdf2e9; color: #a04000; }
-    .role-badge.frontdesk { background: var(--blue-pale); color: var(--blue); }
-    .role-badge.fb        { background: #fdf0f0; color: #a02020; }
-    .role-badge.all       { background: var(--primary-pale); color: var(--primary-dark); }
-    .role-badge.staff     { background: var(--blue-pale); color: var(--blue); }
 
     /* ── Search results ──────────────────────────────────────── */
     #search-results { display: none; }
@@ -1294,26 +1224,6 @@
       <div class="sidebar-divider"></div>
 
       <div class="sidebar-section">
-        <div class="sidebar-section-label">Role</div>
-        <div class="role-filter-list">
-          <button class="role-filter-btn active" data-role="all" onclick="filterRole('all')">
-            <span class="role-dot"></span> All Roles
-          </button>
-          <button class="role-filter-btn" data-role="manager" onclick="filterRole('manager')">
-            <span class="role-dot"></span> Manager
-          </button>
-          <button class="role-filter-btn" data-role="frontdesk" onclick="filterRole('frontdesk')">
-            <span class="role-dot"></span> Front Desk
-          </button>
-          <button class="role-filter-btn" data-role="fb" onclick="filterRole('fb')">
-            <span class="role-dot"></span> F&amp;B Staff
-          </button>
-        </div>
-      </div>
-
-      <div class="sidebar-divider"></div>
-
-      <div class="sidebar-section">
         <div class="sidebar-section-label">Manage</div>
         <button class="manage-btn" onclick="showAdmin()">
           <i class="fa-solid fa-gear"></i> Admin Panel
@@ -1655,7 +1565,6 @@ function renderList(list) {
       </div>
       <div class="card-snippet">${escHtml(snippet)}</div>
       <div class="card-meta">
-        <span class="role-badge ${article.role}">${roleLabel(article.role)}</span>
         <span class="date-text"><i class="fa-regular fa-calendar"></i> ${formatDate(article.dateUpdated)}</span>
       </div>
     `;
