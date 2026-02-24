@@ -3,9 +3,27 @@
 // ONLY articles sourced from RTJ SOPs B (Source of Truth folder) are included.
 
 const MODULES = {
-  REGISTER:    { id: 'register',    label: 'Register',    icon: '<i class="fa-solid fa-cash-register"></i>', color: '#1b6d37' },
-  TEE_SHEET:   { id: 'tee-sheet',   label: 'Tee Sheet',   icon: '<i class="fa-solid fa-calendar-days"></i>', color: '#0066cc' },
-  MEMBERSHIP:  { id: 'membership',  label: 'Membership',  icon: '<i class="fa-solid fa-id-card"></i>', color: '#7d3c98' },
+  REGISTER: {
+    id: 'register',
+    label: 'Register',
+    icon: '<i class="fa-solid fa-cash-register"></i>',
+    color: '#1b6d37',
+    description: 'Ring up sales, process gift cards, issue rain checks, manage inventory items, and handle day-end register procedures.'
+  },
+  TEE_SHEET: {
+    id: 'tee-sheet',
+    label: 'Tee Sheet',
+    icon: '<i class="fa-solid fa-calendar-days"></i>',
+    color: '#0066cc',
+    description: 'Check in golfers, manage group bookings, and handle tee time operations from the tee sheet.'
+  },
+  MEMBERSHIP: {
+    id: 'membership',
+    label: 'Membership',
+    icon: '<i class="fa-solid fa-id-card"></i>',
+    color: '#7d3c98',
+    description: 'Set up trail cards, manage member profiles, and configure membership programs and benefits.'
+  },
 };
 
 // role values: 'manager' | 'frontdesk' | 'fb' | 'all'

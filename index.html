@@ -569,6 +569,83 @@
       gap: 4px;
     }
 
+    /* ── Module Category Cards ─────────────────────────────────── */
+    .module-cards-section { margin-bottom: 32px; }
+
+    .module-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .module-category-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-200);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .module-category-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .module-category-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .module-category-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .module-category-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+      margin-top: -6px;
+    }
+
+    .module-category-desc {
+      font-size: 13px;
+      color: var(--gray-600);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .module-category-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition);
+      margin-top: 4px;
+    }
+
+    .module-category-btn:hover { opacity: 0.88; }
+
     /* ── Section heading ─────────────────────────────────────── */
     .section-heading {
       display: flex;
@@ -1152,6 +1229,9 @@
       .hero { padding: 32px 16px 36px; }
       .hero h1 { font-size: 20px; }
 
+      .module-cards-grid { grid-template-columns: 1fr; gap: 14px; }
+      .module-category-card { padding: 22px 20px; }
+
       #article-list { grid-template-columns: 1fr; }
 
       .article-header, .article-body { padding: 18px 16px; }
@@ -1288,6 +1368,15 @@
 
       <!-- Home body -->
       <div class="home-body">
+
+        <!-- Module Categories -->
+        <div class="module-cards-section">
+          <div class="section-heading">
+            <h2>Browse by Module</h2>
+            <span id="module-cards-total"></span>
+          </div>
+          <div class="module-cards-grid" id="module-cards-grid"></div>
+        </div>
 
         <!-- Recently Updated (horizontal scroll) -->
         <div id="recent-section">
@@ -1461,12 +1550,39 @@ function init() {
   };
   heroImg.src = 'hero-golf.jpg';
 
+  renderModuleCards();
   renderRecentlyUpdated();
   renderList(articles);
   setupSearch();
 }
 
 // ── Recently Updated (horizontal scroll cards) ─────────────────────
+// ── Module Category Cards ────────────────────────────────────────────
+function renderModuleCards() {
+  const counts = getModuleCounts();
+  const grid = document.getElementById('module-cards-grid');
+  const totalLabel = document.getElementById('module-cards-total');
+
+  totalLabel.textContent = `${counts.all} articles across ${Object.keys(MODULES).length} modules`;
+
+  grid.innerHTML = '';
+  Object.values(MODULES).forEach(mod => {
+    const count = counts[mod.id] || 0;
+    const card = document.createElement('div');
+    card.className = 'module-category-card';
+    card.innerHTML = `
+      <div class="module-category-icon" style="background:${mod.color};">${mod.icon}</div>
+      <div class="module-category-title">${mod.label}</div>
+      <div class="module-category-count">${count} article${count !== 1 ? 's' : ''}</div>
+      <div class="module-category-desc">${mod.description || ''}</div>
+      <button class="module-category-btn" style="background:${mod.color};" onclick="filterModuleAndScroll('${mod.id}')">
+        View Articles <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
 function renderRecentlyUpdated() {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - 60);
@@ -1574,6 +1690,15 @@ function filterModule(moduleId) {
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('overlay').classList.remove('active');
   }
+}
+
+// ── Module card click: filter + scroll to article list ──────────────
+function filterModuleAndScroll(moduleId) {
+  filterModule(moduleId);
+  setTimeout(() => {
+    const el = document.getElementById('article-list');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
 }
 
 // ── Role filter ────────────────────────────────────────────────────
