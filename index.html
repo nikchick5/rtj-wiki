@@ -1175,6 +1175,165 @@
     /* ── Scrollbar styling ───────────────────────────────────── */
     #sidebar::-webkit-scrollbar { width: 4px; }
     #sidebar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+
+    /* ── Editor Toolbar ─────────────────────────────────────── */
+    .editor-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      padding: 8px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-300);
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .editor-toolbar .tb-group {
+      display: flex;
+      gap: 2px;
+      padding-right: 8px;
+      margin-right: 8px;
+      border-right: 1px solid var(--gray-200);
+    }
+
+    .editor-toolbar .tb-group:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .editor-toolbar button {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--gray-700);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .editor-toolbar button:hover {
+      background: var(--white);
+      border-color: var(--gray-300);
+      color: var(--primary);
+    }
+
+    .editor-toolbar button:active {
+      background: var(--primary-pale);
+    }
+
+    /* ── Screenshot Picker Modal ────────────────────────────── */
+    .screenshot-picker-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screenshot-picker {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      width: 480px;
+      max-width: 90vw;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .screenshot-picker-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .screenshot-picker-body { padding: 16px 20px; overflow-y: auto; flex: 1; }
+
+    .screenshot-picker-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .screenshot-picker-item {
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .screenshot-picker-item:last-child { border-bottom: none; }
+    .screenshot-picker-item:hover { background: var(--primary-pale); }
+    .screenshot-picker-item.selected { background: var(--primary-pale); font-weight: 600; }
+    .screenshot-picker-item i { color: var(--gray-400); font-size: 12px; }
+
+    .screenshot-picker-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    /* ── Formatting Help Panel ──────────────────────────────── */
+    .format-help-toggle {
+      font-size: 12px;
+      color: var(--gray-500);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+      margin-top: 4px;
+      background: none;
+      border: none;
+    }
+
+    .format-help-toggle:hover { color: var(--primary); }
+
+    .format-help-panel {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-top: 6px;
+      font-size: 12px;
+      line-height: 1.8;
+      display: none;
+    }
+
+    .format-help-panel.open { display: block; }
+
+    .format-help-panel code {
+      background: var(--gray-100);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+    }
+
+    .article-content hr {
+      border: none;
+      border-top: 2px solid var(--gray-200);
+      margin: 24px 0;
+    }
   </style>
 </head>
 <body>
@@ -1864,6 +2023,12 @@ function renderContent(raw) {
       continue;
     }
 
+    if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
+      flushStep(); flushList();
+      html += '<hr />';
+      continue;
+    }
+
     if (trimmed === '') { if (inList) flushList(); continue; }
 
     if (inStep) { stepBodyLines.push(line); }
@@ -2141,6 +2306,253 @@ function escHtml(s) {
 }
 
 function escRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+// ── Editor helpers ─────────────────────────────────────────────────
+
+function insertAtCursor(textarea, before, after, defaultText) {
+  textarea.focus();
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const value = textarea.value;
+  const selected = value.substring(start, end);
+  const text = selected.length > 0 ? selected : defaultText;
+  const insertion = before + text + after;
+  textarea.value = value.substring(0, start) + insertion + value.substring(end);
+  const selectStart = start + before.length;
+  const selectEnd = selectStart + text.length;
+  textarea.setSelectionRange(selectStart, selectEnd);
+  textarea.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function getNextStepNumber(textarea) {
+  const matches = textarea.value.match(/\*\*Step\s+(\d+)/gi) || [];
+  let max = 0;
+  matches.forEach(m => {
+    const num = parseInt(m.match(/\d+/)[0]);
+    if (num > max) max = num;
+  });
+  return max + 1;
+}
+
+function getAllScreenshots() {
+  const allArticles = getMergedArticles();
+  const set = new Set();
+  const pattern = /!\[[^\]]*\]\(screenshots\/([^)]+)\)/g;
+  allArticles.forEach(a => {
+    let match;
+    while ((match = pattern.exec(a.content)) !== null) set.add(match[1]);
+    pattern.lastIndex = 0;
+  });
+  return Array.from(set).sort();
+}
+
+// ── Toolbar actions ────────────────────────────────────────────────
+
+function editorBold() {
+  insertAtCursor(document.getElementById('editor-content'), '**', '**', 'bold text');
+}
+
+function editorItalic() {
+  insertAtCursor(document.getElementById('editor-content'), '*', '*', 'italic text');
+}
+
+function editorHeading() {
+  insertAtCursor(document.getElementById('editor-content'), '\n## ', '\n', 'Heading');
+}
+
+function editorStep() {
+  const ta = document.getElementById('editor-content');
+  const n = getNextStepNumber(ta);
+  insertAtCursor(ta, '\n**Step ' + n + ': ', '**\n', 'Title');
+}
+
+function editorNote() {
+  insertAtCursor(document.getElementById('editor-content'), '\n> **Note:** ', '\n', 'Your note text here');
+}
+
+function editorBullet() {
+  insertAtCursor(document.getElementById('editor-content'), '\n- ', '\n', 'List item');
+}
+
+function editorDivider() {
+  const ta = document.getElementById('editor-content');
+  const start = ta.selectionStart;
+  const before = ta.value.substring(0, start);
+  const after = ta.value.substring(ta.selectionEnd);
+  const prefix = before.length > 0 && !before.endsWith('\n') ? '\n' : '';
+  const suffix = after.length > 0 && !after.startsWith('\n') ? '\n' : '';
+  ta.value = before + prefix + '---' + suffix + after;
+  ta.setSelectionRange((before + prefix + '---').length, (before + prefix + '---').length);
+  ta.dispatchEvent(new Event('input', { bubbles: true }));
+  ta.focus();
+}
+
+// ── Word paste handler ─────────────────────────────────────────────
+
+function handleWordPaste(event) {
+  const cd = event.clipboardData || window.clipboardData;
+  if (!cd) return;
+  const html = cd.getData('text/html');
+  if (!html) return;
+
+  event.preventDefault();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const hasImages = doc.querySelectorAll('img').length > 0;
+
+  let md = convertNodeToMarkdown(doc.body).replace(/\n{3,}/g, '\n\n').trim();
+
+  const ta = event.target;
+  const start = ta.selectionStart;
+  const end = ta.selectionEnd;
+  ta.value = ta.value.substring(0, start) + md + ta.value.substring(end);
+  ta.setSelectionRange(start + md.length, start + md.length);
+  ta.dispatchEvent(new Event('input', { bubbles: true }));
+
+  if (hasImages) showPasteNotice('Images from paste are not supported. Use the Screenshot button to add images.');
+}
+
+function convertNodeToMarkdown(node) {
+  let result = '';
+  for (const child of node.childNodes) {
+    if (child.nodeType === Node.TEXT_NODE) { result += child.textContent; continue; }
+    if (child.nodeType !== Node.ELEMENT_NODE) continue;
+    const tag = child.tagName.toLowerCase();
+    const inner = convertNodeToMarkdown(child);
+    switch (tag) {
+      case 'strong': case 'b': result += '**' + inner.trim() + '**'; break;
+      case 'em': case 'i': result += '*' + inner.trim() + '*'; break;
+      case 'h1': case 'h2': result += '\n## ' + inner.trim() + '\n'; break;
+      case 'h3': case 'h4': case 'h5': case 'h6': result += '\n### ' + inner.trim() + '\n'; break;
+      case 'p': result += '\n' + inner.trim() + '\n'; break;
+      case 'br': result += '\n'; break;
+      case 'ul': result += '\n' + convertListMd(child, 'ul') + '\n'; break;
+      case 'ol': result += '\n' + convertListMd(child, 'ol') + '\n'; break;
+      case 'img': break;
+      default: result += inner;
+    }
+  }
+  return result;
+}
+
+function convertListMd(listNode, type) {
+  let items = '';
+  let counter = 1;
+  for (const li of listNode.children) {
+    if (li.tagName && li.tagName.toLowerCase() === 'li') {
+      const inner = convertNodeToMarkdown(li).trim();
+      items += (type === 'ul' ? '- ' : counter++ + '. ') + inner + '\n';
+    }
+  }
+  return items.trimEnd();
+}
+
+function showPasteNotice(message) {
+  const notice = document.createElement('div');
+  notice.textContent = message;
+  notice.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;z-index:2000;box-shadow:var(--shadow-lg);opacity:0;transition:opacity 0.3s;';
+  document.body.appendChild(notice);
+  requestAnimationFrame(() => { notice.style.opacity = '1'; });
+  setTimeout(() => { notice.style.opacity = '0'; setTimeout(() => notice.remove(), 300); }, 4000);
+}
+
+// ── Screenshot picker ──────────────────────────────────────────────
+
+function showScreenshotPicker(textarea) {
+  const allScreenshots = getAllScreenshots();
+  const lines = textarea.value.split('\n');
+  const beforeCursor = textarea.value.substring(0, textarea.selectionStart);
+  const currentLineIndex = beforeCursor.split('\n').length - 1;
+  const currentLine = lines[currentLineIndex] || '';
+  const existingMatch = currentLine.match(/^!\[([^\]]*)\]\(screenshots\/([^)]+)\)$/);
+  const prefillCaption = existingMatch ? existingMatch[1] : '';
+  const prefillFilename = existingMatch ? existingMatch[2] : '';
+
+  const overlay = document.createElement('div');
+  overlay.className = 'screenshot-picker-overlay';
+  overlay.innerHTML = `
+    <div class="screenshot-picker">
+      <div class="screenshot-picker-header">
+        <span><i class="fa-solid fa-image"></i> ${existingMatch ? 'Replace' : 'Insert'} Screenshot</span>
+        <button onclick="this.closest('.screenshot-picker-overlay').remove()" style="font-size:18px;color:var(--gray-400);padding:4px;background:none;border:none;cursor:pointer;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="screenshot-picker-body">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Search existing screenshots</label>
+          <input id="sp-search" type="text" placeholder="Type to filter..." style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;" />
+        </div>
+        <div class="screenshot-picker-list" id="sp-list">
+          ${allScreenshots.map(s => `<div class="screenshot-picker-item" data-filename="${escHtml(s)}" onclick="spSelectItem(this)"><i class="fa-solid fa-image"></i> ${escHtml(s)}</div>`).join('')}
+          ${allScreenshots.length === 0 ? '<div style="padding:12px;color:var(--gray-500);font-size:13px;text-align:center;">No screenshots found</div>' : ''}
+        </div>
+        <div style="margin-bottom:12px;">
+          <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Filename <span style="color:var(--gray-400);font-weight:400;">(e.g., reg-001-01-description.png)</span></label>
+          <input id="sp-filename" type="text" value="${escHtml(prefillFilename)}" placeholder="my-screenshot.png" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;" />
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Caption <span style="color:var(--gray-400);font-weight:400;">(describes what the screenshot shows)</span></label>
+          <input id="sp-caption" type="text" value="${escHtml(prefillCaption)}" placeholder="Description of what the screenshot shows" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;" />
+        </div>
+      </div>
+      <div class="screenshot-picker-footer">
+        <button onclick="this.closest('.screenshot-picker-overlay').remove()" style="padding:8px 16px;background:var(--gray-100);color:var(--gray-700);border-radius:6px;font-size:13px;border:none;cursor:pointer;">Cancel</button>
+        <button onclick="spInsert()" style="padding:8px 16px;background:var(--primary);color:#fff;border-radius:6px;font-size:13px;font-weight:600;border:none;cursor:pointer;"><i class="fa-solid fa-plus"></i> ${existingMatch ? 'Replace' : 'Insert'}</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+
+  document.getElementById('sp-search').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('#sp-list .screenshot-picker-item').forEach(item => {
+      item.style.display = item.dataset.filename.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+
+  window._spTextarea = textarea;
+  window._spIsReplace = !!existingMatch;
+  window._spCurrentLineIndex = currentLineIndex;
+  setTimeout(() => document.getElementById('sp-search').focus(), 50);
+}
+
+function spSelectItem(el) {
+  document.querySelectorAll('#sp-list .screenshot-picker-item').forEach(i => i.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('sp-filename').value = el.dataset.filename;
+}
+
+function spInsert() {
+  const filename = document.getElementById('sp-filename').value.trim();
+  const caption = document.getElementById('sp-caption').value.trim();
+  if (!filename) { document.getElementById('sp-filename').style.borderColor = 'var(--red)'; document.getElementById('sp-filename').focus(); return; }
+
+  const markdown = '![' + caption + '](screenshots/' + filename + ')';
+  const textarea = window._spTextarea;
+
+  if (window._spIsReplace) {
+    const lines = textarea.value.split('\n');
+    lines[window._spCurrentLineIndex] = markdown;
+    textarea.value = lines.join('\n');
+  } else {
+    const start = textarea.selectionStart;
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(start);
+    const prefix = before.length > 0 && !before.endsWith('\n') ? '\n' : '';
+    const suffix = after.length > 0 && !after.startsWith('\n') ? '\n' : '';
+    textarea.value = before + prefix + markdown + suffix + after;
+    const newPos = (before + prefix + markdown).length;
+    textarea.setSelectionRange(newPos, newPos);
+  }
+
+  textarea.dispatchEvent(new Event('input', { bubbles: true }));
+  document.querySelector('.screenshot-picker-overlay').remove();
+  textarea.focus();
+  delete window._spTextarea;
+  delete window._spIsReplace;
+  delete window._spCurrentLineIndex;
+}
 
 // ── Search input wiring ────────────────────────────────────────────
 function setupSearch() {
@@ -2517,8 +2929,44 @@ function adminShowEditor(article, isNew) {
           </div>
 
           <div>
-            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Content (Markdown)</label>
-            <textarea id="editor-content" style="width:100%;min-height:400px;padding:12px;border:1px solid var(--gray-300);border-radius:6px;font-size:13px;font-family:'Consolas','Cascadia Code',monospace;line-height:1.6;resize:vertical;">${escHtml(article.content.trim())}</textarea>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Content</label>
+
+            <div class="editor-toolbar">
+              <div class="tb-group">
+                <button type="button" title="Bold" onclick="editorBold()"><i class="fa-solid fa-bold"></i></button>
+                <button type="button" title="Italic" onclick="editorItalic()"><i class="fa-solid fa-italic"></i></button>
+              </div>
+              <div class="tb-group">
+                <button type="button" title="Heading" onclick="editorHeading()"><i class="fa-solid fa-heading"></i></button>
+                <button type="button" title="Add Step (auto-numbered)" onclick="editorStep()"><i class="fa-solid fa-list-ol"></i></button>
+                <button type="button" title="Add Note" onclick="editorNote()"><i class="fa-solid fa-circle-info"></i></button>
+              </div>
+              <div class="tb-group">
+                <button type="button" title="Bullet list" onclick="editorBullet()"><i class="fa-solid fa-list-ul"></i></button>
+                <button type="button" title="Insert screenshot" onclick="showScreenshotPicker(document.getElementById('editor-content'))"><i class="fa-solid fa-camera"></i></button>
+                <button type="button" title="Horizontal divider" onclick="editorDivider()"><i class="fa-solid fa-minus"></i></button>
+              </div>
+            </div>
+
+            <textarea id="editor-content" style="width:100%;min-height:400px;padding:12px;border:1px solid var(--gray-300);border-radius:0 0 6px 6px;font-size:13px;font-family:'Consolas','Cascadia Code',monospace;line-height:1.6;resize:vertical;">${escHtml(article.content.trim())}</textarea>
+
+            <button type="button" class="format-help-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-down'); this.querySelector('i').classList.toggle('fa-chevron-up');">
+              <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i> Formatting Help
+            </button>
+            <div class="format-help-panel">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;">
+                <div><code>**text**</code> &rarr; <strong>bold</strong></div>
+                <div><code>*text*</code> &rarr; <em>italic</em></div>
+                <div><code>## Heading</code> &rarr; Section heading</div>
+                <div><code>**Step N: Title**</code> &rarr; Numbered step</div>
+                <div><code>&gt; **Note:** text</code> &rarr; Note callout</div>
+                <div><code>- item</code> &rarr; Bullet list</div>
+                <div><code>1. item</code> &rarr; Numbered list</div>
+                <div><code>![caption](screenshots/file.png)</code> &rarr; Image</div>
+                <div><code>---</code> &rarr; Horizontal divider</div>
+              </div>
+              <p style="margin-top:8px;color:var(--gray-500);">Tip: Paste from Word and formatting is auto-converted. Use the toolbar buttons above for quick insertion.</p>
+            </div>
           </div>
 
           <div style="display:flex;gap:8px;">
@@ -2551,6 +2999,7 @@ function adminShowEditor(article, isNew) {
   }
 
   contentEl.addEventListener('input', updatePreview);
+  contentEl.addEventListener('paste', handleWordPaste);
   updatePreview();
 }
 
