@@ -1787,6 +1787,21 @@ const state = {
 const articleMap = {};
 articles.forEach(a => { articleMap[a.id] = a; });
 
+// ── Apply published drafts from localStorage ──────────────────────
+(function applyDrafts() {
+  try {
+    const drafts = JSON.parse(localStorage.getItem('rtj_wiki_admin_drafts')) || {};
+    Object.entries(drafts).forEach(([id, data]) => {
+      if (articleMap[id]) {
+        Object.assign(articleMap[id], data);
+      } else {
+        articles.push(data);
+        articleMap[id] = data;
+      }
+    });
+  } catch {}
+})();
+
 // ── Popularity tracking (localStorage) ────────────────────────────
 const VIEWS_KEY = 'rtj_wiki_views';
 
@@ -3849,7 +3864,6 @@ function adminSaveArticle(id, isNew) {
 }
 
 function adminPublishArticle(id, isNew) {
-  // Save draft first
   const articleData = {
     id,
     title: document.getElementById('editor-title').value.trim(),
@@ -3863,9 +3877,10 @@ function adminPublishArticle(id, isNew) {
     media: [],
   };
 
+  // Persist to localStorage
   saveAdminDraft(id, articleData);
 
-  // Update in-memory
+  // Update live site in-memory
   if (articleMap[id]) {
     Object.assign(articleMap[id], articleData);
   } else {
@@ -3873,11 +3888,12 @@ function adminPublishArticle(id, isNew) {
     articleMap[id] = articleData;
   }
 
-  // Auto-export articles.js for download
-  adminExport();
+  // Re-render home page data so changes show everywhere
+  renderModuleCards();
+  renderRecentlyUpdated();
 
-  showPasteNotice('Published — replace articles.js in the site folder and push to deploy.');
-  renderAdmin();
+  showPasteNotice('Article published and live on the site.');
+  showArticle(id);
 }
 
 function adminExport() {
