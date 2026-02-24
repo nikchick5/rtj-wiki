@@ -67,6 +67,8 @@ From the main POS screen, click the **gear icon** in the top-right corner to ope
 
 ![Inventory Management screen — use the Add/Manage Items menu to create a new service item](screenshots/reg-001-01-inventory-management.png)
 
+![Click the ADD ITEM button in the top-right corner to start creating a new item](screenshots/reg-003-01-click-add-item.png)
+
 **Step 2: Select Inventory Location**
 In the Details tab, set where this item lives in your inventory structure:
 - Click the **Department** dropdown and select the appropriate department.
@@ -88,6 +90,8 @@ Complete the required fields:
 - **Item Cost** – Enter the cost value (typically 0 for service items).
 - **Sale Price** – Enter the selling price.
 - **Floor Price** – Enter the minimum allowed price (typically 0).
+
+![Enter the item name, cost, sale price, and floor price in the item form](screenshots/reg-003-02-item-form.png)
 
 **Step 5: Configure Loyalty Settings (Optional)**
 If this item should earn loyalty points, configure:
@@ -759,6 +763,8 @@ Before checking in, verify the reservation date matches the day you're checking 
 
 > **Note:** Checking in early (for example, checking in on January 8th for a January 9th reservation) will record revenue on the wrong date.
 
+![Tee sheet showing the group booking — confirm the date header matches today before checking in](screenshots/tee-001-01-tee-sheet-group.png)
+
 **Step 2: Right-Click the Group Reservation**
 Right-click the group reservation on the **Tee Sheet** to view the available check-in options.
 
@@ -790,6 +796,8 @@ Choose the payment method (gift card, credit card, or cash). If paying cash, sel
 
 > **Note:** QuickPay is a faster path because it bypasses the register entirely.
 
+![Cash payment modal — enter the amount or click Pay Exact Amount to complete](screenshots/tee-001-02-cash-payment.png)
+
 ---
 
 ### Option C: Check-In Plus (Multiple Golfers on One Payment)
@@ -817,6 +825,8 @@ Select the **Event charge** option. Search for the relevant event, select the co
 
 **Step 6: View Check-Ins**
 Right-click on the tee sheet and select **View Check-Ins**. Review the summary of who was checked in at a price and who was charged to the account.
+
+![View Check-Ins Count — shows total check-ins and revenue for the selected group](screenshots/tee-001-03-checkin-confirmation.png)
     `
   },
 
@@ -965,6 +975,8 @@ Click **OK** to confirm the current action and proceed with the transaction.
 **Step 3: Select Gift Card / Credit Voucher as Payment**
 Click the **Gift Card / Credit Voucher** payment option to begin the redemption process.
 
+![Payment options modal — select Gift Card / Credit Voucher to redeem a gift card](screenshots/reg-005-01-payment-options.png)
+
 **Step 4: Access the Customer Section**
 Click the **Customer** button to access customer-related options and information. If you want to print a customer receipt, click **Print Customer Receipt**.
 
@@ -976,6 +988,8 @@ You have three options to locate the gift card:
 
 **Step 6: Search and Select the Gift Card**
 If searching, enter the gift card number or customer name. Once the correct card appears in the results, highlight it and click **Done**.
+
+![Voucher redemption dialog — search by number or name, then click Save to apply](screenshots/reg-005-02-voucher-redemption.png)
 
 **Step 7: Review the Gift Card Balance**
 The system displays the overall balance remaining on the gift card. Review the amount to confirm it covers the purchase (or note the remaining balance), then click **OK**.
@@ -1009,6 +1023,8 @@ This procedure covers how to redeem a rain check voucher when a customer returns
 **Step 1: Check In the Golfer from the Tee Sheet**
 Right-click the player's name on the **Tee Sheet** and select **Check-in** to begin the check-in process.
 
+![Tee sheet showing the player's booking — right-click to check in and pull to the register](screenshots/reg-009-01-tee-sheet-checkin.png)
+
 **Step 2: Go to Pay in the Register**
 Once the player has been pulled through to the register, click **Pay** to start processing payment.
 
@@ -1028,6 +1044,8 @@ Click the **magnifying glass** to search. You can type in a voucher number or se
 
 **Step 7: Review the Voucher Balance**
 The system shows the balance of the raincheck voucher. Click **OK** to confirm.
+
+![Voucher balance dialog — review the remaining credit and click OK to apply it to the transaction](screenshots/reg-009-02-redeem-voucher.png)
 
 **Step 8: Handle Split Payment (If Applicable)**
 If the raincheck doesn't fully cover the round, the system will notify you of the remaining balance. Click **Yes** to proceed with split payment. The raincheck value is automatically applied, and the remaining balance will need to be paid with another method.
