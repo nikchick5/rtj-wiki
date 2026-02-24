@@ -62,13 +62,22 @@ Service (non-stock) items are products that don't require inventory tracking —
 
 ## Step-by-Step
 
-**Step 1: Access Inventory Center**
-From the main POS screen, click the **gear icon** in the top-right corner to open the Settings menu. In the left sidebar, click **Inventory Center**. Then click the **ADD ITEM** button in the top-right area to begin creating a new item.
+**Step 1: Open Settings Menu**
+From the main POS screen, click the **gear icon** in the top-right corner to open the Settings menu.
 
-![Inventory Management screen — use the Add/Manage Items menu to create a new service item](screenshots/reg-001-01-inventory-management.png)
+![Click the gear icon in the top-right corner to open Settings](screenshots/reg-001-step01.png)
 
+**Step 2: Select Inventory Center**
+In the left sidebar, click **Inventory Center** to access the item management area.
 
-**Step 2: Select Inventory Location**
+![Click Inventory Center in the left sidebar](screenshots/reg-001-step02.png)
+
+**Step 3: Initiate Adding a New Item**
+Click the **ADD ITEM** button in the top-right area to begin creating a new service item.
+
+![Click ADD ITEM to start creating a new item](screenshots/reg-001-step03.png)
+
+**Step 4: Select Inventory Location**
 In the Details tab, set where this item lives in your inventory structure:
 - Click the **Department** dropdown and select the appropriate department.
 - Click the **Sub-Department** dropdown and select the correct sub-department.
@@ -76,31 +85,48 @@ In the Details tab, set where this item lives in your inventory structure:
 
 > **Note:** The Sub-Department is where the **GL code** (General Ledger code) lives. Make sure the item is placed in the correct Sub-Department so it routes correctly in reporting and operations.
 
-![Fill in Sub Department, Category, and item details — then click Save to make it live in the register](screenshots/reg-001-02-item-details.png)
+![Choose the Department for this item](screenshots/reg-001-step04.png)
 
-**Step 3: Set Item Type to Service**
+![Select the Sub-Department — this is where the GL code lives](screenshots/reg-001-step05.png)
+
+![Select the Category](screenshots/reg-001-step06.png)
+
+**Step 5: Set Item Type to Service**
 Under the **Type** dropdown, select **Serv** (Service) to designate this as a non-stock item. A Service item does not track inventory quantities. If the item is a greens fee or cart fee, also select the appropriate **SubType** — this integrates the item with rack rate and class rate management modules.
 
 > **Note:** SubType is only required for greens fees or cart fees. For food & beverage or other service types, leave SubType blank or at the default.
 
-**Step 4: Enter Item Name and Pricing**
+![Set the Type to Service — this makes it a non-stock item](screenshots/reg-001-step07.png)
+
+![SubType is only needed for greens fees or cart fees — skip for other service types](screenshots/reg-001-step08.png)
+
+**Step 6: Enter Item Name and Pricing**
 Complete the required fields:
 - **Item** – Enter the item name (e.g., "Employee Cart").
 - **Item Cost** – Enter the cost value (typically 0 for service items).
 - **Sale Price** – Enter the selling price.
 - **Floor Price** – Enter the minimum allowed price (typically 0).
 
+![Enter the item name in the Item field](screenshots/reg-001-step09.png)
 
-**Step 5: Configure Loyalty Settings (Optional)**
+![Set the Cost, Sales Price, and Floor Price](screenshots/reg-001-step10.png)
+
+**Step 7: Configure Loyalty Settings (Optional)**
 If this item should earn loyalty points, configure:
 - **Loyalty Earned** – Enter the points value.
 - **Loyalty Earned Type** – Select the earning method: **Points Per Dollar** (earns 1 point per $1 spent, default) or **Fixed** (earns a specific point value regardless of price).
 
-**Step 6: Select Tax Group**
+![Configure loyalty earned type — choose between Points Per Dollar or Fixed](screenshots/reg-001-step12.png)
+
+**Step 8: Select Tax Group**
 Click the **Tax Group** dropdown and select the appropriate tax setting — either **Sales Tax** (standard) or **No Sales Tax** (tax-exempt). While not technically required, selecting a Tax Group is strongly recommended to ensure taxes apply correctly when this item is sold.
 
-**Step 7: Save the Service Item**
+![Select the Tax Group — Sales Tax or No Sales Tax](screenshots/reg-001-step14.png)
+
+**Step 9: Save the Service Item**
 Review all entered information for accuracy, then click **Save**. The item will now be available in the inventory system and can be added to transactions from the Register.
+
+![Click Save to add the service item to the system](screenshots/reg-001-step15.png)
     `
   },
 
@@ -127,7 +153,11 @@ Combo items let you bundle multiple products together and sell them as a single 
 **Step 1: Access Inventory Center**
 From the main POS screen, click the **gear icon** in the top-right corner to open the Settings menu. In the left sidebar, click **Inventory Center**. Then click **Add / Manage Items** and select **ADD ITEM** to begin creating a new item.
 
-![Inventory Management — select the item you want to configure as a combo](screenshots/reg-002-01-inventory-add-item.png)
+![Click the gear icon to open Settings](screenshots/reg-002-step00.png)
+
+![Click Inventory Center in the sidebar](screenshots/reg-002-step02.png)
+
+![Click ADD ITEM to start creating a new item](screenshots/reg-002-step05.png)
 
 **Step 2: Select Inventory Location**
 Choose where the combo button will appear in your inventory structure:
@@ -135,28 +165,52 @@ Choose where the combo button will appear in your inventory structure:
 - Click the **Sub-Department** dropdown and select the correct sub-department (e.g., Golf Balls).
 - Click the **Category** dropdown and select the category (e.g., Callaway).
 
+![Select the Department for this combo item](screenshots/reg-002-step06.png)
+
+![Select the Sub-Department](screenshots/reg-002-step08.png)
+
+![Select the Category](screenshots/reg-002-step12.png)
+
 **Step 3: Set Type to Combo and Name the Item**
 Click the **Type** dropdown and select **Combo**. Enter a descriptive name in the **Item** field (e.g., "Dozen Chrome Soft"). Click **Save** to create the combo item.
 
 > **Note:** The Item Cost, Sales Price, and Floor Price fields will appear grayed out at this stage. This is normal — the combo pricing is calculated from the individual items you add in the next steps.
+
+![Set the Type to Combo and enter the item name — pricing fields are grayed out until sub-items are added](screenshots/reg-002-step13.png)
+
+![Click Save to create the combo item](screenshots/reg-002-step14.png)
 
 **Step 4: Open Setup Combo and Add Items**
 After saving, click the **Setup Combo** tab at the top. In the Item Search field, type to find items (e.g., "Chrome Soft"), select the item from the dropdown, and click **Add Item**. Repeat to add each unit — for example, add the sleeve item 4 times for a dozen.
 
 > **Note:** Each click of Add Item adds one unit. For a dozen golf balls made up of 4 sleeves, you'd add the sleeve item 4 separate times.
 
-![Use the Assembly Items panel to search and add the sub-items that make up this combo](screenshots/reg-002-02-assembly-items.png)
+![Click Setup Combo to start adding sub-items](screenshots/reg-002-step15.png)
+
+![Search for and select the item to add to the combo](screenshots/reg-002-step17.png)
+
+![Click Add Item — repeat for each unit in the combo](screenshots/reg-002-step18.png)
 
 **Step 5: Edit Pricing for Each Item**
 In the Assembly Items list, click **Edit** next to each item line. Enter the desired price for that item within the combo (e.g., 12.99) and click **Save**. Repeat for each item line. The total combo price is calculated by adding up all individual item prices.
+
+![Click Edit next to each item line to set the combo price](screenshots/reg-002-step25.png)
+
+![Enter the updated price and click Save](screenshots/reg-002-step26.png)
 
 **Step 6: Review Combo Details and Save**
 Click the **Details** tab to review the pre-populated values. Verify the Item Cost, Sales Price, and Floor Price are correct — these are automatically calculated from the items added. Click **Save**, then click **Close**.
 
 > **Note:** Loyalty redemption points and loyalty earned settings are also calculated based on the individual item configurations.
 
+![Click Details to review the auto-calculated pricing](screenshots/reg-002-step39.png)
+
+![Review the Item Cost, Sales Price, and Floor Price — then click Save](screenshots/reg-002-step40.png)
+
 **Step 7: Verify Combo in Register**
 Navigate to the **Register** from the main menu. Browse to the category where you placed the combo item. Verify the combo button appears with the correct name and price, and test that clicking it adds the combo to the cart correctly.
+
+![Verify the combo item appears in the Register with the correct name and price](screenshots/reg-002-step46.png)
     `
   },
 
@@ -181,35 +235,47 @@ This procedure covers selling gift cards from the POS register, including adding
 **Step 1: Open the Tools Menu and Select Gift Card**
 From the Register screen, click **TOOLS** in the menu bar to open the Tools panel. Then click **Gift Card** under the Gift Vouchers section to open the Generate Credit Voucher form.
 
-![Click the TOOLS button in the POS toolbar to access the gift card configuration menu](screenshots/reg-004-01-tools-button.png)
+![Click the TOOLS button in the POS toolbar](screenshots/reg-004-step01.png)
 
-![Select Gift Card from the menu to set the card value and assign it to a customer](screenshots/reg-004-02-gift-card-option.png)
+![Select Gift Card from the Tools menu](screenshots/reg-004-step02.png)
 
 **Step 2: Add a Customer (Optional)**
 To link the gift card to a specific customer profile, click the **magnifying glass** icon next to Add Customer. Search for and select the customer, then click **Done**. This step is optional — you can skip it if the gift card is not being linked to a customer.
 
 > **Note:** Linking a gift card to a customer allows them to look up their balance by name in the future.
 
+![Click the magnifying glass to search for and add a customer](screenshots/reg-004-step04.png)
+
 **Step 3: Enter the Gift Card Amount**
 In the **Voucher Amount** field, enter the dollar value to load onto the gift card. The system will display the purchase date automatically. If your location uses expiration dates, you can review or set an expiration date in the fields below.
+
+![Enter the voucher amount for the gift card](screenshots/reg-004-step06.png)
 
 **Step 4: Enter or Scan the Gift Card Number**
 Change the **Voucher No** dropdown from **"Auto"** to **"Specified"**. This enables the card number entry field. Either scan the physical gift card with a barcode scanner, or manually type the gift card number into the field.
 
 > **Note:** **Auto** generates a random voucher code (use for digital/virtual gift cards). **Specified** lets you enter the number printed on the physical card (use when the customer has a physical gift card to scan or swipe).
 
+![Change from Auto to Specified, then enter or scan the gift card number](screenshots/reg-004-step09.png)
+
 **Step 5: Add the Gift Card to the Sale**
 Click the **ADD** button to add the gift card to the transaction. The gift card will appear in the order summary on the right side of the screen showing the voucher amount as the Grand Total.
+
+![Click ADD to add the gift card to the transaction](screenshots/reg-004-step13.png)
 
 **Step 6: Complete the Payment**
 Click **Pay** to proceed to payment. Select the customer's payment method (Cash, Check, Credit Card, etc.) from the Payment Mode options. For cash payments, enter the amount received or click **Pay Exact Amount**. Ensure **Print Customer Receipt** is checked.
 
-![Enter the sale amount and click Pay Exact Amount to complete the gift card purchase](screenshots/reg-004-03-payment.png)
+![Click Pay and select the payment method to complete the transaction](screenshots/reg-004-step15.png)
+
+![Select the payment method and click Pay Exact Amount](screenshots/reg-004-step20.png)
 
 **Step 7: Print and Provide Receipts to Customer**
 Click **OK** or **Close** to complete the transaction. The system prints a credit customer receipt plus a voucher receipt containing the gift card number. Give both receipts to the customer — they can attach the voucher receipt to the physical gift card for reference.
 
 > **Note:** The voucher receipt contains the gift card number needed for redemption. Always provide this to the customer.
+
+![The receipt prints with a credit customer receipt and a voucher receipt — provide both to the customer](screenshots/reg-004-step21.png)
 
 ## Check a Gift Card Balance (Without a Sale)
 
@@ -242,28 +308,42 @@ There are several ways to search and verify a gift card balance in Club Caddie �
 **Step 1: Open Check Voucher Balance**
 Go to **Tools**, then click **Check Voucher Balance**.
 
+![Click Check Voucher Balance from the Tools menu](screenshots/reg-006-step01.png)
+
 **Step 2: Search by Gift Card Number or Customer Last Name**
 In the Check Voucher Balance screen, either type the gift card number and click **Search**, or search by the customer's last name.
 
 > **Note:** Searching by last name can pull up rain checks or gift cards tied to that customer.
 
-![The Select Voucher screen lists all gift cards — search by number, name, or date](screenshots/reg-006-01-select-voucher.png)
+![Enter a gift card number or customer last name and click Search](screenshots/reg-006-step02.png)
 
 **Step 3: View the Balance**
 Review the returned gift card and its current balance. Click **Clear Search** to remove the previous search before searching again.
+
+![Review the gift card balance in the results](screenshots/reg-006-step03.png)
 
 ## Method 2: Search Customer Name / Voucher No.
 
 **Step 1: Use the Search Customer Name, Voucher No. Option**
 Click **Search Customer Name, Voucher No.** Enter the customer's last name, then locate and select the correct search result. This is another way to pull up customer-tied rain checks or gift cards to verify the balance.
 
+![Click Search Customer Name, Voucher No. to search by name](screenshots/reg-006-step05.png)
+
+![Enter the customer's last name and select the correct result](screenshots/reg-006-step08.png)
+
 ## Method 3: Check Balance During Checkout
 
 **Step 1: Search a Gift Card Balance While Paying for an Item**
 Start a sale by selecting a merchandise area and an item. Click **Pay**, then click **OK**. When prompted with **Gift card credit voucher**, click **OK**.
 
+![Select a merchandise item, then click Pay](screenshots/reg-006-step12.png)
+
 **Step 2: Search for the Gift Card from the Checkout Prompt**
 Click into the gift card search area, then use **Search Customer Name, Voucher No.** Enter the gift card number, click **Search**, and review the balance.
+
+![Search for the gift card number from the checkout prompt](screenshots/reg-006-step17.png)
+
+![Review the balance from the search results](screenshots/reg-006-step19.png)
 
 ## Method 4: Vouchers Module (Detailed Usage)
 
@@ -272,7 +352,11 @@ Click **Vouchers**, then click **Gift Card**. Search by voucher number as needed
 
 > **Note:** The Vouchers module shows all details and usage for gift cards, including when actions occurred. You can drill down to a receipt-level view.
 
-![Open a voucher to see its type, balance, and status — then click Save to confirm](screenshots/reg-006-02-voucher-details.png)
+![Click Vouchers, then Gift Card to access the Vouchers module](screenshots/reg-006-step20.png)
+
+![View gift card details and click Usage to see transaction history](screenshots/reg-006-step22.png)
+
+![Usage shows a full transaction history — including dates and receipt-level detail](screenshots/reg-006-step24.png)
     `
   },
 
@@ -296,34 +380,48 @@ Use this procedure to issue a rain check voucher for one player from their tee s
 
 ## Step-by-Step
 
-**Step 1: Locate the Player and Open Their Profile**
-Find the player on the tee sheet/check-in list. Select the player's name to open the context menu, then click **Issue Rain Check**.
+**Step 1: Locate the Player and Issue Rain Check**
+Find the player on the tee sheet/check-in list. Right-click the player's name to open the context menu, then click **Issue Rain Check**.
 
-![Locate the player on the Tee Sheet — click into their booking to access rain check options](screenshots/reg-007-01-tee-sheet.png)
+![Right-click the player on the Tee Sheet to open the context menu](screenshots/reg-007-step01.png)
 
 **Step 2: Set the Holes Played**
 The rain check interface opens. Select the tee time and specify how many holes have been completed (e.g., select 9 holes) so the refund amount updates accordingly.
 
+![Select the number of holes played — the refund amount updates automatically](screenshots/reg-007-step03.png)
+
 **Step 3: Start the Refund**
 Click the **Refund** option to begin processing the rain check. Confirm the refund selection by clicking the confirmation button.
 
-![Order Details panel shows the refund breakdown — holes played, amounts, and credit to be issued](screenshots/reg-007-02-order-details.png)
+![Click Refund to begin processing the rain check](screenshots/reg-007-step04.png)
+
+![Confirm the refund selection](screenshots/reg-007-step05.png)
 
 **Step 4: Choose the Rain Check Voucher Option**
 Select **Rain Check Voucher**. You may leave the Voucher field blank — the system will auto-populate an item/receipt. Click **OK**.
 
+![Select Rain Check Voucher as the refund method](screenshots/reg-007-step06.png)
+
 **Step 5: Select the POS Terminal**
 Click the POS terminal associated with the player's transaction to continue.
+
+![Select the POS terminal for this transaction](screenshots/reg-007-step07.png)
 
 **Step 6: Print and Save**
 Continue through the prompts to prepare the voucher receipt. Print the rain check receipt/voucher for the player. Click **Save** to record the transaction. Confirm the receipt printed successfully by clicking **Yes**.
 
-![The Credit Voucher receipt — print or email this to the customer as their rain check](screenshots/reg-007-03-credit-voucher.png)
+![Print the rain check receipt for the player](screenshots/reg-007-step09.png)
+
+![Click Save to record the transaction](screenshots/reg-007-step10.png)
 
 **Step 7: Review the Rain Check Record**
 Click the **Rain Check** section to view issued rain checks. Click the correct entry to open the record details. You can also open the rain check PDF from File Explorer to view or print the voucher details.
 
 > **Note:** Rain checks issued here are tied to the customer's account and can be looked up at the register when they return to redeem.
+
+![Access the Rain Check section to view issued rain checks](screenshots/reg-007-step13.png)
+
+![Review the rain check voucher details — including the voucher code the customer needs](screenshots/reg-007-step19.png)
     `
   },
 
@@ -346,38 +444,46 @@ This covers issuing a single rain check transaction for multiple players on the 
 **Step 1: Open the Tee Time for the Payer**
 Locate the tee time where one person paid for all players. Select their tee time to open the options menu.
 
+![Locate the tee time on the Tee Sheet](screenshots/reg-008-step00.png)
+
 **Step 2: Start the Rain Check Process**
 Click **Issue Raincheck**. The system automatically pulls in all players on that tee time.
+
+![Click Issue Raincheck — this pulls in all players on the tee time](screenshots/reg-008-step01.png)
 
 **Step 3: Confirm All Players Were Pulled In**
 Verify the system shows all players for the tee time (e.g., all 4 players). This happens automatically when you select Issue Raincheck from the group's tee time.
 
+![The system pulls in all players for the tee time](screenshots/reg-008-step02.png)
+
 **Step 4: Update Holes Played for Each Player**
 Change the holes played selections to match the group's actual progress. Use the dropdown(s) to select the appropriate number of holes played for each player.
 
-![Order Details shows each player's green fee breakdown — select the ones receiving rain checks](screenshots/reg-008-01-order-details-multi.png)
+![Use the dropdown to update holes played for each player](screenshots/reg-008-step03.png)
 
 **Step 5: Process the Refund**
 Review the updated refund amount shown for the group. Click **Refund**.
 
-**Step 6: Confirm the Refund Action**
-Click the confirmation option to proceed.
+![Review the updated refund amount and click Refund](screenshots/reg-008-step10.png)
 
-**Step 7: Select the Rain Check Voucher Option**
+**Step 6: Select the Rain Check Voucher Option**
 Click **Rain Check Voucher**, then click **OK**. The system will print a receipt after you confirm.
 
-![Click to issue credit vouchers for the selected players in the group](screenshots/reg-008-02-issue-voucher.png)
+![Select Rain Check Voucher and click OK](screenshots/reg-008-step12.png)
 
-**Step 8: Save the Rain Check Transaction**
-Click **Save** to record the rain check.
+**Step 7: Save and Collect Printed Receipts**
+Click **Save** to record the rain check. Two receipts will print: a customer copy and a voucher receipt showing the total voucher selected. Provide the printed receipts as needed.
 
-**Step 9: Collect and Distribute the Printed Receipts**
-Two receipts will print: a customer copy and a voucher receipt showing the total voucher selected. Provide the printed receipts as needed.
+![Save the transaction — two receipts will print for the customer](screenshots/reg-008-step14.png)
 
-**Step 10: Review the Issued Rain Check Vouchers**
+**Step 8: Review the Issued Rain Check Vouchers**
 Click **Rain Check** to open the rain check management application. Open the rain check details to review the voucher information — including the rain check number and the voucher details for all players in the group.
 
 > **Note:** Selecting Issue Raincheck from the tee time (not an individual name) is what triggers the bulk flow and pulls all players automatically.
+
+![Open the Rain Check application to review issued vouchers](screenshots/reg-008-step15.png)
+
+![Review the voucher details — including the rain check number for all players](screenshots/reg-008-step17.png)
     `
   },
 
@@ -400,40 +506,60 @@ The day-end closing procedure reconciles all register transactions and prepares 
 **Step 1: Open Day End Closing from Tools**
 Click **Tools**, then click **Day End Closing**.
 
-![Click Day End Closing from the POS toolbar — only run this after the last transaction of the day](screenshots/reg-010-01-day-end-button.png)
+![Click Tools to open the menu](screenshots/reg-010-step01.png)
+
+![Click Day End Closing](screenshots/reg-010-step03.png)
 
 **Step 2: Select the Correct Closing Date and User**
 Select the correct date, then select the user responsible for closing the drawer/terminal.
 
-**Step 3: Count Drawer Cash and Enter the Total**
-Count all cash in the drawer. Your total should include **everything in the drawer** — the starting balance you began the day with plus all cash received from transactions. Enter this combined total. Click **Enter Exact Amount** to confirm.
+![Select the closing date and the user responsible for the close](screenshots/reg-010-step04.png)
 
-**Step 4: Enter Cash Denominations**
+**Step 3: Select the POS Terminal**
+Select the point of sale terminal you are closing.
+
+![Select the POS terminal to close](screenshots/reg-010-step07.png)
+
+**Step 4: Count Drawer Cash and Enter the Total**
+Count all cash in the drawer. Your total should include **everything in the drawer** — the starting balance you began the day with plus all cash received from transactions. Enter this combined total.
+
+![Enter the total cash amount from your drawer count](screenshots/reg-010-step08.png)
+
+**Step 5: Enter Cash Denominations**
 Enter each cash denomination amount. Click the denomination buttons to add each to the total. Continue through the cash entry prompts until the full drawer count is entered.
 
-![Enter the actual bill count by denomination in the Cash Amount screen](screenshots/reg-010-02-cash-count.png)
+![Enter each bill denomination and click the button to add it to the total](screenshots/reg-010-step10.png)
 
-**Step 5: Save the Cash Count**
+**Step 6: Save the Cash Count**
 Confirm the final counted total in the drawer. Click **Save** to record the total cash amount.
 
-**Step 6: Enter Check Totals (If Applicable)**
+![Confirm the final total and click Save](screenshots/reg-010-step22.png)
+
+**Step 7: Enter Check Totals (If Applicable)**
 If you collected checks, enter the total check amount. Click **Add Check** to enter multiple checks if needed. Skip this step if no checks were collected.
 
-**Step 7: Close the Day for the Terminal**
+![Enter check amounts if any checks were collected](screenshots/reg-010-step24.png)
+
+**Step 8: Close the Day for the Terminal**
 Click **Close Day** to finalize the terminal closing process. When prompted, confirm by selecting **Yes**. The system will print a receipt after you confirm.
 
-**Step 8: Print and Confirm the Closing Receipt**
-Collect the printed Day End Closing receipt from the printer. Click **Save** to confirm the receipt was received.
+![Click Close Day to finalize the closing](screenshots/reg-010-step25.png)
+
+![Confirm by selecting Yes — the system will print a receipt](screenshots/reg-010-step26.png)
 
 **Step 9: Review the Day End Receipt PDF**
 Open the Day End Receipt PDF. Review the total summary report, including overall sales and gross sales at the bottom, and the reported total cash collected.
 
-![The Day End Receipt breaks down all transactions by category for final reconciliation](screenshots/reg-010-03-day-end-report.png)
+![Open the Day End Receipt PDF to review the summary](screenshots/reg-010-step31.png)
+
+![Review the total summary — overall sales, gross sales, and cash collected](screenshots/reg-010-step32.png)
 
 **Step 10: Review Expected vs. Actual Cash and Resolve Variances**
 Review the report showing expected drop amount, actual counted amount, any variance, and payment breakdowns. If there is a large variance, recount your cash and bank. Once confirmed, deposit the cash into the safe.
 
 > **Note:** Small variances (e.g., being short $2–3) are generally considered acceptable. The Z-report resets daily totals — once closed, the register is ready for the next day's opening count.
+
+![Review the variance report — expected vs. actual cash and payment breakdowns](screenshots/reg-010-step33.png)
     `
   },
 
@@ -461,44 +587,57 @@ Navigate to the **Tee Sheet** and find the booking that requires a rain check. I
 **Step 2: Select the Booking and Issue Raincheck**
 Select the player's booking entry to open the context menu. Click **Issue Raincheck** to begin the rain check process.
 
+![Click Issue Raincheck from the booking context menu](screenshots/reg-011-step01.png)
+
 **Step 3: Confirm Rain Check Issuance**
 The **Order Details** panel appears showing the booking information. Click the **Issue Raincheck** button to proceed with the refund process.
+
+![Click Issue Raincheck in the Order Details panel](screenshots/reg-011-step02.png)
 
 **Step 4: Select the Player for Rain Check**
 The system displays all players in the booking with their tee time details and costs. Click the **checkbox** next to the specific player's booking entry. You can only process one player at a time.
 
 > **Note:** The system does not support selecting multiple players simultaneously.
 
-![Order Details for a package group — each line shows the bundled items and pricing per player](screenshots/reg-011-01-order-details-package.png)
+![Select the checkbox next to the player receiving the rain check](screenshots/reg-011-step03.png)
 
 **Step 5: Select Number of Holes Played**
 Click the **Holes Played** dropdown and select the number of holes the player completed before leaving (0–18). The system automatically calculates the refund amount based on the remaining holes.
 
 > **Note:** Selecting 0 holes provides a full refund. The refund amount decreases proportionally as more holes are played.
 
+![Select how many holes the player completed — the refund amount calculates automatically](screenshots/reg-011-step05.png)
+
 **Step 6: Review Refund Amount and Click Refund**
 Review the calculated refund details including **Refund Amount**, **Refund Tax**, and **Total Refund Amount**. Once verified, click **Refund** to proceed.
+
+![Review the refund breakdown and click Refund](screenshots/reg-011-step05.png)
 
 **Step 7: Select Raincheck Voucher as Payment Mode**
 In the **Payment Mode** dialog, select **Raincheck Voucher** as the refund method. This creates a voucher that the customer can redeem for future golf course credit.
 
 > **Note:** Other options like Cash, Check, or Refund Voucher may be available, but Raincheck Voucher is the standard method for weather-related cancellations.
 
-**Step 8: Confirm Voucher Creation**
-Click **OK** to confirm the rain check voucher creation. The system will process the refund and generate the voucher code.
+![Select Raincheck Voucher as the payment mode](screenshots/reg-011-step07.png)
 
-**Step 9: Print the Rain Check Receipt**
-The system processes the refund (shown as "Processing, please wait"). Once complete, click **OK** to print the rain check receipt. The receipt includes the recipient's name, voucher type, voucher amount, balance, and unique voucher code.
+**Step 8: Confirm and Print the Rain Check Receipt**
+Click **OK** to confirm the rain check voucher creation. The system will process the refund and generate the voucher code. Once complete, click **OK** to print the rain check receipt.
 
-**Step 10: Review the Rain Check Voucher Receipt**
+![Click OK to print the rain check receipt](screenshots/reg-011-step10.png)
+
+**Step 9: Review the Rain Check Voucher Receipt**
 The printed receipt shows the **Credit Voucher Receipt** with all details: recipient name, voucher type (Raincheck), voucher amount, voucher balance, and the unique voucher code (e.g., A61). This code is required for redemption.
 
 > **Note:** Keep a copy of the receipt for your records. The customer will need the voucher code to redeem their credit on a future visit.
 
-![The Credit Voucher Receipt is generated for each player — print or email as their rain check](screenshots/reg-011-02-credit-voucher-receipt.png)
+![The Credit Voucher Receipt shows the voucher code, amount, and balance](screenshots/reg-011-step13.png)
 
-**Step 11: Repeat Process for Additional Players**
-Return to the **Tee Sheet** and select the next player's entry to issue their rain check. When you open the Order Details, previously processed players will show as **Returned** status and cannot be selected again. Select the next eligible player and repeat Steps 5–10.
+**Step 10: Repeat Process for Additional Players**
+Return to the **Tee Sheet** and select the next player's entry to issue their rain check. When you open the Order Details, previously processed players will show as **Returned** status and cannot be selected again. Select the next eligible player and repeat Steps 5–9.
+
+![Previously processed players show as Returned — select the next eligible player](screenshots/reg-011-step20.png)
+
+![Select the next player and repeat the rain check process](screenshots/reg-011-step21.png)
     `
   },
 
@@ -770,26 +909,26 @@ Before checking in, verify the reservation date matches the day you're checking 
 
 > **Note:** Checking in early (for example, checking in on January 8th for a January 9th reservation) will record revenue on the wrong date.
 
-![Tee sheet showing the group booking — confirm the date header matches today before checking in](screenshots/tee-001-01-tee-sheet-group.png)
+![Verify the date on the tee sheet matches today before checking in](screenshots/tee-002-step01.png)
 
 **Step 2: Select the Group Reservation**
-Select the group reservation on the **Tee Sheet** to view the available check-in options.
+Right-click the group reservation on the **Tee Sheet** to view the available check-in options. You'll see three options: Check-In (Price), Check-In QuickPay, and Check-In Plus.
 
-![Select the group reservation on the Tee Sheet to see check-in and payment options](screenshots/tee-002-01-context-menu.png)
-
-![The expanded menu shows Check In, Quick Pay, and View Check-Ins options for the group](screenshots/tee-002-02-checkin-options.png)
+![Right-click the group reservation to see the check-in options](screenshots/tee-002-step02.png)
 
 ---
 
 ### Option A: Check-In Price 1 (Register/Cart Workflow)
 
 **Step 3A: Select Check-In Price 1**
-Select **Check-in Price 1** to check in a single golfer and bring them into the register/cart.
+Select **Check-in Price 1** to check in a single golfer and bring them into the register/cart. This lets you add extras like range balls or merchandise before payment.
+
+![Select Check-In Price 1 to bring the golfer into the register cart](screenshots/tee-002-step07.png)
 
 **Step 4A: Add Items and Take Payment**
-Add any additional items to the cart (for example, range balls or merchandise). Select the payment method (cash, credit card, etc.) and click **Pay Exact Amount** to finalize.
+Add any additional items to the cart. Select the payment method (cash, credit card, etc.) and click **Pay Exact Amount** to finalize.
 
-> **Note:** Use this option when you want the golfer in the cart so you can sell add-ons before payment.
+![Add items to the cart, then select payment method and pay](screenshots/tee-002-step08.png)
 
 ---
 
@@ -798,24 +937,30 @@ Add any additional items to the cart (for example, range balls or merchandise). 
 **Step 3B: Select QuickPay**
 Select **Check-in QuickPay** (choose the QuickPay price) to bypass the register and go directly to the payment screen. Click **OK** to proceed.
 
+> **Note:** QuickPay is the fastest path — it bypasses the register entirely.
+
+![Select Check-In QuickPay to skip the register and go straight to payment](screenshots/tee-002-step03.png)
+
 **Step 4B: Choose Payment Method and Complete**
 Choose the payment method (gift card, credit card, or cash). If paying cash, select **Pay Exact Amount**, then click **OK** to complete the payment.
 
-> **Note:** QuickPay is a faster path because it bypasses the register entirely.
-
-![Cash payment modal — enter the amount or click Pay Exact Amount to complete](screenshots/tee-001-02-cash-payment.png)
+![Select the payment method — cash shown here — and click Pay Exact Amount](screenshots/tee-002-step05.png)
 
 ---
 
 ### Option C: Check-In Plus (Multiple Golfers on One Payment)
 
 **Step 3C: Select Check-In Plus**
-Select the reservation and choose **Check-in Plus**. Enter the number of golfers to include on the payment. If some golfers have already paid, enter the remaining number.
+Right-click the reservation and choose **Check-in Plus**. Enter the number of golfers to include on the payment. If some golfers have already paid, enter only the remaining number.
 
-**Step 4C: Assign Rates and Check In**
-Update the list to assign rates if multiple rates apply, then click **Check-in**.
+![Select Check-In Plus to charge multiple golfers on one payment](screenshots/tee-002-step11.png)
 
-> **Note:** Use this option when you want multiple golfers on one payment.
+**Step 4C: Enter Number of Golfers and Check In**
+Enter the number of golfers to include, then click **Check-in**. The group is added to the cart for payment processing.
+
+![Enter the number of golfers and click Check-in](screenshots/tee-002-step12.png)
+
+![The group is added to the cart for payment](screenshots/tee-002-step13.png)
 
 ---
 
@@ -824,16 +969,20 @@ Update the list to assign rates if multiple rates apply, then click **Check-in**
 **Step 5: Charge the Group to an Event Account**
 Select the **Event charge** option. Search for the relevant event, select the correct event date, then click **Done**. Click **OK** to acknowledge the charges have been applied to the event account.
 
-> **Note:** This is a way to charge the group to an account for final payment later.
+> **Note:** This charges the group to an account for final payment later — useful for corporate outings or tournaments.
+
+![Select Event Charge, search for the event, and select the date](screenshots/tee-002-step14.png)
+
+![Select the event date and click Done](screenshots/tee-002-step16.png)
 
 ---
 
 ### Verifying Check-Ins
 
 **Step 6: View Check-Ins**
-Select **View Check-Ins** from the tee sheet options menu. Review the summary of who was checked in at a price and who was charged to the account.
+Right-click the tee time and select **View Check-Ins** to see a summary of who was checked in, at what price, and who was charged to the account.
 
-![View Check-Ins Count — shows total check-ins and revenue for the selected group](screenshots/tee-001-03-checkin-confirmation.png)
+![View Check-Ins shows the check-in summary — players, prices, and payment methods](screenshots/tee-002-step19.png)
     `
   },
 
@@ -854,43 +1003,52 @@ This procedure covers how to add a group booking on the tee sheet in Club Caddie
 ## Step-by-Step
 
 **Step 1: Start a New Group Booking from the Tee Sheet**
-Select the desired tee time (start time) to open the options menu, then select **Add Group Reservation**.
+Right-click the desired start time on the tee sheet and select **Add Group Reservation** to open the Group Reservations form.
+
+![Right-click the desired tee time and select Add Group Reservation](screenshots/tee-003-step00.png)
 
 **Step 2: Review Start/End Time Behavior**
-The start time defaults to the time where you initiated the booking. The end time is grayed out while **Auto Select** is enabled — Auto Select will automatically adjust the end time based on the number of players you enter in the next step.
+The start time defaults to the time where you initiated the booking. The end time is grayed out while **Auto Select** is enabled — Auto Select automatically adjusts the end time based on the number of players you enter in the next step.
 
-![Group Reservations form — set start time, number of golfers, and pricing for up to 4 group tiers](screenshots/tee-003-01-group-form.png)
+![The Group Reservations form — start time is set, end time auto-adjusts](screenshots/tee-003-step01.png)
 
-**Step 3: Enter the Group Name**
-Enter the group name. This will display on the tee sheet, so include as much detail as you'd like.
+**Step 3: Enter the Group Name and Number of Golfers**
+Enter the group name — this will display on the tee sheet, so include as much detail as you'd like. Then enter the total number of golfers for the booking.
 
-**Step 4: Enter the Number of Golfers**
-Enter the total number of golfers for the group booking.
+![Enter the group name and number of golfers](screenshots/tee-003-step03.png)
 
-**Step 5: Select Group Price and Adjust if Needed**
-Select the group price (e.g., "Outing 18 Ride"). Review the default price — if needed, update the price to the correct rate. If the group has multiple pricing tiers, you can add up to 4 pricing options. For example, a corporate outing might have: Tier 1 at $75/golfer for employees, Tier 2 at $95/golfer for guests — enter the number of golfers and rate for each tier.
+**Step 4: Select Group Price and Adjust if Needed**
+Select the group price (e.g., "Outing 18 Ride"). Review the default price — if needed, update it to the correct rate. You can add up to 4 pricing tiers. For example, a corporate outing might have Tier 1 at $75/golfer for employees and Tier 2 at $95/golfer for guests.
 
-**Step 6: Attach a Customer Profile (Optional)**
-Click the magnifying glass to open the customer list. Search by last name, then click **Search**. Select the correct customer name and click **Done**.
+![Select the group price tier — you can set up to 4 pricing tiers](screenshots/tee-003-step05.png)
 
-**Step 7: Review the Customer Profile**
-Review that the selected individual is added to the profile. If needed, click the eyeball icon to return to the profile to verify or update their information.
+![Adjust the price if the default doesn't match your group rate](screenshots/tee-003-step06.png)
 
-**Step 8: Confirm the Profile is Active**
-Ensure the customer profile displays as **Active**.
+**Step 5: Attach a Customer Profile (Optional)**
+Click the **magnifying glass** to open the customer list. Search by last name, click **Search**, select the correct customer, and click **Done**. This links the group booking to a customer profile.
 
-**Step 9: Add a Payment Card (Optional)**
-Click the **Payment** tab. Enter the card information, then click **Save**. This attaches the card to the customer profile for the group booking.
+![Click the magnifying glass to search for and attach a customer profile](screenshots/tee-003-step08.png)
 
-**Step 10: Save the Group Booking**
-Click **Save** to finalize and record the group booking.
+![Search by last name, select the customer, and click Done](screenshots/tee-003-step10.png)
 
-![Fill in all the group details — name, golfers, pricing — assign a customer, then click Save](screenshots/tee-003-02-group-form-completed.png)
+**Step 6: Review Customer Profile and Confirm Active Status**
+Review the selected individual's profile information. Ensure the profile shows as **Active**. If needed, click the eyeball icon to view or update their details.
 
-**Step 11: Verify the Group Outing Was Created**
-Confirm the group outing displays as successfully created on the tee sheet.
+![Review the customer profile — confirm it displays as Active](screenshots/tee-003-step13.png)
+
+**Step 7: Add a Payment Card (Optional)**
+Click the **Payment** tab. Enter the card information and click **Save** to attach the card to the customer profile for the group booking.
+
+![Click the Payment tab to enter and save a payment card](screenshots/tee-003-step14.png)
+
+**Step 8: Save and Verify the Group Booking**
+Click **Save** to finalize and record the group booking. Confirm the group outing displays as successfully created on the tee sheet.
 
 > **Note:** Group bookings should be coordinated with the golf operations manager before confirming. Check cart availability and staff coverage for the booking date.
+
+![Click Save to finalize the group booking](screenshots/tee-003-step16.png)
+
+![Verify the group outing was created on the tee sheet](screenshots/tee-003-step17.png)
     `
   },
 
@@ -915,45 +1073,67 @@ This procedure covers how to sell an RTJ Trail Card membership from the tee shee
 **Step 1: Open the Customer Profile from the Tee Sheet/POS**
 From the **Tee Sheet and Point of Sale**, double-click into the customer's profile.
 
+![Double-click into the customer's profile from the Tee Sheet](screenshots/mem-001-step00.png)
+
 **Step 2: Search for the Customer (If Needed)**
 Click the **magnifying glass** to search for the customer. Click **View Customer Profile** to open the selected customer's details.
 
-![Open the customer's profile and go to the Member Info tab to assign a membership class](screenshots/mem-001-01-customer-profile.png)
+![Click the magnifying glass to search for the customer](screenshots/mem-001-step01.png)
+
+![Click View Customer Profile to open their details](screenshots/mem-001-step02.png)
 
 **Step 3: Start the Membership Signup**
 Click **Sign Up for Membership**, then scroll down and select **RTJ Trail Card**.
 
+![Click Sign Up for Membership and select RTJ Trail Card](screenshots/mem-001-step03.png)
+
+![Select the RTJ Trail Card membership option](screenshots/mem-001-step04.png)
+
 **Step 4: Add the Membership and Confirm Details**
-Add the membership to the profile (the system will automatically book the correct date). Review the auto-filled membership date and expiration date. Under the pay class option, select **"Charge Account"** — this tells the system to bill the membership fee to the customer's account so you can collect payment in the next step. Click **OK** and **Save**.
+Add the membership to the profile. Review the auto-filled membership date and expiration date. Under the pay class option, select **"Charge Account"** — this tells the system to bill the membership fee to the customer's account so you can collect payment in the next step. Click **OK** and **Save**.
 
-> **Note:** The system auto-fills the membership and expiration dates.
+> **Note:** The system auto-fills the membership and expiration dates. Selecting "Charge Account" is critical so the fee appears in the membership payment tool.
 
-![The Membership Class dialog lets you select the plan tier, effective date, and billing strategy](screenshots/mem-001-02-membership-class.png)
+![Confirm membership dates and select Charge Account as the pay class](screenshots/mem-001-step06.png)
 
 **Step 5: Confirm Membership Activation and Rate Update**
-Verify the membership now appears in the system and the customer's rate is updated to the Trail Card membership for check-in. When prompted, click **Yes** to confirm the updated membership rate.
+Verify the membership now appears in the system. The customer's rate is automatically updated to the Trail Card membership for check-in. When prompted, click **Yes** to confirm the updated membership rate.
+
+![The membership appears in the system — click Yes to confirm the rate update](screenshots/mem-001-step07.png)
 
 **Step 6: Go to Tools and Open Membership Payment**
 Navigate to **Tools**, then select **Membership Payment**.
 
+![Navigate to Tools and select Membership Payment](screenshots/mem-001-step09.png)
+
 **Step 7: Search for the Customer to Process Payment**
 Click **Search Customer**. Enter the customer profile information, then click **Search**. Select the customer and review the amount due. Enter the membership payment amount, then click **OK** to confirm.
 
+![Search for the customer and review the amount due for the membership](screenshots/mem-001-step12.png)
+
+![Enter the membership payment amount and click OK](screenshots/mem-001-step14.png)
+
 **Step 8: (Optional) Combine Tabs into One Order**
-If the customer has multiple items (e.g., tee time + membership) on separate POS tabs, you can combine them into one payment. Open the additional payment tab from the POS toolbar. Within that tab, select **Add to Existing Order** to merge it with the current transaction. Click the customer name to assign the combined order.
+If the customer has multiple items (e.g., tee time + membership) on separate POS tabs, you can combine them into one payment. Right-click within the tab and select **Add to Existing Order** to merge it with the current transaction. Click the customer name to assign the combined order.
 
 > **Note:** "Tabs" here refers to separate order tabs within the POS system (not browser tabs). Combining tabs lets the customer pay for everything in one transaction.
+
+![Right-click the tab and select Add to Existing Order to combine](screenshots/mem-001-step17.png)
 
 **Step 9: Review Booking and Membership Details**
 Verify the tee time booking is present at the regular rate plus the membership ID.
 
-![Add the Member Contract item to the cart to complete the membership enrollment](screenshots/mem-001-03-member-contract.png)
+![Verify the tee time and membership are both in the cart](screenshots/mem-001-step19.png)
 
 **Step 10: Pay and Print Receipt**
 Click **Pay** to begin processing the transaction. Complete payment for the entire transaction (membership + tee time fees). Click **Print Customer Receipt**, then click **OK**. Click **Pay Exact Amount** to finalize.
 
+![Click Pay to process the full transaction — then print the customer receipt](screenshots/mem-001-step21.png)
+
 **Step 11: Confirm the Trail Card Sale is Complete**
 Confirm the customer now has the tee time, payment, and membership added in one transaction.
+
+![The Trail Card sale is complete — tee time, payment, and membership all in one transaction](screenshots/mem-001-step25.png)
     `
   },
 
@@ -973,37 +1153,40 @@ This procedure covers how to redeem a gift card (credit voucher) as a payment me
 
 ## Step-by-Step
 
-**Step 1: Add Items to the Cart**
-Add the item(s) the customer is purchasing to the cart as you normally would, then click **Pay** to begin the payment process.
+**Step 1: Add Items to the Cart and Click Pay**
+Add the item(s) the customer is purchasing to the cart as you normally would, then click **Pay** to begin the payment process. Click **OK** to confirm.
 
-**Step 2: Confirm and Proceed**
-Click **OK** to confirm the current action and proceed with the transaction.
+![Add items to the cart, then click Pay](screenshots/reg-016-step00.png)
 
-**Step 3: Select Gift Card / Credit Voucher as Payment**
+**Step 2: Select Gift Card / Credit Voucher as Payment**
 Click the **Gift Card / Credit Voucher** payment option to begin the redemption process.
 
-![Payment options modal — select Gift Card / Credit Voucher to redeem a gift card](screenshots/reg-005-01-payment-options.png)
+![Select Gift Card / Credit Voucher from the payment options](screenshots/reg-016-step02.png)
 
-**Step 4: Enter or Scan the Gift Card**
+**Step 3: Enter or Scan the Gift Card**
 You have three options to locate the gift card:
 - **Scan** the gift card barcode
 - **Type** the gift card number directly into the field
 - Click the **magnifying glass** to search by gift card number or customer name
 
-**Step 5: Search and Select the Gift Card**
+![Enter or scan the gift card number — or click the magnifying glass to search](screenshots/reg-016-step06.png)
+
+**Step 4: Search and Select the Gift Card**
 If searching, enter the gift card number or customer name. Once the correct card appears in the results, highlight it and click **Done**.
 
-![Voucher redemption dialog — search by number or name, then click Save to apply](screenshots/reg-005-02-voucher-redemption.png)
+![Search by number or customer name, then select the card and click Done](screenshots/reg-016-step08.png)
 
-**Step 6: Review and Confirm the Gift Card Balance**
+**Step 5: Review and Confirm the Gift Card Balance**
 The system displays the overall balance remaining on the gift card. Review the amount to confirm it covers the purchase (or note the remaining balance). Click **OK** to apply the gift card to the transaction.
 
-**Step 7: Complete Payment**
+![Review the gift card balance and click OK to apply it](screenshots/reg-016-step10.png)
+
+**Step 6: Complete Payment**
 The gift card amount is applied to the transaction. The system prints a receipt that shows the remaining balance on the gift card — hand this to the customer so they know what they have left.
 
-> **Note:** If the gift card balance is less than the transaction total, you'll need to collect the remaining balance using another payment method (cash, credit card, etc.). To print a customer receipt, click **Print Customer Receipt** before finalizing.
+> **Note:** If the gift card balance is less than the transaction total, you'll need to collect the remaining balance using another payment method (cash, credit card, etc.).
 
-> **Note:** If the gift card doesn't fully cover the transaction, you'll need to collect the remaining balance using another payment method (cash, credit card, etc.).
+![The receipt shows the remaining gift card balance — provide this to the customer](screenshots/reg-016-step12.png)
     `
   },
 
@@ -1024,42 +1207,57 @@ This procedure covers how to redeem a rain check voucher when a customer returns
 ## Step-by-Step
 
 **Step 1: Check In the Golfer from the Tee Sheet**
-Select the player's name on the **Tee Sheet** and choose **Check-in** to begin the check-in process.
+Right-click the player's name on the **Tee Sheet** and select **Check-in** to begin the check-in process. This pulls them through to the register.
 
-![Tee sheet showing the player's booking — select the player to check in and pull to the register](screenshots/reg-009-01-tee-sheet-checkin.png)
+![Right-click the player's name on the Tee Sheet](screenshots/reg-017-step01.png)
 
-**Step 2: Go to Pay in the Register**
-Once the player has been pulled through to the register, click **Pay** to start processing payment.
+![Select Check-in to pull the player to the register](screenshots/reg-017-step02.png)
 
-**Step 3: Select Gift Card / Credit Voucher**
-Click **Gift Card / Credit Voucher** as the payment method. This is the same option used for gift cards — rainchecks are stored as credit vouchers in the system.
+**Step 2: Go to Pay and Select Gift Card / Credit Voucher**
+Once the player is in the register, click **Pay**. Then click **Gift Card / Credit Voucher** as the payment method — rainchecks are stored as credit vouchers in the system.
 
-**Step 4: Access Customer Payment Options**
-Click **Customer**, then click **Payment Mode** to access the voucher lookup.
+![Click Gift Card / Credit Voucher as the payment method](screenshots/reg-017-step04.png)
 
-**Step 5: Check for Auto-Linked Rainchecks**
+**Step 3: Access Customer Payment Options**
+Click **Customer**, then click **Payment Mode** to access the voucher lookup area.
+
+![Click Customer, then Payment Mode to access the voucher lookup](screenshots/reg-017-step06.png)
+
+**Step 4: Check for Auto-Linked Rainchecks**
 Because the customer was pulled in from the tee time, the system may automatically show any rainchecks tied to their profile. If the correct raincheck appears, you can select it directly.
 
-> **Note:** If the auto-linked raincheck shows a balance of zero or isn't the right one, you'll need to search manually.
+> **Note:** If the auto-linked raincheck shows a balance of zero or isn't the right one, you'll need to search manually in the next step.
 
-**Step 6: Search for the Raincheck (If Needed)**
+![The system may auto-populate rainchecks tied to the customer's profile](screenshots/reg-017-step07.png)
+
+**Step 5: Search for the Raincheck (If Needed)**
 Click the **magnifying glass** to search. You can type in a voucher number or search by customer name. Click **Search**, then select the correct raincheck from the results.
 
-**Step 7: Review the Voucher Balance**
-The system shows the balance of the raincheck voucher. Click **OK** to confirm.
+![Click the magnifying glass to search by voucher number or customer name](screenshots/reg-017-step08.png)
 
-![Voucher balance dialog — review the remaining credit and click OK to apply it to the transaction](screenshots/reg-009-02-redeem-voucher.png)
+![Select the correct raincheck from the search results](screenshots/reg-017-step10.png)
 
-**Step 8: Handle Split Payment (If Applicable)**
-If the raincheck doesn't fully cover the round, the system will notify you of the remaining balance. Click **Yes** to proceed with split payment. The raincheck value is automatically applied, and the remaining balance will need to be paid with another method.
+**Step 6: Review the Voucher Balance and Confirm**
+The system shows the balance of the raincheck voucher. Review the amount and click **OK** to apply it to the transaction.
+
+![Review the raincheck voucher balance and click OK](screenshots/reg-017-step12.png)
+
+**Step 7: Handle Split Payment (If Applicable)**
+If the raincheck doesn't fully cover the round, the system will notify you of the remaining balance. Click **Yes** to proceed with split payment. The raincheck value is automatically applied, and the remaining amount appears as the balance due.
 
 > **Example:** If the raincheck balance is $49.05 and the round costs $63.22, the system applies the $49.05 and leaves $14.17 to be paid separately.
 
-**Step 9: Pay the Remaining Balance**
+![The system shows the raincheck applied and the remaining balance due](screenshots/reg-017-step14.png)
+
+**Step 8: Pay the Remaining Balance**
 Select the payment method for the remaining amount (cash, credit card, etc.). Enter the amount and click **OK** to confirm.
 
-**Step 10: Finalize Payment**
-Review the transaction, then click **Pay** to finalize. The raincheck has been redeemed and any remaining balance paid.
+![Enter the remaining cash amount and confirm](screenshots/reg-017-step16.png)
+
+**Step 9: Finalize Payment**
+Review the transaction. Uncheck receipt boxes if not needed, then click **Pay** to finalize. The raincheck has been redeemed and any remaining balance paid.
+
+![Finalize the payment — the raincheck is redeemed and remaining balance paid](screenshots/reg-017-step22.png)
     `
   },
 

@@ -683,6 +683,26 @@
     #search-results { display: none; }
     #search-results.active { display: block; }
 
+    .search-results-bar {
+      display: flex;
+      gap: 8px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+      padding: 20px 0 0;
+    }
+    .search-results-bar input {
+      flex: 1;
+      padding: 10px 16px;
+      font-size: 15px;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-results-bar input:focus {
+      border-color: var(--primary);
+    }
+
     .search-header {
       font-size: 13px;
       color: var(--gray-600);
@@ -1400,6 +1420,19 @@
 
     <!-- Search results panel -->
     <div id="search-results">
+      <div class="search-results-bar" id="search-results-bar">
+        <input
+          type="search"
+          id="search-results-input"
+          placeholder="Search articles, procedures, how-tos..."
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Refine search"
+        />
+        <button class="hero-search-btn" onclick="doSearch(document.getElementById('search-results-input').value)">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </div>
       <div class="home-body">
         <div class="search-header" id="search-header-text"></div>
         <div id="search-result-list"></div>
@@ -1902,6 +1935,9 @@ function showHome() {
   state.articleId = null;
   state.prevView  = 'home';
   state.view      = 'home';
+  state.query     = '';
+  document.getElementById('search').value = '';
+  document.getElementById('search-results-input').value = '';
   document.getElementById('article-view').classList.remove('active');
   document.getElementById('search-results').classList.remove('active');
   document.getElementById('admin-view').classList.remove('active');
@@ -2099,15 +2135,15 @@ const QUESTION_PATTERNS = [
   { q: 'How do I add a group booking?',          id: 'tee-003' },
   { q: 'How do I close the register?',           id: 'reg-010' },
   { q: 'How do I sell a prepaid pass?',          id: 'reg-014' },
-  { q: 'How do I check in a golfer?',            id: 'tee-001' },
   { q: 'How do I check in a group?',             id: 'tee-002' },
-  { q: 'How do I run a sales report?',           id: 'rep-001' },
   { q: 'How do I set up a trail card?',          id: 'mem-001' },
-  { q: 'How do I add an inventory item?',        id: 'reg-003' },
+  { q: 'How do I add a service item?',           id: 'reg-001' },
   { q: 'How do I sell a monthly membership?',    id: 'reg-015' },
-  { q: 'How do I redeem a rain check?',          id: 'reg-009' },
+  { q: 'How do I redeem a gift card?',           id: 'reg-016' },
+  { q: 'How do I redeem a rain check?',          id: 'reg-017' },
   { q: 'How do I ring up a USGA youth discount?',id: 'reg-013' },
   { q: 'How do I create a combo item?',          id: 'reg-002' },
+  { q: 'How do I sell a discounted gift card?',  id: 'reg-012' },
 ];
 
 let acFocusedIndex = -1;
@@ -2206,11 +2242,17 @@ function doSearch(query) {
   const q = query.trim();
   state.query = q;
 
+  closeAutocomplete();
+
   if (!q) {
     document.getElementById('search-results').classList.remove('active');
     showHome();
     return;
   }
+
+  // Sync both search inputs
+  document.getElementById('search').value = q;
+  document.getElementById('search-results-input').value = q;
 
   const pool = articles.filter(a =>
     state.activeRole === 'all' || a.role === state.activeRole || a.role === 'all'
@@ -2557,20 +2599,12 @@ function spInsert() {
 // ── Search input wiring ────────────────────────────────────────────
 function setupSearch() {
   const input = document.getElementById('search');
-  let debounceTimer;
   let acTimer;
 
   input.addEventListener('input', () => {
     const val = input.value;
-
     clearTimeout(acTimer);
     acTimer = setTimeout(() => buildAutocomplete(val), 80);
-
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      closeAutocomplete();
-      doSearch(val);
-    }, 300);
   });
 
   input.addEventListener('keydown', e => {
@@ -2579,11 +2613,20 @@ function setupSearch() {
       if (e.key === 'ArrowDown')  { e.preventDefault(); acNavigate(+1); return; }
       if (e.key === 'ArrowUp')    { e.preventDefault(); acNavigate(-1); return; }
       if (e.key === 'Enter') {
+        e.preventDefault();
         const focused = ac.querySelector('.ac-item.focused');
-        if (focused) { e.preventDefault(); focused.click(); return; }
+        if (focused) { focused.click(); return; }
+        closeAutocomplete();
+        doSearch(input.value);
+        return;
       }
       if (e.key === 'Escape') { closeAutocomplete(); return; }
     } else {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch(input.value);
+        return;
+      }
       if (e.key === 'Escape') {
         input.value = '';
         state.query = '';
@@ -2595,7 +2638,10 @@ function setupSearch() {
 
   // Close autocomplete when clicking outside
   document.addEventListener('click', e => {
-    if (!document.getElementById('hero-search-wrapper').contains(e.target)) {
+    const heroWrapper = document.getElementById('hero-search-wrapper');
+    const resultsWrapper = document.getElementById('search-results-bar');
+    if (heroWrapper && !heroWrapper.contains(e.target) &&
+        (!resultsWrapper || !resultsWrapper.contains(e.target))) {
       closeAutocomplete();
     }
   });
@@ -2604,15 +2650,34 @@ function setupSearch() {
     if (input.value.trim()) buildAutocomplete(input.value);
   });
 
+  // Wire up search results input (Enter key + Escape)
+  const resultsInput = document.getElementById('search-results-input');
+  resultsInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      doSearch(resultsInput.value);
+    }
+    if (e.key === 'Escape') {
+      resultsInput.value = '';
+      state.query = '';
+      showHome();
+    }
+  });
+
   // Ctrl+K global shortcut
   document.addEventListener('keydown', e => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
-      if (state.view !== 'home') showHome();
-      setTimeout(() => {
-        input.focus();
-        input.select();
-      }, 50);
+      if (state.view === 'search' && resultsInput) {
+        resultsInput.focus();
+        resultsInput.select();
+      } else {
+        if (state.view !== 'home') showHome();
+        setTimeout(() => {
+          input.focus();
+          input.select();
+        }, 50);
+      }
     }
   });
 }
