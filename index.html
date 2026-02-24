@@ -1416,6 +1416,123 @@
       justify-content: flex-end;
     }
 
+    /* ── Crop Modal ─────────────────────────────────────────── */
+    .crop-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .crop-modal {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      width: 820px;
+      max-width: 92vw;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .crop-modal-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .crop-canvas-wrapper {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      overflow: hidden;
+      padding: 12px;
+    }
+
+    .crop-canvas-wrapper canvas {
+      display: block;
+      cursor: crosshair;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .crop-fields {
+      padding: 14px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .crop-fields label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-600);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .crop-fields input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--gray-300);
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .crop-controls {
+      padding: 12px 20px;
+      border-top: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .crop-dims {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .crop-controls .spacer { flex: 1; }
+
+    .crop-btn {
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .crop-btn-secondary {
+      background: var(--gray-100);
+      color: var(--gray-700);
+    }
+    .crop-btn-secondary:hover { background: var(--gray-200); }
+
+    .crop-btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .crop-btn-primary:hover { opacity: 0.9; }
+
     /* ── Formatting Help Panel ──────────────────────────────── */
     .format-help-toggle {
       font-size: 12px;
@@ -2233,7 +2350,12 @@ function renderContent(raw) {
     if (imgMatch) {
       flushStep(); flushList();
       const caption = imgMatch[1];
-      const src = imgMatch[2];
+      let src = imgMatch[2];
+      // Check for pasted image blob URL (live preview before file is in repo)
+      const fnMatch = src.match(/^screenshots\/(.+)$/);
+      if (fnMatch && typeof pastedImageURLs !== 'undefined' && pastedImageURLs[fnMatch[1]]) {
+        src = pastedImageURLs[fnMatch[1]];
+      }
       html += `<div class="media-block"><img src="${escHtml(src)}" alt="${escHtml(caption)}" loading="lazy" />${caption ? `<div class="media-caption"><i class="fa-solid fa-camera"></i> ${escHtml(caption)}</div>` : ''}</div>`;
       continue;
     }
@@ -2637,12 +2759,26 @@ function editorDivider() {
 function handleWordPaste(event) {
   const cd = event.clipboardData || window.clipboardData;
   if (!cd) return;
+
+  // Check for pasted image first
+  const items = cd.items;
+  if (items) {
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.startsWith('image/')) {
+        event.preventDefault();
+        const blob = items[i].getAsFile();
+        if (blob) openCropModal(blob);
+        return;
+      }
+    }
+  }
+
+  // Fall through to Word HTML conversion
   const html = cd.getData('text/html');
   if (!html) return;
 
   event.preventDefault();
   const doc = new DOMParser().parseFromString(html, 'text/html');
-  const hasImages = doc.querySelectorAll('img').length > 0;
 
   let md = convertNodeToMarkdown(doc.body).replace(/\n{3,}/g, '\n\n').trim();
 
@@ -2652,8 +2788,6 @@ function handleWordPaste(event) {
   ta.value = ta.value.substring(0, start) + md + ta.value.substring(end);
   ta.setSelectionRange(start + md.length, start + md.length);
   ta.dispatchEvent(new Event('input', { bubbles: true }));
-
-  if (hasImages) showPasteNotice('Images from paste are not supported. Use the Screenshot button to add images.');
 }
 
 function convertNodeToMarkdown(node) {
@@ -2698,6 +2832,420 @@ function showPasteNotice(message) {
   document.body.appendChild(notice);
   requestAnimationFrame(() => { notice.style.opacity = '1'; });
   setTimeout(() => { notice.style.opacity = '0'; setTimeout(() => notice.remove(), 300); }, 4000);
+}
+
+// ── Paste image & crop ────────────────────────────────────────────
+
+const pastedImageURLs = {};  // filename → blob URL (for live preview)
+
+function getNextPasteNumber(articleId) {
+  const allArticles = typeof getMergedArticles === 'function' ? getMergedArticles() : articles;
+  const pattern = new RegExp(articleId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '-paste(\\d+)', 'g');
+  let max = 0;
+  allArticles.forEach(a => {
+    let m;
+    while ((m = pattern.exec(a.content)) !== null) max = Math.max(max, parseInt(m[1]));
+    pattern.lastIndex = 0;
+  });
+  // Also check editor content if open
+  const ta = document.getElementById('editor-content');
+  if (ta) {
+    let m;
+    while ((m = pattern.exec(ta.value)) !== null) max = Math.max(max, parseInt(m[1]));
+    pattern.lastIndex = 0;
+  }
+  return max + 1;
+}
+
+function openCropModal(blob) {
+  const blobUrl = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = () => buildCropUI(img, blobUrl);
+  img.src = blobUrl;
+}
+
+function buildCropUI(img, blobUrl) {
+  // Determine article ID for filename
+  const editorTitle = document.getElementById('editor-title');
+  const articleId = window._adminEditingId || 'image';
+  const nextNum = getNextPasteNumber(articleId);
+  const defaultFilename = articleId + '-paste' + nextNum + '.png';
+
+  const overlay = document.createElement('div');
+  overlay.className = 'crop-overlay';
+  overlay.innerHTML = `
+    <div class="crop-modal">
+      <div class="crop-modal-header">
+        <span><i class="fa-solid fa-crop-simple"></i> Crop & Save Image</span>
+        <button onclick="closeCropModal()" style="font-size:18px;color:var(--gray-400);padding:4px;background:none;border:none;cursor:pointer;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="crop-canvas-wrapper">
+        <canvas id="crop-canvas"></canvas>
+      </div>
+      <div class="crop-fields">
+        <div>
+          <label>Filename <span style="color:var(--gray-400);font-weight:400;">(saved to screenshots/)</span></label>
+          <input id="crop-filename" type="text" value="${defaultFilename}" />
+        </div>
+        <div>
+          <label>Caption <span style="color:var(--gray-400);font-weight:400;">(optional description)</span></label>
+          <input id="crop-caption" type="text" placeholder="What the screenshot shows" />
+        </div>
+      </div>
+      <div class="crop-controls">
+        <span class="crop-dims" id="crop-dims">${img.naturalWidth} × ${img.naturalHeight} px</span>
+        <div class="spacer"></div>
+        <button class="crop-btn crop-btn-secondary" onclick="cropReset()"><i class="fa-solid fa-arrows-to-dot"></i> Reset</button>
+        <button class="crop-btn crop-btn-secondary" onclick="closeCropModal()">Cancel</button>
+        <button class="crop-btn crop-btn-primary" onclick="cropAndSave()"><i class="fa-solid fa-download"></i> Crop & Save</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeCropModal(); });
+
+  // Set up canvas
+  const canvas = document.getElementById('crop-canvas');
+  const wrapper = canvas.parentElement;
+  const maxW = wrapper.clientWidth - 24;
+  const maxH = wrapper.clientHeight - 24 || 500;
+
+  const scale = Math.min(1, maxW / img.naturalWidth, maxH / img.naturalHeight);
+  const cw = Math.round(img.naturalWidth * scale);
+  const ch = Math.round(img.naturalHeight * scale);
+  canvas.width = cw;
+  canvas.height = ch;
+
+  // Store state on window for simplicity (cleaned up on close)
+  window._crop = {
+    img, blobUrl, canvas, scale,
+    // Crop rect in canvas coords
+    x: 0, y: 0, w: cw, h: ch,
+    // Interaction
+    mode: null, // 'draw' | 'move' | 'resize'
+    handle: null,
+    startX: 0, startY: 0,
+    startRect: null,
+  };
+
+  drawCrop();
+
+  canvas.addEventListener('mousedown', cropMouseDown);
+  canvas.addEventListener('mousemove', cropMouseMove);
+  canvas.addEventListener('mouseup', cropMouseUp);
+  canvas.addEventListener('mouseleave', cropMouseUp);
+  // Touch support
+  canvas.addEventListener('touchstart', cropTouchStart, { passive: false });
+  canvas.addEventListener('touchmove', cropTouchMove, { passive: false });
+  canvas.addEventListener('touchend', cropMouseUp);
+}
+
+function closeCropModal() {
+  const overlay = document.querySelector('.crop-overlay');
+  if (overlay) overlay.remove();
+  if (window._crop) {
+    URL.revokeObjectURL(window._crop.blobUrl);
+    delete window._crop;
+  }
+}
+
+function drawCrop() {
+  const c = window._crop;
+  if (!c) return;
+  const ctx = c.canvas.getContext('2d');
+  const cw = c.canvas.width;
+  const ch = c.canvas.height;
+
+  // Draw image
+  ctx.drawImage(c.img, 0, 0, cw, ch);
+
+  // Draw dark overlay outside crop
+  ctx.fillStyle = 'rgba(0,0,0,0.45)';
+  // Top
+  ctx.fillRect(0, 0, cw, c.y);
+  // Bottom
+  ctx.fillRect(0, c.y + c.h, cw, ch - c.y - c.h);
+  // Left
+  ctx.fillRect(0, c.y, c.x, c.h);
+  // Right
+  ctx.fillRect(c.x + c.w, c.y, cw - c.x - c.w, c.h);
+
+  // Crop border
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 3]);
+  ctx.strokeRect(c.x, c.y, c.w, c.h);
+  ctx.setLineDash([]);
+
+  // Rule of thirds grid (subtle)
+  ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+  ctx.lineWidth = 1;
+  for (let i = 1; i <= 2; i++) {
+    ctx.beginPath();
+    ctx.moveTo(c.x + c.w * i / 3, c.y);
+    ctx.lineTo(c.x + c.w * i / 3, c.y + c.h);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(c.x, c.y + c.h * i / 3);
+    ctx.lineTo(c.x + c.w, c.y + c.h * i / 3);
+    ctx.stroke();
+  }
+
+  // Draw handles
+  const hs = 8; // handle size
+  ctx.fillStyle = '#fff';
+  ctx.strokeStyle = 'var(--primary)';
+  ctx.lineWidth = 2;
+  const handles = getCropHandles();
+  handles.forEach(h => {
+    ctx.fillRect(h.x - hs/2, h.y - hs/2, hs, hs);
+    ctx.strokeRect(h.x - hs/2, h.y - hs/2, hs, hs);
+  });
+
+  // Update dims label
+  const dimsEl = document.getElementById('crop-dims');
+  if (dimsEl) {
+    const rw = Math.round(c.w / c.scale);
+    const rh = Math.round(c.h / c.scale);
+    dimsEl.textContent = rw + ' × ' + rh + ' px';
+  }
+}
+
+function getCropHandles() {
+  const c = window._crop;
+  const mx = c.x + c.w / 2;
+  const my = c.y + c.h / 2;
+  return [
+    { id: 'tl', x: c.x,       y: c.y       },
+    { id: 'tc', x: mx,        y: c.y       },
+    { id: 'tr', x: c.x + c.w, y: c.y       },
+    { id: 'ml', x: c.x,       y: my        },
+    { id: 'mr', x: c.x + c.w, y: my        },
+    { id: 'bl', x: c.x,       y: c.y + c.h },
+    { id: 'bc', x: mx,        y: c.y + c.h },
+    { id: 'br', x: c.x + c.w, y: c.y + c.h },
+  ];
+}
+
+function getCanvasPos(e) {
+  const rect = window._crop.canvas.getBoundingClientRect();
+  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+}
+
+function hitTestHandle(pos) {
+  const handles = getCropHandles();
+  const r = 10;
+  for (const h of handles) {
+    if (Math.abs(pos.x - h.x) < r && Math.abs(pos.y - h.y) < r) return h.id;
+  }
+  return null;
+}
+
+function cropMouseDown(e) {
+  e.preventDefault();
+  const c = window._crop;
+  if (!c) return;
+  const pos = getCanvasPos(e);
+
+  // Check handles
+  const handle = hitTestHandle(pos);
+  if (handle) {
+    c.mode = 'resize';
+    c.handle = handle;
+    c.startX = pos.x;
+    c.startY = pos.y;
+    c.startRect = { x: c.x, y: c.y, w: c.w, h: c.h };
+    return;
+  }
+
+  // Check inside crop rect → move
+  if (pos.x >= c.x && pos.x <= c.x + c.w && pos.y >= c.y && pos.y <= c.y + c.h) {
+    c.mode = 'move';
+    c.startX = pos.x;
+    c.startY = pos.y;
+    c.startRect = { x: c.x, y: c.y, w: c.w, h: c.h };
+    c.canvas.style.cursor = 'move';
+    return;
+  }
+
+  // Click outside → draw new rect
+  c.mode = 'draw';
+  c.x = pos.x;
+  c.y = pos.y;
+  c.w = 0;
+  c.h = 0;
+  c.startX = pos.x;
+  c.startY = pos.y;
+  drawCrop();
+}
+
+function cropMouseMove(e) {
+  const c = window._crop;
+  if (!c) return;
+  const pos = getCanvasPos(e);
+  const cw = c.canvas.width;
+  const ch = c.canvas.height;
+
+  if (!c.mode) {
+    // Update cursor
+    const handle = hitTestHandle(pos);
+    if (handle) {
+      const cursors = { tl:'nwse-resize', tr:'nesw-resize', bl:'nesw-resize', br:'nwse-resize', tc:'ns-resize', bc:'ns-resize', ml:'ew-resize', mr:'ew-resize' };
+      c.canvas.style.cursor = cursors[handle] || 'crosshair';
+    } else if (pos.x >= c.x && pos.x <= c.x + c.w && pos.y >= c.y && pos.y <= c.y + c.h) {
+      c.canvas.style.cursor = 'move';
+    } else {
+      c.canvas.style.cursor = 'crosshair';
+    }
+    return;
+  }
+
+  if (c.mode === 'draw') {
+    const x1 = Math.max(0, Math.min(c.startX, pos.x));
+    const y1 = Math.max(0, Math.min(c.startY, pos.y));
+    const x2 = Math.min(cw, Math.max(c.startX, pos.x));
+    const y2 = Math.min(ch, Math.max(c.startY, pos.y));
+    c.x = x1; c.y = y1; c.w = x2 - x1; c.h = y2 - y1;
+    drawCrop();
+    return;
+  }
+
+  if (c.mode === 'move') {
+    const dx = pos.x - c.startX;
+    const dy = pos.y - c.startY;
+    c.x = Math.max(0, Math.min(cw - c.startRect.w, c.startRect.x + dx));
+    c.y = Math.max(0, Math.min(ch - c.startRect.h, c.startRect.y + dy));
+    drawCrop();
+    return;
+  }
+
+  if (c.mode === 'resize') {
+    const s = c.startRect;
+    const dx = pos.x - c.startX;
+    const dy = pos.y - c.startY;
+    let nx = s.x, ny = s.y, nw = s.w, nh = s.h;
+
+    if (c.handle.includes('l')) { nx = Math.max(0, Math.min(s.x + dx, s.x + s.w - 10)); nw = s.x + s.w - nx; }
+    if (c.handle.includes('r')) { nw = Math.max(10, Math.min(s.w + dx, cw - s.x)); }
+    if (c.handle.includes('t')) { ny = Math.max(0, Math.min(s.y + dy, s.y + s.h - 10)); nh = s.y + s.h - ny; }
+    if (c.handle.includes('b')) { nh = Math.max(10, Math.min(s.h + dy, ch - s.y)); }
+
+    c.x = nx; c.y = ny; c.w = nw; c.h = nh;
+    drawCrop();
+  }
+}
+
+function cropMouseUp() {
+  const c = window._crop;
+  if (!c) return;
+  c.mode = null;
+  c.handle = null;
+  c.canvas.style.cursor = 'crosshair';
+  // Ensure minimum size
+  if (c.w < 5 && c.h < 5) {
+    c.x = 0; c.y = 0; c.w = c.canvas.width; c.h = c.canvas.height;
+    drawCrop();
+  }
+}
+
+function cropTouchStart(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  cropMouseDown({ clientX: touch.clientX, clientY: touch.clientY, preventDefault() {} });
+}
+
+function cropTouchMove(e) {
+  e.preventDefault();
+  const touch = e.touches[0];
+  cropMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+}
+
+function cropReset() {
+  const c = window._crop;
+  if (!c) return;
+  c.x = 0; c.y = 0; c.w = c.canvas.width; c.h = c.canvas.height;
+  drawCrop();
+}
+
+function cropAndSave() {
+  const c = window._crop;
+  if (!c) return;
+
+  const filename = document.getElementById('crop-filename').value.trim();
+  const caption = document.getElementById('crop-caption').value.trim();
+
+  if (!filename) {
+    document.getElementById('crop-filename').style.borderColor = 'var(--red)';
+    document.getElementById('crop-filename').focus();
+    return;
+  }
+
+  // Calculate crop in original image coords
+  const sx = Math.round(c.x / c.scale);
+  const sy = Math.round(c.y / c.scale);
+  const sw = Math.round(c.w / c.scale);
+  const sh = Math.round(c.h / c.scale);
+
+  // Render cropped region to offscreen canvas
+  const offCanvas = document.createElement('canvas');
+  offCanvas.width = sw;
+  offCanvas.height = sh;
+  const octx = offCanvas.getContext('2d');
+  octx.drawImage(c.img, sx, sy, sw, sh, 0, 0, sw, sh);
+
+  offCanvas.toBlob(function(pngBlob) {
+    // Store blob URL for live preview
+    const previewUrl = URL.createObjectURL(pngBlob);
+    pastedImageURLs[filename] = previewUrl;
+
+    // Trigger download
+    const downloadUrl = URL.createObjectURL(pngBlob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+
+    // Insert markdown at cursor
+    const markdown = '![' + caption + '](screenshots/' + filename + ')';
+    const textarea = document.getElementById('editor-content');
+    if (textarea) {
+      const start = textarea.selectionStart;
+      const before = textarea.value.substring(0, start);
+      const after = textarea.value.substring(textarea.selectionEnd);
+      const prefix = before.length > 0 && !before.endsWith('\n') ? '\n' : '';
+      const suffix = after.length > 0 && !after.startsWith('\n') ? '\n' : '';
+      textarea.value = before + prefix + markdown + suffix + after;
+      const newPos = (before + prefix + markdown).length;
+      textarea.setSelectionRange(newPos, newPos);
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    closeCropModal();
+    showPasteNotice('Saved ' + filename + ' — move it to the screenshots/ folder');
+  }, 'image/png');
+}
+
+// ── Clipboard paste button (toolbar) ──────────────────────────────
+async function editorPasteImage() {
+  try {
+    const items = await navigator.clipboard.read();
+    for (const item of items) {
+      const imageType = item.types.find(t => t.startsWith('image/'));
+      if (imageType) {
+        const blob = await item.getType(imageType);
+        openCropModal(blob);
+        return;
+      }
+    }
+    showPasteNotice('No image found in clipboard. Copy a screenshot first (Win+Shift+S).');
+  } catch (err) {
+    showPasteNotice('Clipboard access denied. Try pasting directly with Ctrl+V in the editor.');
+  }
 }
 
 // ── Screenshot picker ──────────────────────────────────────────────
@@ -3143,6 +3691,7 @@ function adminResetDrafts() {
 }
 
 function adminShowEditor(article, isNew) {
+  window._adminEditingId = article.id;
   const view = document.getElementById('admin-view');
   const modules = Object.values(MODULES);
 
@@ -3212,6 +3761,7 @@ function adminShowEditor(article, isNew) {
               <div class="tb-group">
                 <button type="button" title="Bullet list" onclick="editorBullet()"><i class="fa-solid fa-list-ul"></i></button>
                 <button type="button" title="Insert screenshot" onclick="showScreenshotPicker(document.getElementById('editor-content'))"><i class="fa-solid fa-camera"></i></button>
+                <button type="button" title="Paste image from clipboard" onclick="editorPasteImage()"><i class="fa-solid fa-paste"></i></button>
                 <button type="button" title="Horizontal divider" onclick="editorDivider()"><i class="fa-solid fa-minus"></i></button>
               </div>
             </div>
