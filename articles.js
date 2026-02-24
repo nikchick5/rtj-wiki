@@ -24,7 +24,170 @@ const MODULES = {
     color: '#7d3c98',
     description: 'Set up trail cards, manage member profiles, and configure membership programs and benefits.'
   },
+  ONE_SHEETS: {
+    id: 'one-sheets',
+    label: 'RTJ One Sheets',
+    icon: '<i class="fa-solid fa-file-pdf"></i>',
+    color: '#c0392b',
+    description: 'Printable quick-reference guides — one page per procedure. Download, print, and keep at your station.'
+  },
 };
+
+// ── One Sheets (downloadable PDF quick-reference guides) ─────────────
+const ONE_SHEETS = [
+  {
+    id: 'os-001',
+    title: 'Add a Service Item',
+    description: 'Create a new service item in Inventory Center — type, pricing, tax, and loyalty settings.',
+    steps: 7,
+    filename: 'add-a-service-item.pdf',
+    size: '54 KB'
+  },
+  {
+    id: 'os-002',
+    title: 'Add a Group Booking',
+    description: 'Book a group tee time with player details, pricing, payment card, and reservation verification.',
+    steps: 11,
+    filename: 'add-a-group-booking.pdf',
+    size: '55 KB'
+  },
+  {
+    id: 'os-003',
+    title: 'Check In Group Reservations and Apply Payment',
+    description: 'Check in a group booking from the tee sheet, charge to an event account, and verify check-ins.',
+    steps: 4,
+    filename: 'check-in-group-reservations-and-apply-payment.pdf',
+    size: '52 KB'
+  },
+  {
+    id: 'os-004',
+    title: 'Create Combo Items',
+    description: 'Build combo/bundled items in Inventory Center — add components, set pricing, and verify at the register.',
+    steps: 7,
+    filename: 'create-combo-items.pdf',
+    size: '55 KB'
+  },
+  {
+    id: 'os-005',
+    title: 'Day-End Closing Procedures',
+    description: 'Close out the register — cash count, denominations, check totals, receipts, and variance review.',
+    steps: 10,
+    filename: 'day-end-closing-procedures.pdf',
+    size: '55 KB'
+  },
+  {
+    id: 'os-006',
+    title: 'Issue a Rain Check (Single Customer)',
+    description: 'Issue a rain check voucher for one customer — select holes played, process refund, and print receipt.',
+    steps: 7,
+    filename: 'issue-a-rain-check-single-customer.pdf',
+    size: '53 KB'
+  },
+  {
+    id: 'os-007',
+    title: 'Issue Rain Checks for Multiple Players',
+    description: 'Issue rain checks for all players on a single tee time where one person paid for the group.',
+    steps: 10,
+    filename: 'issue-rain-checks-for-multiple-players-one-tee-time.pdf',
+    size: '53 KB'
+  },
+  {
+    id: 'os-008',
+    title: 'Issue Rain Checks for Package Groups (HQ)',
+    description: 'Issue rain checks for prepaid package group bookings at the HQ level, one player at a time.',
+    steps: 11,
+    filename: 'issue-rain-checks-for-package-groups-hq.pdf',
+    size: '57 KB'
+  },
+  {
+    id: 'os-009',
+    title: 'Member Setup Quick Reference',
+    description: 'End-to-end trail card membership setup — customer profile, membership class, payment, and finalization.',
+    steps: 11,
+    filename: 'mem-001-quick-ref.pdf',
+    size: '55 KB'
+  },
+  {
+    id: 'os-010',
+    title: 'Process a Gift Card Sale',
+    description: 'Sell and activate a gift card from the register — link to customer, enter card number, and process payment.',
+    steps: 7,
+    filename: 'process-a-gift-card-sale.pdf',
+    size: '53 KB'
+  },
+  {
+    id: 'os-011',
+    title: 'Process a USGA Youth on Course Discount',
+    description: 'Apply a Youth on Course discounted round using split payment between the YOC account and customer.',
+    steps: 7,
+    filename: 'process-a-usga-youth-on-course-discount.pdf',
+    size: '51 KB'
+  },
+  {
+    id: 'os-012',
+    title: 'Redeem a Gift Card or Credit Voucher',
+    description: 'Apply a gift card or credit voucher as payment — search, review balance, apply, and provide receipt.',
+    steps: 9,
+    filename: 'redeem-a-gift-card-or-credit-voucher.pdf',
+    size: '51 KB'
+  },
+  {
+    id: 'os-013',
+    title: 'Redeem a Raincheck Voucher',
+    description: 'Redeem a previously issued rain check during check-in, including handling split payments if needed.',
+    steps: 10,
+    filename: 'redeem-a-raincheck-voucher.pdf',
+    size: '53 KB'
+  },
+  {
+    id: 'os-014',
+    title: 'Ring Through Prepaid Package Rounds',
+    description: 'Check in a prepaid package group and charge rounds to the facility corporate reservations account.',
+    steps: 8,
+    filename: 'ring-through-prepaid-package-rounds.pdf',
+    size: '52 KB'
+  },
+  {
+    id: 'os-015',
+    title: 'Search and Verify Gift Card Balances',
+    description: 'Four methods to look up and verify gift card balances — Tools menu, customer search, checkout, and Vouchers module.',
+    steps: 7,
+    filename: 'search-and-verify-gift-card-balances.pdf',
+    size: '53 KB'
+  },
+  {
+    id: 'os-016',
+    title: 'Sell a Discounted Gift Card',
+    description: 'Sell a gift card at a promotional price while retaining its full face value for the customer.',
+    steps: 8,
+    filename: 'sell-a-discounted-gift-card.pdf',
+    size: '56 KB'
+  },
+  {
+    id: 'os-017',
+    title: 'Sell a Monthly Membership Pass',
+    description: 'Set up and sell a monthly membership pass — customer profile, membership class, and first dues payment.',
+    steps: 6,
+    filename: 'sell-a-monthly-membership-pass.pdf',
+    size: '57 KB'
+  },
+  {
+    id: 'os-018',
+    title: 'Sell a Prepaid Pass (Prepaid Package)',
+    description: 'Sell a prepaid annual pass paid in full — configure membership profile and collect the full prepaid amount.',
+    steps: 6,
+    filename: 'sell-a-prepaid-pass-prepaid-package.pdf',
+    size: '56 KB'
+  },
+  {
+    id: 'os-019',
+    title: 'Sell an RTJ Trail Card Membership',
+    description: 'Sell a new trail card membership — sign up, activate rate, process payment, and complete the transaction.',
+    steps: 11,
+    filename: 'sell-an-rtj-trail-card-membership.pdf',
+    size: '55 KB'
+  },
+];
 
 // role values: 'manager' | 'frontdesk' | 'fb' | 'all'
 // 'all'       = every role sees this article
