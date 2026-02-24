@@ -33,10 +33,7 @@ const articles = [
     version: '2.0',
     keywords: ['service item', 'menu item', 'add item', 'register', 'pricing', 'product', 'inventory center', 'non-stock', 'greens fee', 'cart fee', 'loyalty', 'tax group'],
     relatedIds: ['reg-002', 'reg-007'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-001-01-inventory-management.png', caption: 'Inventory Management screen — use the Add/Manage Items menu to create a new service item', filename: 'reg-001-01-inventory-management.png' },
-      { type: 'image', src: 'screenshots/reg-001-02-item-details.png', caption: 'Fill in Sub Department, Category, and item details — then click Save to make it live in the register', filename: 'reg-001-02-item-details.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 Service (non-stock) items are products that don't require inventory tracking — things like greens fees, cart fees, lessons, or range balls. This procedure walks through adding a new service item in the Club Caddie POS Inventory Center.
@@ -50,6 +47,8 @@ Service (non-stock) items are products that don't require inventory tracking —
 **Step 1: Access Inventory Center**
 From the main POS screen, click the **gear icon** in the top-right corner to open the Settings menu. In the left sidebar, click **Inventory Center**. Then click the **ADD ITEM** button in the top-right area to begin creating a new item.
 
+![Inventory Management screen — use the Add/Manage Items menu to create a new service item](screenshots/reg-001-01-inventory-management.png)
+
 **Step 2: Select Inventory Location**
 In the Details tab, set where this item lives in your inventory structure:
 - Click the **Department** dropdown and select the appropriate department.
@@ -57,6 +56,8 @@ In the Details tab, set where this item lives in your inventory structure:
 - Click the **Category** dropdown and select the appropriate category.
 
 > **Note:** The Sub-Department is where the "go code" lives. Make sure the item is placed in the correct Sub-Department so it routes correctly in reporting and operations.
+
+![Fill in Sub Department, Category, and item details — then click Save to make it live in the register](screenshots/reg-001-02-item-details.png)
 
 **Step 3: Set Item Type to Service**
 Under the **Type** dropdown, select **Serv** (Service) to designate this as a non-stock item. A Service item does not track inventory quantities. If the item is a greens fee or cart fee, also select the appropriate **SubType** — this integrates the item with rack rate and class rate management modules.
@@ -92,10 +93,7 @@ Review all entered information for accuracy, then click **Save**. The item will 
     version: '2.0',
     keywords: ['combo', 'bundle', 'package', 'combo item', 'greens fee cart', 'round package', 'assembly items', 'inventory center', 'dozen golf balls'],
     relatedIds: ['reg-001'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-002-01-inventory-add-item.png', caption: 'Inventory Management — select the item you want to configure as a combo', filename: 'reg-002-01-inventory-add-item.png' },
-      { type: 'image', src: 'screenshots/reg-002-02-assembly-items.png', caption: 'Use the Assembly Items panel to search and add the sub-items that make up this combo', filename: 'reg-002-02-assembly-items.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 Combo items let you bundle multiple products together and sell them as a single unit at a custom price. This is useful for creating packages like a dozen golf balls (4 sleeves), meal deals, or any bundled merchandise. The combo appears as one button in the register, but each component is tracked separately in reports.
@@ -108,6 +106,8 @@ Combo items let you bundle multiple products together and sell them as a single 
 
 **Step 1: Access Inventory Center**
 From the main POS screen, click the **gear icon** in the top-right corner to open the Settings menu. In the left sidebar, click **Inventory Center**. Then click **Add / Manage Items** and select **ADD ITEM** to begin creating a new item.
+
+![Inventory Management — select the item you want to configure as a combo](screenshots/reg-002-01-inventory-add-item.png)
 
 **Step 2: Select Inventory Location**
 Choose where the combo button will appear in your inventory structure:
@@ -124,6 +124,8 @@ Click the **Type** dropdown and select **Combo**. Enter a descriptive name in th
 After saving, click the **Setup Combo** tab at the top. In the Item Search field, type to find items (e.g., "Chrome Soft"), select the item from the dropdown, and click **Add Item**. Repeat to add each unit — for example, add the sleeve item 4 times for a dozen.
 
 > **Note:** Each click of Add Item adds one unit. For a dozen golf balls made up of 4 sleeves, you'd add the sleeve item 4 separate times.
+
+![Use the Assembly Items panel to search and add the sub-items that make up this combo](screenshots/reg-002-02-assembly-items.png)
 
 **Step 5: Edit Pricing for Each Item**
 In the Assembly Items list, click **Edit** next to each item line. Enter the desired price for that item within the combo (e.g., 12.99) and click **Save**. Repeat for each item line. The total combo price is calculated by adding up all individual item prices.
@@ -147,11 +149,7 @@ Navigate to the **Register** from the main menu. Browse to the category where yo
     version: '2.0',
     keywords: ['gift card', 'sell gift card', 'gift certificate', 'load gift card', 'activate', 'credit voucher', 'voucher', 'tools menu'],
     relatedIds: ['reg-006'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-004-01-tools-button.png', caption: 'Click the TOOLS button in the POS toolbar to access the gift card configuration menu', filename: 'reg-004-01-tools-button.png' },
-      { type: 'image', src: 'screenshots/reg-004-02-gift-card-option.png', caption: 'Select Gift Card from the menu to set the card value and assign it to a customer', filename: 'reg-004-02-gift-card-option.png' },
-      { type: 'image', src: 'screenshots/reg-004-03-payment.png', caption: 'Enter the sale amount and click Pay Exact Amount to complete the gift card purchase', filename: 'reg-004-03-payment.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This procedure covers selling gift cards from the POS register, including adding a customer (optional), entering the gift card amount, scanning or typing the card number, and completing payment. It also covers how to check a gift card balance and redeem gift cards during checkout.
@@ -160,6 +158,10 @@ This procedure covers selling gift cards from the POS register, including adding
 
 **Step 1: Open the Tools Menu and Select Gift Card**
 From the Register screen, click **TOOLS** in the menu bar to open the Tools panel. Then click **Gift Card** under the Gift Vouchers section to open the Generate Credit Voucher form.
+
+![Click the TOOLS button in the POS toolbar to access the gift card configuration menu](screenshots/reg-004-01-tools-button.png)
+
+![Select Gift Card from the menu to set the card value and assign it to a customer](screenshots/reg-004-02-gift-card-option.png)
 
 **Step 2: Add a Customer (Optional)**
 To link the gift card to a specific customer profile, click the **magnifying glass** icon next to Add Customer. Search for and select the customer, then click **Done**. This step is optional — you can skip it if the gift card is not being linked to a customer.
@@ -179,6 +181,8 @@ Click the **ADD** button to add the gift card to the transaction. The gift card 
 
 **Step 6: Complete the Payment**
 Click **Pay** to proceed to payment. Select the customer's payment method (Cash, Check, Credit Card, etc.) from the Payment Mode options. For cash payments, enter the amount received or click **Pay Exact Amount**. Ensure **Print Customer Receipt** is checked.
+
+![Enter the sale amount and click Pay Exact Amount to complete the gift card purchase](screenshots/reg-004-03-payment.png)
 
 **Step 7: Print and Provide Receipts to Customer**
 Click **OK** or **Close** to complete the transaction. The system prints a credit customer receipt plus a voucher receipt containing the gift card number. Give both receipts to the customer — they can attach the voucher receipt to the physical gift card for reference.
@@ -206,10 +210,7 @@ During a regular checkout transaction, when the customer is ready to pay, select
     version: '2.0',
     keywords: ['gift card balance', 'check balance', 'gift card lookup', 'verify gift card', 'check voucher balance', 'voucher', 'usage', 'vouchers module'],
     relatedIds: ['reg-004'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-006-01-select-voucher.png', caption: 'The Select Voucher screen lists all gift cards — search by number, name, or date', filename: 'reg-006-01-select-voucher.png' },
-      { type: 'image', src: 'screenshots/reg-006-02-voucher-details.png', caption: 'Open a voucher to see its type, balance, and status — then click Save to confirm', filename: 'reg-006-02-voucher-details.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 There are several ways to search and verify a gift card balance in Club Caddie — from the Tools menu, during checkout, or through the Vouchers module. This article covers all the methods available.
@@ -223,6 +224,8 @@ Go to **Tools**, then click **Check Voucher Balance**.
 In the Check Voucher Balance screen, either type the gift card number and click **Search**, or search by the customer's last name.
 
 > **Note:** Searching by last name can pull up rain checks or gift cards tied to that customer.
+
+![The Select Voucher screen lists all gift cards — search by number, name, or date](screenshots/reg-006-01-select-voucher.png)
 
 **Step 3: View the Balance**
 Review the returned gift card and its current balance. Click **Clear Search** to remove the previous search before searching again.
@@ -246,6 +249,8 @@ Click into the gift card search area, then use **Search Customer Name, Voucher N
 Click **Vouchers**, then click **Gift Card**. Search by voucher number as needed. Click **Usage** to view detailed gift card activity and transaction history.
 
 > **Note:** The Vouchers module shows all details and usage for gift cards, including when actions occurred. You can drill down to a receipt-level view.
+
+![Open a voucher to see its type, balance, and status — then click Save to confirm](screenshots/reg-006-02-voucher-details.png)
     `
   },
 
@@ -258,12 +263,7 @@ Click **Vouchers**, then click **Gift Card**. Search by voucher number as needed
     version: '1.4',
     keywords: ['rain check', 'raincheck', 'refund', 'weather', 'credit', 'issue rain check', 'voucher', 'single player'],
     relatedIds: ['reg-008'],
-    media: [
-        { type: 'image', src: 'screenshots/reg-007-01-tee-sheet.png', caption: 'Locate the player on the Tee Sheet — click into their booking to access rain check options', filename: 'reg-007-01-tee-sheet.png' },
-        { type: 'image', src: 'screenshots/reg-007-02-order-details.png', caption: 'Order Details panel shows the refund breakdown — holes played, amounts, and credit to be issued', filename: 'reg-007-02-order-details.png' },
-        { type: 'image', src: 'screenshots/reg-007-03-credit-voucher.png', caption: 'The Credit Voucher receipt — print or email this to the customer as their rain check', filename: 'reg-007-03-credit-voucher.png' },
-      { type: 'video', url: 'https://clubcaddie-university.com', title: 'Issue a Rain Check — Training Video', duration: '3 min' },
-    ],
+    media: [],
     content: `
 ## Overview
 Use this procedure to issue a rain check voucher for one player from their tee sheet check-in. You'll select holes played to calculate the refund amount, complete the voucher/refund flow, print the voucher receipt, and locate the issued rain check record.
@@ -277,11 +277,15 @@ Use this procedure to issue a rain check voucher for one player from their tee s
 **Step 1: Locate the Player and Open Their Profile**
 Find the player on the tee sheet/check-in list. Right-click the player profile, then click **Issue Rain Check**.
 
+![Locate the player on the Tee Sheet — click into their booking to access rain check options](screenshots/reg-007-01-tee-sheet.png)
+
 **Step 2: Set the Holes Played**
 The rain check interface opens. Select the tee time and specify how many holes have been completed (e.g., select 9 holes) so the refund amount updates accordingly.
 
 **Step 3: Start the Refund**
 Click the **Refund** option to begin processing the rain check. Confirm the refund selection by clicking the confirmation button.
+
+![Order Details panel shows the refund breakdown — holes played, amounts, and credit to be issued](screenshots/reg-007-02-order-details.png)
 
 **Step 4: Choose the Rain Check Voucher Option**
 Select **Rain Check Voucher**. You may leave the Voucher field blank — the system will auto-populate an item/receipt. Click **OK**.
@@ -291,6 +295,8 @@ Click the POS terminal associated with the player's transaction to continue.
 
 **Step 6: Print and Save**
 Continue through the prompts to prepare the voucher receipt. Print the rain check receipt/voucher for the player. Click **Save** to record the transaction. Confirm the receipt printed successfully by clicking **Yes**.
+
+![The Credit Voucher receipt — print or email this to the customer as their rain check](screenshots/reg-007-03-credit-voucher.png)
 
 **Step 7: Review the Rain Check Record**
 Click the **Rain Check** section to view issued rain checks. Click the correct entry to open the record details. You can also open the rain check PDF from File Explorer to view or print the voucher details.
@@ -308,10 +314,7 @@ Click the **Rain Check** section to view issued rain checks. Click the correct e
     version: '1.2',
     keywords: ['rain check', 'multiple players', 'group rain check', 'bulk rain check', 'weather', 'voucher', 'group refund'],
     relatedIds: ['reg-007'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-008-01-order-details-multi.png', caption: 'Order Details shows each player\'s green fee breakdown — select the ones receiving rain checks', filename: 'reg-008-01-order-details-multi.png' },
-      { type: 'image', src: 'screenshots/reg-008-02-issue-voucher.png', caption: 'Click to issue credit vouchers for the selected players in the group', filename: 'reg-008-02-issue-voucher.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This covers issuing a single rain check transaction for multiple players on the same tee time — for example, when one payer covered 4 players and the group gets rained out. The system pulls in all players, calculates the refund, and issues vouchers for each.
@@ -330,6 +333,8 @@ Verify the system shows all players for the tee time (e.g., all 4 players). This
 **Step 4: Update Holes Played for Each Player**
 Change the holes played selections to match the group's actual progress. Use the dropdown(s) to select the appropriate number of holes played for each player.
 
+![Order Details shows each player's green fee breakdown — select the ones receiving rain checks](screenshots/reg-008-01-order-details-multi.png)
+
 **Step 5: Process the Refund**
 Review the updated refund amount shown for the group. Click **Refund**.
 
@@ -338,6 +343,8 @@ Click the confirmation option to proceed.
 
 **Step 7: Select the Rain Check Voucher Option**
 Click **Rain Check Voucher**, then click **OK**. The system will print a receipt after you confirm.
+
+![Click to issue credit vouchers for the selected players in the group](screenshots/reg-008-02-issue-voucher.png)
 
 **Step 8: Save the Rain Check Transaction**
 Click **Save** to record the rain check.
@@ -361,11 +368,7 @@ Click **Rain Check** to open the rain check management application. Open the rai
     version: '2.1',
     keywords: ['close', 'closing', 'end of day', 'day end', 'shift close', 'cash drawer', 'Z report', 'reconcile', 'deposit', 'variance', 'denomination'],
     relatedIds: ['reg-011'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-010-01-day-end-button.png', caption: 'Click Day End Closing from the POS toolbar — only run this after the last transaction of the day', filename: 'reg-010-01-day-end-button.png' },
-      { type: 'image', src: 'screenshots/reg-010-02-cash-count.png', caption: 'Enter the actual bill count by denomination in the Cash Amount screen', filename: 'reg-010-02-cash-count.png' },
-      { type: 'image', src: 'screenshots/reg-010-03-day-end-report.png', caption: 'The Day End Receipt breaks down all transactions by category for final reconciliation', filename: 'reg-010-03-day-end-report.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 The day-end closing procedure reconciles all register transactions and prepares the system for the next business day. This is run at the end of each operating day after the last transaction is processed, by a manager or designated senior staff member.
@@ -375,6 +378,8 @@ The day-end closing procedure reconciles all register transactions and prepares 
 **Step 1: Open Day End Closing from Tools**
 Click **Tools**, then click **Day End Closing**.
 
+![Click Day End Closing from the POS toolbar — only run this after the last transaction of the day](screenshots/reg-010-01-day-end-button.png)
+
 **Step 2: Select the Correct Closing Date and User**
 Select the correct date, then select the user responsible for closing the drawer/terminal.
 
@@ -383,6 +388,8 @@ Count all cash in the drawer **including the starting balance**. Enter the total
 
 **Step 4: Enter Cash Denominations**
 Enter each cash denomination amount. Click the denomination buttons to add each to the total. Continue through the cash entry prompts until the full drawer count is entered.
+
+![Enter the actual bill count by denomination in the Cash Amount screen](screenshots/reg-010-02-cash-count.png)
 
 **Step 5: Save the Cash Count**
 Confirm the final counted total in the drawer. Click **Save** to record the total cash amount.
@@ -398,6 +405,8 @@ Collect the printed Day End Closing receipt from the printer. Click **Save** to 
 
 **Step 9: Review the Day End Receipt PDF**
 Open the Day End Receipt PDF. Review the total summary report, including overall sales and gross sales at the bottom, and the reported total cash collected.
+
+![The Day End Receipt breaks down all transactions by category for final reconciliation](screenshots/reg-010-03-day-end-report.png)
 
 **Step 10: Review Expected vs. Actual Cash and Resolve Variances**
 Review the report showing expected drop amount, actual counted amount, any variance, and payment breakdowns. If there is a large variance, recount your cash and bank. Once confirmed, deposit the cash into the safe.
@@ -415,10 +424,7 @@ Review the report showing expected drop amount, actual counted amount, any varia
     version: '2.0',
     keywords: ['rain check', 'package group', 'HQ', 'prepaid', 'group booking', 'weather refund', 'raincheck voucher', 'credit voucher'],
     relatedIds: ['reg-007', 'reg-008', 'tee-003'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-011-01-order-details-package.png', caption: 'Order Details for a package group — each line shows the bundled items and pricing per player', filename: 'reg-011-01-order-details-package.png' },
-      { type: 'image', src: 'screenshots/reg-011-02-credit-voucher-receipt.png', caption: 'The Credit Voucher Receipt is generated for each player — print or email as their rain check', filename: 'reg-011-02-credit-voucher-receipt.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 Rain checks allow customers who paid for a round but couldn't complete it (due to weather, course conditions, etc.) to receive a voucher for the remaining value of their tee time. The voucher can be redeemed for future golf course credit.
@@ -440,6 +446,8 @@ The **Order Details** panel appears showing the booking information. Click the *
 The system displays all players in the booking with their tee time details and costs. Click the **checkbox** next to the specific player's booking entry. You can only process one player at a time.
 
 > **Note:** The system does not support selecting multiple players simultaneously.
+
+![Order Details for a package group — each line shows the bundled items and pricing per player](screenshots/reg-011-01-order-details-package.png)
 
 **Step 5: Select Number of Holes Played**
 Click the **Holes Played** dropdown and select the number of holes the player completed before leaving (0–18). The system automatically calculates the refund amount based on the remaining holes.
@@ -465,6 +473,8 @@ The printed receipt shows the **Credit Voucher Receipt** with all details: recip
 
 > **Note:** Keep a copy of the receipt for your records. The customer will need the voucher code to redeem their credit on a future visit.
 
+![The Credit Voucher Receipt is generated for each player — print or email as their rain check](screenshots/reg-011-02-credit-voucher-receipt.png)
+
 **Step 11: Repeat Process for Additional Players**
 Return to the **Tee Sheet** and right-click on the next player's entry to issue their rain check. When you open the Order Details, previously processed players will show as **Returned** status and cannot be selected again. Select the next eligible player and repeat Steps 5–10.
     `
@@ -479,10 +489,7 @@ Return to the **Tee Sheet** and right-click on the next player's entry to issue 
     version: '1.1',
     keywords: ['discount gift card', 'promotional gift card', 'gift card sale', 'gift card discount', 'voucher', 'credit voucher'],
     relatedIds: ['reg-004', 'reg-006'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-012-01-credit-voucher-form.png', caption: 'Gift card entry form — fill in voucher amount, expiration populates automatically, then enter the card number', filename: 'reg-012-01-credit-voucher-form.png' },
-      { type: 'image', src: 'screenshots/reg-012-02-discount-applied.png', caption: 'Gift Card Discount selected — discount applied, Grand Total now reflects the reduced price', filename: 'reg-012-02-discount-applied.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This procedure covers selling a discounted gift card through the register — for example, a customer pays $80 for a $100 gift card. The discount is applied at the register, but the card is loaded with the full face value.
@@ -501,11 +508,15 @@ At the top of the screen, you'll see a field to tag a customer name. If selling 
 **Step 3: Enter Gift Card Details**
 Enter the **Voucher Amount** (e.g., $100 for a hundred-dollar gift card). The **Expiration Date** will auto-populate. Input the gift card number by typing it manually, scanning the barcode, or swiping the magnetic strip (click the KB button, then slide the card on the track).
 
+![Gift card entry form — fill in voucher amount, expiration populates automatically, then enter the card number](screenshots/reg-012-01-credit-voucher-form.png)
+
 **Step 4: Add Gift Card to Register**
 Click **Add** to pull the gift card into the register. The gift card will now appear in the transaction.
 
 **Step 5: Apply the Discount**
 Locate the pre-populated discount options below the transaction. Click the dropdown menu, select **Gift Card Discount**, and click **Apply**. The applicable discount will be applied to the gift card.
+
+![Gift Card Discount selected — discount applied, Grand Total now reflects the reduced price](screenshots/reg-012-02-discount-applied.png)
 
 **Step 6: Verify Transaction Details**
 Review the discount total displayed on screen. Confirm the transaction total reflects the discounted amount (e.g., $80 for a $100 gift card with 20% discount). **Ensure no other items are included in this transaction.**
@@ -537,10 +548,7 @@ After completing the transaction, locate the gift card in the system. Verify the
     version: '1.1',
     keywords: ['USGA', 'youth on course', 'YOC', 'junior golf', 'discount', 'youth discount', 'split payment', 'membership ID'],
     relatedIds: ['reg-001'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-013-01-yoc-pricing.png', caption: 'Tee sheet showing the YOC tee time — verify the "USGA Y.O.C. 18 Walk" class before pulling to register', filename: 'reg-013-01-yoc-pricing.png' },
-      { type: 'image', src: 'screenshots/reg-013-02-payment.png', caption: 'Payment modal — select the Membership ID tab to apply the $5 YOC contribution', filename: 'reg-013-02-payment.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 Youth on Course (YOC) is a USGA program offering juniors discounted rounds at participating courses. YOC rounds require a **split payment** — $5 goes to the facility's YOC membership account, and the remainder is charged to the customer's payment method. This is different from a standard round checkout.
@@ -555,6 +563,8 @@ Youth on Course (YOC) is a USGA program offering juniors discounted rounds at pa
 **Step 1: Identify the Youth on Course Tee Time**
 Locate the tee time on the tee sheet. Verify it shows the **"USGA YOC 18 Walk"** designation. Note the player name.
 
+![Tee sheet showing the YOC tee time — verify the USGA Y.O.C. 18 Walk class before pulling to register](screenshots/reg-013-01-yoc-pricing.png)
+
 **Step 2: Pull the Tee Time to Register**
 Select the tee time from the tee sheet and pull it through to the register system.
 
@@ -563,6 +573,8 @@ Click on **Split Pay** in the register. YOC rounds require $5 to go to the membe
 
 **Step 4: Process the $5 Membership Payment**
 Select **Membership ID** as the first payment method. Enter **$5** as the amount. Click **Search**, then select your facility's USGA YOC membership ID from the list. Select the applicable facility, click **Done**, then click the **"+"** button to apply that payment.
+
+![Payment modal — select the Membership ID tab to apply the $5 YOC contribution](screenshots/reg-013-02-payment.png)
 
 **Step 5: Verify Remaining Balance**
 Check the bottom of the screen to confirm the total paid ($5.00) and the remaining balance the customer owes.
@@ -597,10 +609,7 @@ The system processes the transaction and the receipt prints automatically. The $
     version: '1.1',
     keywords: ['prepaid pass', 'prepaid package', 'golf pass', 'punch card', 'multi-round', 'season pass', 'annual pass', 'paid in full', 'class assignment'],
     relatedIds: ['reg-015', 'mem-001'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-014-01-add-payment-card.png', caption: 'Add the customer\'s payment card — set up auto-pay and billing frequency for the prepaid pass', filename: 'reg-014-01-add-payment-card.png' },
-      { type: 'image', src: 'screenshots/reg-014-02-membership-entry.png', caption: 'Enter the membership number in the POS to link the prepaid pass to the customer\'s account', filename: 'reg-014-02-membership-entry.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This SOP covers selling prepaid annual passes to both new and existing customers. The process involves setting up the customer profile, configuring their membership class, and processing the full prepaid amount through the register.
@@ -621,8 +630,12 @@ Note the auto-generated member number (no action needed). Select the appropriate
 
 > **CRITICAL:** Ensure **"Pay by Class Assignment by Charge Account"** is turned ON. Click **OK** to apply the class, then click **Save**.
 
+![Add the customer's payment card — set up auto-pay and billing frequency for the prepaid pass](screenshots/reg-014-01-add-payment-card.png)
+
 **Step 4: Process Payment**
 Exit the customer profile. Navigate to **Register → Tools → Membership Payment**. Click the magnifying glass icon to search for the customer. New customers will appear at the top of the list; existing customers can be found via the search bar. Select the customer and click **Done**.
+
+![Enter the membership number in the POS to link the prepaid pass to the customer's account](screenshots/reg-014-02-membership-entry.png)
 
 **Step 5: Enter the Correct Payment Amount**
 The system will show a "Monthly Balance" on screen — **IGNORE this amount.** It only shows the first month's revenue recognition, NOT the full prepaid amount. Refer to the **prepaid pricing list** at your counter for the correct full amount. Enter the **full prepaid amount including tax** (e.g., $4,387.25). Click **OK**.
@@ -653,10 +666,7 @@ The full amount will populate in the register. Click **Pay** and select the cust
     version: '1.1',
     keywords: ['monthly pass', 'membership pass', 'monthly membership', 'recurring', 'subscription', 'monthly golf', 'dues', 'sign up', 'member info'],
     relatedIds: ['reg-014', 'mem-001'],
-    media: [
-      { type: 'image', src: 'screenshots/reg-015-01-membership-class.png', caption: 'Membership Class modal — select the strategy, confirm effective and expiration dates, check the dues posting box', filename: 'reg-015-01-membership-class.png' },
-      { type: 'image', src: 'screenshots/reg-015-02-register-cart.png', caption: 'Register → Tools → Membership Payment — use the magnifying glass to search, or select the new member at the top', filename: 'reg-015-02-register-cart.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This SOP covers selling a monthly membership pass to both new and existing customers. Monthly passes charge the customer a recurring fee, and this procedure walks through the full setup from customer profile to first payment.
@@ -677,8 +687,12 @@ Click **Select Class** and choose the appropriate membership type (e.g., "Couple
 
 > **CRITICAL:** Ensure the checkbox is checked to **post the dues to the account** — this displays what they owe for the first month's payment. Click **OK** to apply the membership, then click **Save**.
 
+![Membership Class modal — select the strategy, confirm effective and expiration dates, check the dues posting box](screenshots/reg-015-01-membership-class.png)
+
 **Step 4: Process Payment via Register**
 Navigate to **Register → Tools → Membership Payment**. Click the magnifying glass icon to search. New members will appear at the top of the list; renewing members can be found via the search bar. Select the customer account and click **Done**.
+
+![Register — Tools — Membership Payment — use the magnifying glass to search, or select the new member at the top](screenshots/reg-015-02-register-cart.png)
 
 **Step 5: Enter Payment Amount**
 The system will display the amount owed for the first month's payment. Enter this amount in the Amount box (e.g., $396.49). Click **OK**. The amount will transfer to the register.
@@ -713,10 +727,7 @@ Click **Pay** and select the customer's payment method (Cash, Check, or Credit C
     version: '2.0',
     keywords: ['group check in', 'group reservation', 'group tee time', 'check in group', 'quickpay', 'check-in plus', 'event charge', 'view check-ins'],
     relatedIds: ['tee-003'],
-    media: [
-      { type: 'image', src: 'screenshots/tee-002-01-context-menu.png', caption: 'Right-click the group reservation on the Tee Sheet to see check-in and payment options', filename: 'tee-002-01-context-menu.png' },
-      { type: 'image', src: 'screenshots/tee-002-02-checkin-options.png', caption: 'The expanded menu shows Check In, Quick Pay, and View Check-Ins options for the group', filename: 'tee-002-02-checkin-options.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This procedure covers how to check in a group reservation on the tee sheet, choose the correct check-in method, take payment, optionally add items to the register cart, charge a group to an event account, and verify check-in counts using View Check-Ins.
@@ -732,6 +743,10 @@ Before checking in, verify the reservation date matches the day you're checking 
 
 **Step 2: Right-Click the Group Reservation**
 Right-click the group reservation on the **Tee Sheet** to view the available check-in options.
+
+![Right-click the group reservation on the Tee Sheet to see check-in and payment options](screenshots/tee-002-01-context-menu.png)
+
+![The expanded menu shows Check In, Quick Pay, and View Check-Ins options for the group](screenshots/tee-002-02-checkin-options.png)
 
 ---
 
@@ -796,11 +811,7 @@ Right-click on the tee sheet and select **View Check-Ins**. Review the summary o
     version: '1.3',
     keywords: ['group booking', 'group reservation', 'outing', 'corporate outing', 'tournament booking', 'auto select', 'group pricing', 'payment card'],
     relatedIds: ['tee-002', 'reg-011'],
-    media: [
-        { type: 'image', src: 'screenshots/tee-003-01-group-form.png', caption: 'Group Reservations form — set start time, number of golfers, and pricing for up to 4 group tiers', filename: 'tee-003-01-group-form.png' },
-        { type: 'image', src: 'screenshots/tee-003-02-group-form-completed.png', caption: 'Fill in all the group details — name, golfers, pricing — assign a customer, then click Save', filename: 'tee-003-02-group-form-completed.png' },
-      { type: 'video', url: 'https://clubcaddie-university.com', title: 'Add a Group Booking — Training Video', duration: '4 min' },
-    ],
+    media: [],
     content: `
 ## Overview
 This procedure covers how to add a group booking on the tee sheet in Club Caddie, including selecting the start time, entering group details, setting group pricing, attaching a customer profile (and optional payment card), and saving the booking.
@@ -812,6 +823,8 @@ Right-click the desired tee time (start time), then click **Add Group Reservatio
 
 **Step 2: Review Start/End Time Behavior**
 The start time defaults to the time where you initiated the booking. The end time is grayed out while **Auto Select** is enabled — Auto Select will automatically adjust the end time based on the number of players you enter in the next step.
+
+![Group Reservations form — set start time, number of golfers, and pricing for up to 4 group tiers](screenshots/tee-003-01-group-form.png)
 
 **Step 3: Enter the Group Name**
 Enter the group name. This will display on the tee sheet, so include as much detail as you'd like.
@@ -837,6 +850,8 @@ Click the **Payment** tab. Enter the card information, then click **Save**. This
 **Step 10: Save the Group Booking**
 Click **Save** to finalize and record the group booking.
 
+![Fill in all the group details — name, golfers, pricing — assign a customer, then click Save](screenshots/tee-003-02-group-form-completed.png)
+
 **Step 11: Verify the Group Outing Was Created**
 Confirm the group outing displays as successfully created on the tee sheet.
 
@@ -855,11 +870,7 @@ Confirm the group outing displays as successfully created on the tee sheet.
     version: '2.0',
     keywords: ['trail card', 'membership', 'trail fee', 'annual membership', 'member setup', 'membership payment', 'sign up for membership'],
     relatedIds: ['reg-014', 'reg-015'],
-    media: [
-      { type: 'image', src: 'screenshots/mem-001-01-customer-profile.png', caption: 'Open the customer\'s profile and go to the Member Info tab to assign a membership class', filename: 'mem-001-01-customer-profile.png' },
-      { type: 'image', src: 'screenshots/mem-001-02-membership-class.png', caption: 'The Membership Class dialog lets you select the plan tier, effective date, and billing strategy', filename: 'mem-001-02-membership-class.png' },
-      { type: 'image', src: 'screenshots/mem-001-03-member-contract.png', caption: 'Add the Member Contract item to the cart to complete the membership enrollment', filename: 'mem-001-03-member-contract.png' },
-    ],
+    media: [],
     content: `
 ## Overview
 This procedure covers how to sell an RTJ Trail Card membership from the tee sheet/POS by locating the customer profile, signing them up for the Trail Card membership, confirming membership dates and pay class, processing the membership fee through Tools, optionally combining tabs into one order, and completing payment with a customer receipt.
@@ -872,6 +883,8 @@ From the **Tee Sheet and Point of Sale**, double-click into the customer's profi
 **Step 2: Search for the Customer (If Needed)**
 Click the **magnifying glass** to search for the customer. Click **View Customer Profile** to open the selected customer's details.
 
+![Open the customer's profile and go to the Member Info tab to assign a membership class](screenshots/mem-001-01-customer-profile.png)
+
 **Step 3: Start the Membership Signup**
 Click **Sign Up for Membership**, then scroll down and select **RTJ Trail Card**.
 
@@ -879,6 +892,8 @@ Click **Sign Up for Membership**, then scroll down and select **RTJ Trail Card**
 Add the membership to the profile (the system will automatically book the correct date). Review the auto-filled membership date and expiration date. Assign the pay class by **charge account**, then click **OK** and **Save**.
 
 > **Note:** The system auto-fills the membership and expiration dates.
+
+![The Membership Class dialog lets you select the plan tier, effective date, and billing strategy](screenshots/mem-001-02-membership-class.png)
 
 **Step 5: Confirm Membership Activation and Rate Update**
 Verify the membership now appears in the system and the customer's rate is updated to the Trail Card membership for check-in. When prompted, click **Yes** to confirm the updated membership rate.
@@ -896,6 +911,8 @@ Right-click to open additional payment options in a new tab. Right-click within 
 
 **Step 9: Review Booking and Membership Details**
 Verify the tee time booking is present at the regular rate plus the membership ID.
+
+![Add the Member Contract item to the cart to complete the membership enrollment](screenshots/mem-001-03-member-contract.png)
 
 **Step 10: Pay and Print Receipt**
 Click **Pay** to begin processing the transaction. Complete payment for the entire transaction (membership + tee time fees). Click **Print Customer Receipt**, then click **OK**. Click **Pay Exact Amount** to finalize.

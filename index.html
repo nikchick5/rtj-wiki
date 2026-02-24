@@ -1075,64 +1075,6 @@
       border-top: 1px solid var(--gray-200);
     }
 
-    .video-link-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #1a1a2e;
-      color: var(--white);
-      padding: 14px 16px;
-      border-radius: 8px;
-      margin: 16px 0;
-      text-decoration: none;
-      transition: background var(--transition);
-      cursor: pointer;
-    }
-
-    .video-link-block:hover { background: #2a2a4e; text-decoration: none; }
-
-    .video-play-icon {
-      width: 36px; height: 36px;
-      background: #e62117;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-
-    .video-link-text { flex: 1; }
-    .video-link-title { font-size: 13px; font-weight: 600; }
-    .video-link-sub   { font-size: 11px; opacity: 0.7; margin-top: 2px; }
-
-    .screenshot-pending {
-      margin: 16px 0;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 2px dashed var(--gray-300);
-    }
-
-    .screenshot-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--gray-50);
-      padding: 28px 20px;
-      text-align: center;
-      min-height: 100px;
-    }
-
-    .screenshot-placeholder-icon { font-size: 28px; opacity: 0.45; }
-    .screenshot-placeholder-text { font-size: 13px; color: var(--gray-500); font-style: italic; }
-    .screenshot-placeholder-filename {
-      font-size: 11px;
-      color: var(--gray-400);
-      font-family: monospace;
-      background: var(--gray-200);
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
 
     /* Helpfulness + trending badges */
     .helpful-badge {
@@ -1716,7 +1658,6 @@ function showArticle(id) {
   }
 
   renderPAA(article);
-  renderMedia(article);
   renderFeedbackBar(id);
 
   document.getElementById('page-home').style.display = 'none';
@@ -1856,6 +1797,16 @@ function renderContent(raw) {
     if (trimmed.startsWith('> ')) {
       flushStep(); flushList();
       html += `<blockquote>${parseInline(trimmed.slice(2))}</blockquote>`;
+      continue;
+    }
+
+    // Markdown image: ![caption](src)
+    const imgMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imgMatch) {
+      flushStep(); flushList();
+      const caption = imgMatch[1];
+      const src = imgMatch[2];
+      html += `<div class="media-block"><img src="${escHtml(src)}" alt="${escHtml(caption)}" loading="lazy" />${caption ? `<div class="media-caption"><i class="fa-solid fa-camera"></i> ${escHtml(caption)}</div>` : ''}</div>`;
       continue;
     }
 
@@ -2331,52 +2282,6 @@ function renderPAA(article) {
   container.style.display = list.children.length ? 'block' : 'none';
 }
 
-// ── Media embed renderer ───────────────────────────────────────────
-function renderMedia(article) {
-  const body = document.getElementById('article-body');
-  if (!article.media || article.media.length === 0) return;
-
-  const mediaHtml = article.media.map(m => {
-    if (m.type === 'image') {
-      if (!m.src) {
-        return `
-          <div class="screenshot-pending">
-            <div class="screenshot-placeholder">
-              <div class="screenshot-placeholder-icon"><i class="fa-solid fa-camera"></i></div>
-              ${m.caption ? `<div class="screenshot-placeholder-text">${escHtml(m.caption)}</div>` : ''}
-              ${m.filename ? `<div class="screenshot-placeholder-filename">${escHtml(m.filename)}</div>` : ''}
-            </div>
-          </div>`;
-      }
-      return `
-        <div class="media-block">
-          <img src="${escHtml(m.src)}" alt="${escHtml(m.caption || '')}" loading="lazy" />
-          ${m.caption ? `<div class="media-caption"><i class="fa-solid fa-camera"></i> ${escHtml(m.caption)}</div>` : ''}
-        </div>`;
-    }
-    if (m.type === 'video') {
-      return `
-        <div class="video-link-block" onclick="window.open('${escHtml(m.url)}','_blank')">
-          <div class="video-play-icon"><i class="fa-solid fa-play"></i></div>
-          <div class="video-link-text">
-            <div class="video-link-title">${escHtml(m.title || 'Watch Training Video')}</div>
-            <div class="video-link-sub">${m.duration ? escHtml(m.duration) + ' · ' : ''}Opens in new tab</div>
-          </div>
-          <span style="font-size:14px;opacity:0.6;"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-        </div>`;
-    }
-    return '';
-  }).join('');
-
-  if (mediaHtml) {
-    const mediaSection = document.createElement('div');
-    mediaSection.innerHTML = `
-      <h2 style="font-size:16px;font-weight:700;color:var(--primary-dark);margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--primary-pale);">
-        Screenshots &amp; Videos
-      </h2>` + mediaHtml;
-    body.querySelector('.article-content').appendChild(mediaSection);
-  }
-}
 
 // ── Helpfulness badge for article cards ────────────────────────────
 function getHelpfulnessBadge(id) {
