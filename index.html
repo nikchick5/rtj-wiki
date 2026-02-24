@@ -3210,20 +3210,10 @@ function cropAndSave() {
   const octx = offCanvas.getContext('2d');
   octx.drawImage(c.img, sx, sy, sw, sh, 0, 0, sw, sh);
 
-  offCanvas.toBlob(function(pngBlob) {
+  offCanvas.toBlob(async function(pngBlob) {
     // Store blob URL for live preview
     const previewUrl = URL.createObjectURL(pngBlob);
     pastedImageURLs[filename] = previewUrl;
-
-    // Trigger download
-    const downloadUrl = URL.createObjectURL(pngBlob);
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
 
     // Insert markdown at cursor
     const markdown = '![' + caption + '](screenshots/' + filename + ')';
@@ -3241,7 +3231,40 @@ function cropAndSave() {
     }
 
     closeCropModal();
-    showPasteNotice('Saved ' + filename + ' — move it to the screenshots/ folder');
+
+    // Upload image to GitHub via API
+    showPasteNotice('Uploading screenshot...');
+
+    try {
+      // Convert blob to base64
+      const reader = new FileReader();
+      const base64 = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(pngBlob);
+      });
+
+      const res = await fetch('/api/upload-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          filename,
+          imageBase64: base64,
+          message: `Add screenshot ${filename}`,
+        }),
+      });
+
+      if (res.ok) {
+        showPasteNotice('Screenshot uploaded! It will be live in ~30 seconds.');
+      } else {
+        const err = await res.json();
+        console.error('Image upload failed:', err);
+        showPasteNotice('Upload failed — image saved locally for preview only.');
+      }
+    } catch (e) {
+      console.error('Image upload error:', e);
+      showPasteNotice('Upload failed — image saved locally for preview only.');
+    }
   }, 'image/png');
 }
 
@@ -3616,7 +3639,7 @@ function renderAdmin() {
           <i class="fa-solid fa-plus"></i> New Article
         </button>
         <button onclick="adminExport()" style="padding:8px 16px;background:var(--navy);color:#fff;border-radius:6px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
-          <i class="fa-solid fa-download"></i> Export articles.js
+          <i class="fa-solid fa-download"></i> Download Backup
         </button>
         ${draftCount > 0 ? `
         <button onclick="adminResetDrafts()" style="padding:8px 16px;background:var(--white);color:var(--red);border:1.5px solid var(--red);border-radius:6px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
@@ -3863,7 +3886,7 @@ function adminSaveArticle(id, isNew) {
   renderAdmin();
 }
 
-function adminPublishArticle(id, isNew) {
+async function adminPublishArticle(id, isNew) {
   const articleData = {
     id,
     title: document.getElementById('editor-title').value.trim(),
@@ -3892,8 +3915,84 @@ function adminPublishArticle(id, isNew) {
   renderModuleCards();
   renderRecentlyUpdated();
 
-  showPasteNotice('Article published and live on the site.');
+  // Build full articles.js content and publish to GitHub via API
+  showPasteNotice('Publishing...');
+
+  try {
+    const content = buildArticlesJsContent();
+    const res = await fetch('/api/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content,
+        message: `Update article: ${articleData.title}`,
+      }),
+    });
+
+    if (res.ok) {
+      // Clear the draft since it's now committed
+      const drafts = getAdminDrafts();
+      delete drafts[id];
+      localStorage.setItem('rtj_wiki_admin_drafts', JSON.stringify(drafts));
+
+      showPasteNotice('Published! Changes will be live in ~30 seconds.');
+    } else {
+      const err = await res.json();
+      console.error('Publish failed:', err);
+      showPasteNotice('Publish failed — saved locally. Try again later.');
+    }
+  } catch (e) {
+    console.error('Publish error:', e);
+    showPasteNotice('Publish failed — saved locally. Try again later.');
+  }
+
   showArticle(id);
+}
+
+/* Build the full articles.js file content string */
+function buildArticlesJsContent() {
+  const allArticles = getMergedArticles();
+
+  let js = `// RTJ Club Caddie Wiki — Article Database\n`;
+  js += `// Each article: { id, title, module, role, content, keywords, relatedIds, dateUpdated, version }\n`;
+  js += `// ONLY articles sourced from RTJ SOPs B (Source of Truth folder) are included.\n\n`;
+  js += `const MODULES = {\n`;
+
+  Object.entries(MODULES).forEach(([key, mod]) => {
+    js += `  ${key}: {\n`;
+    js += `    id: '${mod.id}',\n`;
+    js += `    label: '${mod.label}',\n`;
+    js += `    icon: '${mod.icon.replace(/'/g, "\\'")}',\n`;
+    js += `    color: '${mod.color}',\n`;
+    if (mod.description) js += `    description: ${JSON.stringify(mod.description)},\n`;
+    js += `  },\n`;
+  });
+
+  js += `};\n\n`;
+
+  if (typeof ONE_SHEETS !== 'undefined' && ONE_SHEETS.length > 0) {
+    js += `const ONE_SHEETS = ${JSON.stringify(ONE_SHEETS, null, 2)};\n\n`;
+  }
+
+  js += `const articles = [\n`;
+
+  allArticles.forEach((a) => {
+    js += `\n  {\n`;
+    js += `    id: '${a.id}',\n`;
+    js += `    title: ${JSON.stringify(a.title)},\n`;
+    js += `    module: '${a.module}',\n`;
+    js += `    role: '${a.role}',\n`;
+    js += `    dateUpdated: '${a.dateUpdated}',\n`;
+    js += `    version: '${a.version}',\n`;
+    js += `    keywords: ${JSON.stringify(a.keywords || [])},\n`;
+    js += `    relatedIds: ${JSON.stringify(a.relatedIds || [])},\n`;
+    js += `    media: ${JSON.stringify(a.media || [])},\n`;
+    js += `    content: ${JSON.stringify(a.content)},\n`;
+    js += `  },\n`;
+  });
+
+  js += `\n];\n`;
+  return js;
 }
 
 function adminExport() {
