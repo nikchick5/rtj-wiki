@@ -519,14 +519,14 @@
 
     .module-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
 
     .module-category-card {
       background: var(--white);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.08);
       border: 1px solid var(--gray-200);
       padding: 28px 24px;
       display: flex;
@@ -538,8 +538,8 @@
     }
 
     .module-category-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.13), 0 4px 8px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
     }
 
     .module-category-icon {
@@ -1700,6 +1700,9 @@
           </div>
           <div class="module-cards-grid" id="module-cards-grid"></div>
         </div>
+
+        <!-- Divider -->
+        <hr style="border:none;border-top:1px solid var(--gray-200);margin:32px 0 8px;">
 
         <!-- Recently Updated (horizontal scroll) -->
         <div id="recent-section">
