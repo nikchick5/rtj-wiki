@@ -24,6 +24,13 @@ const MODULES = {
     color: '#7d3c98',
     description: "Set up trail cards, manage member profiles, and configure membership programs and benefits.",
   },
+  FB_APP: {
+    id: 'fb-app',
+    label: 'Food & Beverage App',
+    icon: '<i class="fa-solid fa-utensils"></i>',
+    color: '#e67e22',
+    description: "Take orders, manage tabs, process payments, and handle meal coursing on the Club Caddie F&B tablet app.",
+  },
   ONE_SHEETS: {
     id: 'one-sheets',
     label: 'RTJ One Sheets',
@@ -422,6 +429,974 @@ const articles = [
     relatedIds: ["reg-014","tee-002","tee-003"],
     media: [],
     content: "## Overview\nThis procedure covers how to check in and ring through prepaid package rounds at the register. When a group has a prepaid package booking (like a corporate outing or tournament), their rounds are charged to the facility's reservations account rather than collected at the counter.\n\n> **Important:** Make sure you're selecting your correct facility and the reservations account that belongs to your course.\n\n## Step-by-Step\n\n**Step 1: Locate the Booking on the Tee Sheet**\nFind the package group's booking on the **Tee Sheet**. Click into the booking to see the player list.\n![](screenshots/reg-018-paste1.png)\n![](screenshots/reg-018-paste2.png)\n**Step 2: Select the Players to Check In**\nCheck the boxes next to the players in the group who are ready to check in (for example, a foursome).\n![](screenshots/reg-018-paste3.png)\n**Step 3: Go to Group Check-In**\nRight-click the time and select **Group Check-in** to pull the selected players through to the register.\n![](screenshots/reg-018-paste4.png)\n**Step 4: Go to Pay**\nOnce the players have been pulled through the register, click **Pay** to begin the payment process.\n![](screenshots/reg-018-paste5.png)\n**Step 5: Select Membership ID**\nSelect **Membership ID** as the payment method. This is how prepaid package rounds are charged to the facility's reservations account.\n![](screenshots/reg-018-paste7.png)\n**Step 6: Search for the Reservations Account**\nClick the **magnifying glass** to search for the reservations account. Each course has its own corporate reservations account for package rounds.\n![](screenshots/reg-018-paste8.png)\n> **Note:** When searching, make sure you're selecting your correct facility and the reservations account that correlates back to your course.\n![](screenshots/reg-018-paste9.png)\n**Step 7: Select the Account and Confirm**\nSelect the correct reservations account and click **Done**. You'll see the account pulled through to the payment screen. Click **OK** to process the package round to that membership account.\n![](screenshots/reg-018-paste10.png)\n**Step 8: Complete and Print Receipt**\nRing through the transaction and print the receipt. The prepaid package round is now checked in and charged to the correct reservations account.",
+  },
+
+
+  // ── Food & Beverage App ──────────────────────────────────────
+  {
+    id: 'fb-001',
+    title: "Log In to the F&B App",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["login", "pin", "clock in", "terminal", "role", "location", "register notes"],
+    relatedIds: ["fb-002"],
+    media: [],
+    content: `## Overview
+
+Log In To The F&B App 				
+		In this quick lesson, you’ll learn how to log in to the Club Caddie Food & Beverage app the right way—selecting the correct Role, Location, and Terminal to ensure accurate reporting. You’ll practice entering your PIN, reviewing important Register Notes (like daily specials and reminders), and confirming you’re ready for service by checking your employee color and key screen details (Terminal, Chat, Version). You’ll also learn when to Clock In so you can start tabs without delays during your shift.
+
+
+## Step-by-Step
+
+
+**Step 1: Locate the Club Caddie F&B app icon on your tablet, then tap it to open the application**
+
+
+**Step 2: At the top of the login screen, select your Role, Location, and Terminal for your shift**
+
+Selecting the correct information is essential. It feeds directly into your facility’s reporting and accuracy. Your terminal may also include role-specific settings.
+
+
+![Step 2](screenshots/fb-001-step01.png)
+
+
+**Step 3: Enter your PIN using the on-screen PIN pad to log in**
+
+Review any Register Notes shown on the PIN lock screen. These notes are set up by your facility in the desktop system under Register Settings → Register Notes and may include daily specials, promotions, or reminders.
+
+After you log in, your assigned employee color will display on screen.
+
+
+![Step 3](screenshots/fb-001-step02.png)
+
+
+![Step 3](screenshots/fb-001-step03.png)
+
+
+**Step 4: If needed, tap Clock In (bottom left) before starting service. Your facility may require you to be clocked in before you can start a tab**
+
+If you cannot start a tab or cannot clock out, check with a manager. Your facility may be using desktop settings that block starting a tab when you’re not clocked in, or block clocking out when you have open tabs
+
+Once you’re logged in, you’ll see the following information at the bottom of the screen:
+
+• Terminal: Shows which terminal you’re currently logged into.
+
+• Chat: Opens a pop-up window where you can contact support if you have questions.
+
+• Version number: Displays the version you’re currently using. Be sure to reference this when requesting support and when confirming whether you’re up to date.
+
+
+![Step 4](screenshots/fb-001-step04.png)
+
+
+![Step 4](screenshots/fb-001-step05.png)
+
+
+![Step 4](screenshots/fb-001-step06.png)
+`,
+  },
+  {
+    id: 'fb-002',
+    title: "Understanding the F&B App Screen Layout",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["screen layout", "navigation", "tables", "tickets", "menu", "departments", "search bar", "fire", "pay", "save", "done", "receipt", "seats", "action buttons"],
+    relatedIds: ["fb-001", "fb-003"],
+    media: [],
+    content: `## Overview
+
+Navigation Overview 				
+		In this lesson, you’ll get a guided tour of the Club Caddie F&B app’s main screen so you can move fast and stay organized during service. You’ll learn what each navigation button does (Tables, Open/Closed Tickets, Sales, and the Menu), how to find items quickly using Search and Departments, and how to use key action buttons like Fire, Save, Done, Receipt, and Pay. You’ll also learn how to read the ticket panel—table, seats, items, and ownership—so you always know exactly where every order stands.
+
+		
+		When you first login, you'll see the following navigation buttons:
+
+(1) Hamburger Menu (☰) : Tapping this will open a menu with various options and settings for the app.
+
+(2) Tables: Opens the visual floor planYou want to see which tables are occupied, assign a tab to a table, or start a new table orderTables are outlined in employee colors when occupied
+
+(3) Your Name Button: You'll see a button displaying your name along with the number of tickets currently associated with you. This gives you a quick view of how many active tabs you're managing.
+
+(4) Open Tickets: Shows all of your currently open tabs, so you can quickly return to an existing order to add items or check its status. Your tabs are highlighted in green and shown in your employee color.
+
+(5) Closed Tickets: Displays completed and paid transactions, so you can reprint receipts, add tips, or review past orders. It may also include some open tickets—check the status indicator to confirm. (6) Sales (Bottom Right): View sales reports and performance data to review your shift sales, tip totals, and transaction history.
+
+		
+		Top of Screen: Search & Menu Navigation
+
+(1) Search Bar: At the very top of your screen, you'll see a search bar. This is where employees can quickly search for particular menu items by typing in keywords. This is helpful when you need to find an item quickly without browsing through department menus.
+
+(2) Department Buttons: Directly below the search bar, you'll see your department buttons (for example: Food, Beverages, Bar, etc.). These represent the main categories of items available at your facility.
+
+(3) Sub-Department Items: When you tap on a department button, it will expand to show sub-department items, which typically include your menu items (appetizers, entrees, desserts, specific drinks, etc.).
+
+		
+		Right Side of Screen: TAB Details PanelThe right side of your screen is dedicated to displaying information about the current ticket you're working on. Let's walk through what you'll see from top to bottom:
+
+(1) Customer Information: At the very top of the right panel, you may see customer information if a customer name has been added to the ticket. This field may or may not have information depending on whether you've entered it.
+
+(2) Ticket Number: Directly below that is the ticket number—a unique identifier for this specific transaction.
+
+(3) Table Number: Next, you'll see the table number (if you've selected a table). This shows which table this ticket is associated with.
+
+(4) Server Name and Tab Number: Below the table information, you'll see the server name and tab number (displayed as "SE" followed by the tab number). This tells you which employee owns this ticket and which tab number it is in your queue.
+
+(5) Seat Information: The seat section is where you can have one or multiple seats, allowing you to place specific orders for particular guests or seats at a table. This is helpful for keeping orders organized when serving multiple people at the same table.
+
+(6) Plus Icon (+) : Next to the seat information, you'll see a plus icon. Tapping this allows you to add an additional seat to the ticket so you can track separate orders for each person.
+
+(7) Ticket Items: Below the seat information, you'll see the ticket items that have been added to this order. Each item will display with its price, any modifiers, and which seat it's assigned to. We'll go through this area in much more depth in later sections.
+
+		
+		Bottom of Right Tab: Action ButtonsAt the bottom of the right panel, you'll see several action buttons that allow you to perform various functions. Here's what each button does:
+
+(1) Add Prep Instructions : Allows you to add special preparation notes or instructions for the kitchen (e.g., "No onions," "Extra crispy," "Allergy: shellfish").
+
+(2) Tax Exempt: Use this button if the transaction qualifies for tax exemption. This will remove applicable taxes from the ticket.
+
+(3) Service Charge Exempt: Use this button if the transaction should be exempt from automatic service charges or gratuity.
+
+(4) Totals: Displays a breakdown of the ticket totals, including subtotal, tax, service charges, and the final total.
+
+(5) Fire: Sends items to the kitchen to begin preparation. This is used in coursing workflows when you want to control the timing of when dishes are prepared.
+
+(6) Save: Saves your current work on the ticket without closing it. Use this when you need to step away or switch to another tab temporarily but aren't finished with this order yet.
+
+(7) Done: Completes your work on the ticket and closes it, sending any pending items to the kitchen. Use this when you've finished taking the order and are ready to move on.
+
+(8) Cancel: Cancels any unsaved changes you've made to the ticket and returns it to its previous state.
+
+(9) Receipt: Generates and prints a receipt for the ticket. This can be used for pre-receipts (before payment) or final receipts (after payment).
+
+(10) Open: Opens the cash register drawer.
+
+(11) Pay: Takes you to the payment screen where you can process credit cards, cash, or other payment methods to close out the ticket.
+
+
+
+![Reference](screenshots/fb-002-step01.png)
+
+
+![Reference](screenshots/fb-002-step02.png)
+
+
+![Reference](screenshots/fb-002-step03.png)
+
+
+![Reference](screenshots/fb-002-step04.png)
+`,
+  },
+  {
+    id: 'fb-003',
+    title: "How to Take Orders and Add Items",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["take orders", "add items", "menu navigation", "search", "modifiers", "special instructions", "repeat item", "edit item", "department"],
+    relatedIds: ["fb-002", "fb-004"],
+    media: [],
+    content: `## Overview
+
+How To Take Orders And Add Items Overview 				
+		In this lesson, you’ll learn how to take orders in the Club Caddie F&B app by finding and adding menu items using menu navigation (Department → Sub-Department → Category → Items) or the Search bar for faster entry. You’ll practice applying required modifiers (so items can be sent) and selecting optional modifiers to customize orders, including when pricing updates on the ticket. You’ll also learn how to add special instructions, use Repeat to quickly add duplicates, and edit items after adding them to correct or adjust orders without starting over.
+
+		
+		Navigating the Menu • Menu items are organized in a clear hierarchy to make them easy to locate: Department → Sub-Department → Category → Items. Start broad (like Food or Beverages), then narrow down until you find the exact item to add. Items will appear after you click on the category.
+
+Finding a Menu Item• You can add an item by tapping through the menu structure until it appears, then selecting it to place it on the order. Once added, the item appears in the order summary where you can adjust quantity or remove it if needed.
+
+Using the Search Bar• Search is the fastest way to add items when you already know the item name. Start typing and select the item from the results to add it directly to the order without navigating through menu categories.
+
+Adding Items with Basic Modifiers• Some items require modifier selections before they can be sent to the kitchen (for example, cooking temperature, side choice, or dressings). Modifiers ensure the kitchen receives the item exactly as intended.
+
+Required Modifiers• Required modifiers are typically indicated visually (often with an asterisk) and must be selected before the item is eligible to be sent to the kitchen.
+• If required modifiers aren’t chosen, the system will prevent the item from being sent.
+
+Optional Modifiers• Optional modifiers allow customization such as add-ons, upgrades, or extras. Some optional modifiers may increase the item price, and the updated cost will display on the ticket once selected.
+
+Special Instructions• Special instructions are free-text prep notes that communicate specific requests to the kitchen (such as “no salt,” “extra crispy,” or allergy notes). These instructions print on kitchen tickets so staff can prepare the item correctly.
+
+Repeat Item• The Repeat function is a quick way to add another of the same item to an order (useful for multiple drinks or duplicate items). Depending on your setup, repeated items may require modifiers to be selected again.
+
+Editing an Item After Adding It• Items can be edited after they’ve been added, including changing modifier selections or updating instructions. Updates apply directly to the item on the ticket, helping you correct or adjust orders without starting over.
+
+
+
+![Reference](screenshots/fb-003-step01.png)
+
+
+![Reference](screenshots/fb-003-step02.png)
+
+
+![Reference](screenshots/fb-003-step03.png)
+
+
+![Reference](screenshots/fb-003-step04.png)
+
+
+![Reference](screenshots/fb-003-step05.png)
+
+
+![Reference](screenshots/fb-003-step06.png)
+
+
+![Reference](screenshots/fb-003-step07.png)
+
+
+![Reference](screenshots/fb-003-step08.png)
+
+
+![Reference](screenshots/fb-003-step09.png)
+`,
+  },
+  {
+    id: 'fb-004',
+    title: "Using Modifiers",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["modifiers", "required modifier", "optional modifier", "upcharge", "red asterisk", "customization"],
+    relatedIds: ["fb-003", "fb-005"],
+    media: [],
+    content: `## Overview
+
+Using Modifiers				
+		In this lesson, you’ll learn how to confidently select and manage modifiers in the Club Caddie F&B app while building a tab. You’ll practice spotting required modifiers (red asterisk) and clearing red-outlined items, adding optional customizations based on guest requests, and watching for upcharges as you select options. You’ll also learn how to review modifiers on the ticket and quickly edit selections after an item is added—so every order is accurate before it goes to the kitchen.
+
+		
+					Modifiers display directly beneath the item on the same screen (no pop-ups), and are arranged horizontally to save space.
+
+
+## Step-by-Step
+
+
+**Step 1: Open the F&B app and select the tab you’re adding items to**
+
+
+**Step 2: Tap an item on the menu. Review the modifier options that appear directly beneath the item (on the same screen)**
+
+
+![Step 2](screenshots/fb-004-step01.png)
+
+
+**Step 3: Select any required modifiers (marked with a red asterisk *). If required modifiers are missing, the item will stay outlined in red until you complete the required selections**
+
+Add any optional modifiers as needed based on the guest’s request. Optional modifiers can be skipped if the guest does not need changes.
+
+
+![Step 3](screenshots/fb-004-step02.png)
+
+
+![Step 3](screenshots/fb-004-step03.png)
+
+
+**Step 4: Watch for modifier upcharges shown next to modifier options. If a modifier has no additional charge, it will list the modifier name with no price displayed**
+
+
+**Step 5: Review the item on the right side of the screen to confirm the selected modifiers (and any added cost) are listed correctly with the order**
+
+
+![Step 5](screenshots/fb-004-step04.png)
+
+
+**Step 6: To edit modifiers after the item is added, tap the item on the right side of the screen. Once you tab the item, the modifiers will appear on the left again to update your selections**
+
+Example Scenario:
+A guest orders Prime Rib and wants it cooked medium rare. The server taps Prime Rib, then selects the required meat temperature modifier (marked with a red asterisk) to clear the red outline. The guest also asks to remove bell peppers and add extra jalapeños on a topping group, so the server selects those optional modifiers. The guest upgrades to onion rings as a side, and the app displays the $2 upcharge (plus $0.50 for “extra” if selected). Before sending to the kitchen, the server taps the item in the order summary to confirm all modifiers are correct.
+
+
+![Step 6](screenshots/fb-004-step05.png)
+
+
+![Step 6](screenshots/fb-004-step06.png)
+`,
+  },
+  {
+    id: 'fb-005',
+    title: "Meal Coursing",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["coursing", "fire", "send by course", "appetizer", "entree", "dessert", "kitchen timing"],
+    relatedIds: ["fb-006", "fb-003"],
+    media: [],
+    content: `## Overview
+
+Meal Coursing 				
+		In this lesson, you’ll learn how to use coursing in the Club Caddie F&B app to control when items are sent to the kitchen—so food comes out at the right time. You’ll practice assigning items to a course on the tab, double-checking any items that didn’t auto-fill, and using Send by Course to fire only the course you’re ready for. By the end, you’ll be able to pace service smoothly (apps, entrées, desserts, to-go) without re-entering orders or sending everything at once.
+
+		
+						Courses are set up in your facility’s desktop system settings. If an item has a default course assigned in Inventory Center, it will auto-fill on the tab—otherwise it will be blank until you choose one. You can always change the course however in the order summary.
+						
+									&times;
+							
+						Example Scenario:
+						A foursome sits down for dinner and orders appetizers, entrées, and desserts all at once. The server assigns the appetizers to the Appetizer course and the steaks to the Entrée course, then taps Send by Course to fire only the Appetizers. Once the group is almost finished, the server returns to the tab and fires the Entrées so the kitchen starts them at the right time. After dinner, the server fires Desserts so they print together for faster prep and plating.
+						
+									&times;
+
+
+## Step-by-Step
+
+
+**Step 1: Open a tab and add items as normal. As you add each item, assign it to a course (like Appetizer, Entrée, Dessert, or To Go) by tapping the item on the right side of the tab and selecting a course from the dropdown**
+
+
+**Step 2: Review the course assignment for each item. If an item didn’t auto-assign a course, tap it and choose the correct course before you send anything to the kitchen**
+
+
+![Step 2](screenshots/fb-005-step01.png)
+
+
+**Step 3: Tap the fire icon/Send button. When the send options appear, you can choose to send by course (instead of sending all items at once)**
+
+
+![Step 3](screenshots/fb-005-step02.png)
+
+
+**Step 4: Select the course you want to send. Only the items assigned to that course will print in the kitchen, and the rest will stay on the tab until you send them**
+
+When you’re ready for the next part of service, return to the same tab and repeat to send by course or by individual item.
+
+
+![Step 4](screenshots/fb-005-step03.png)
+
+
+![Step 4](screenshots/fb-005-step04.png)
+`,
+  },
+  {
+    id: 'fb-006',
+    title: "How to Send Orders to the Kitchen",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["fire", "send", "kitchen", "send all items", "send by course", "send individual"],
+    relatedIds: ["fb-005", "fb-003"],
+    media: [],
+    content: `## Overview
+
+Send Orders To The Kitchen 				
+		Learn how to send items to the kitchen using the Fire function, confirm what was sent, and send additional items later.
+
+		
+					Open the tab and add all items to the order. Review the item list to confirm quantities, modifiers, and special instructions are correct. Also, Check for any items that still need required modifiers. If an item is marked as incomplete (required modifiers not selected), complete those modifiers before firing so the item can be sent.
+
+				
+						Example Scenario:
+						A table orders appetizers and entrées, but they want the entrées held until later. You enter all items, then tap Fire and choose Send by Course to send only the appetizers. After the appetizers are served, you tap Fire again and send the entrée course. Halfway through the meal, the table adds a side of fries—after you add it, you see it has no fire icon, so you tap Fire to send only that new item to the kitchen.
+						
+									&times;
+
+
+## Step-by-Step
+
+
+**Step 1: Tap the Fire icon button (usually in the bottom right of the screen). A menu may appear with firing options**
+
+
+**Step 2: Choose the firing method that matches your service:**
+
+Select Send All Items to send everything on the order that has not been fired yet (most common).
+
+Select Send by Course to send only items assigned to a specific course (Appetizer, Entrée, Dessert, etc.) for staged service.
+
+Select Send Individual Items to select specific items to send (used for special situations).
+
+
+![Step 2](screenshots/fb-006-step01.png)
+
+
+**Step 3: Confirm the items were sent by checking the order list. A fire indicator/icon should appear next to each item you fired. If an item does not show a fire icon, it was not sent**
+
+
+![Step 3](screenshots/fb-006-step02.png)
+
+
+**Step 4: Continue service as needed. You can keep adding items to the same tab after firing**
+
+
+![Step 4](screenshots/fb-006-step03.png)
+
+
+**Step 5: When you add new items after firing, the new items will appear without a fire icon. Tap Fire again to send only the new, unfired items—previously fired items are not resent**
+
+
+![Step 5](screenshots/fb-006-step04.png)
+
+
+**Step 6: Do a final check before closing the tab to confirm all items that should be prepared have been fired and show the fire icon**
+
+
+![Step 6](screenshots/fb-006-step05.png)
+
+
+![Step 6](screenshots/fb-006-step06.png)
+`,
+  },
+  {
+    id: 'fb-007',
+    title: "How to Create and Manage Seats",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["seats", "add seat", "split", "guest", "move item", "separate check"],
+    relatedIds: ["fb-014", "fb-010"],
+    media: [],
+    content: `## Overview
+
+Create And Manage Seats 				
+		In this lesson, you’ll learn how to use Seats in the Club Caddie F&B app to keep each guest’s order organized and ready for separate payment. You’ll practice adding seats, assigning items to the active seat as you order, and correcting mistakes by moving items to the right seat from the Summary view. You’ll also learn how to split by seat, then open each split check from Open Tickets to take individual payments quickly and accurately.
+
+		
+						Example Scenario:
+						A foursome finishes lunch and asks to pay separately. You open their tab, tap the + in the Seats area to create Seat 1–Seat 4, then select each seat before entering that guest’s items. One soda was added to the wrong seat, so you tap the item in the Summary list and move it to the correct seat. When they’re ready, you tap Split to separate the checks and then open each ticket to collect payment one guest at a time.
+						
+									&times;
+
+
+## Step-by-Step
+
+
+**Step 1: Open the tab, then look for the Seats area on the bottom right of the screen. Tap the + button (Add Seat) to create Seat 1, then tap + again to add Seat 2, Seat 3, and so on (one per guest who needs a separate check)**
+
+
+**Step 2: Tap a seat (for example, Seat 1) to make it active, then add items using the menu as normal. Items you add while a seat is selected automatically assign to that seat**
+
+
+![Step 2](screenshots/fb-007-step01.png)
+
+
+**Step 3: Repeat for each guest by selecting the next seat (Seat 2, Seat 3, etc.) and adding that guest’s items**
+
+
+![Step 3](screenshots/fb-007-step02.png)
+
+
+**Step 4: If you added items to the wrong seat, tap the Summary view (or the list that shows all items), tap the item you need to fix, then choose the option to move/assign it to the correct seat (for example, “Move to Seat” or “Assign Seat”) and select the right seat**
+
+
+![Step 4](screenshots/fb-007-step03.png)
+
+
+**Step 5: When guests are ready to pay separately, open the tab and quickly review each seat to confirm items are in the correct place**
+
+
+![Step 5](screenshots/fb-007-step04.png)
+
+
+**Step 6: Tap Split (often located near the bottom right). In the split window, choose whether to keep seats separate or combine specific seats, then confirm. Each seat becomes its own check ready for payment**
+
+
+![Step 6](screenshots/fb-007-step05.png)
+
+
+**Step 7: Tap Open Tickets and open each split check, then process payment for each guest individually**
+
+
+![Step 7](screenshots/fb-007-step06.png)
+
+
+![Step 7](screenshots/fb-007-step07.png)
+`,
+  },
+  {
+    id: 'fb-008',
+    title: "How to Open a Tab",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["open tab", "tables", "quick tab", "customer search", "member", "bar", "walk-up"],
+    relatedIds: ["fb-009", "fb-001"],
+    media: [],
+    content: `## Overview
+
+Opening Tabs 				
+		In this lesson, you’ll learn how to open tabs in the Club Caddie F&B app using the best method for each service style—Tables for seated dining, Quick Tab for fast bar/snack orders, and Plus (+) customer search for members or known guests. You’ll practice selecting the right table or customer, starting orders immediately, and understanding how tab numbers and customer links work. By the end, you’ll be able to launch tabs quickly during rushes while keeping orders accurate and easy to manage.
+
+
+## Step-by-Step
+
+
+**Step 1: From the F&B home screen, open a tab using the method that fits your service:**
+
+(1) Tap Tables (bottom left navigation) to open a tab assigned to a specific table (best for table service).
+
+(2) Tap Quick Tab (top middle of the screen) to open a new numbered tab with no table and no customer info (best for quick service, bar orders, and walk-ups).
+
+(3) Tap the Plus (+) button (top middle of the screen) to search by customer name, phone, email, or member ID, then select an existing customer or create a new profile (best for members or known customers).
+
+
+**Step 2: If you opened from Tables, tap an available table on the floor plan (for example, “S2” or “B”). A new tab opens immediately and is linked to that table**
+
+
+![Step 2](screenshots/fb-008-step01.png)
+
+
+**Step 3: If you used Quick Tab, start adding items immediately. The system assigns a sequential tab number (for example, “Tab #1234”) and does not require a table or customer**
+
+
+![Step 3](screenshots/fb-008-step02.png)
+
+
+**Step 4: If you used the Plus (+) button to attach a customer (or you used Card Tab if enabled at your facility), confirm you selected the correct person before adding items. This ensures the tab is linked to the right member/customer record**
+
+
+![Step 4](screenshots/fb-008-step03.png)
+
+
+**Step 5: Continue taking the order by adding items to the tab, then send items as needed (for example, to the kitchen)**
+
+When choosing a method, use these quick guidelines:
+Use Tables when you need table tracking and section organization.
+Use Quick Tab when there is no table (snack bar, bar guests not seated, walk-ups, to-go).
+Use the Plus (+) customer search when you need the tab tied to a specific member/customer.
+
+				
+					Example Scenario:
+Your snack bar gets a rush after the turn, and you need to move quickly. You tap Quick Tab to start a to-go order immediately, add items, and send them to the kitchen. A member walks up next and asks to charge to their account, so you use Card Tab to scan their member card and confirm their name before adding items. Later, you tap Open Tickets to switch between the two tabs and close each one as soon as payment is completed to keep the list clean.
+
+
+![Step 5](screenshots/fb-008-step04.png)
+
+
+![Step 5](screenshots/fb-008-step05.png)
+`,
+  },
+  {
+    id: 'fb-009',
+    title: "How to Switch Between Tabs",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["switch tabs", "open tickets", "employee color", "auto save", "done button"],
+    relatedIds: ["fb-008", "fb-010"],
+    media: [],
+    content: `## Overview
+
+Switch Between Tabs 				
+		In this lesson, you’ll learn how to confidently juggle multiple guests by switching between open tabs in the Club Caddie F&B app. You’ll practice using Open Tickets to find tabs by employee color, table, guest name, or tab number—and quickly jump between them while the app auto-saves your work. You’ll also learn where paid tabs go (Closed Tickets) and understand the key difference between switching tabs and tapping Done to return to the PIN screen for the next employee.
+
+		
+						Tapping Open Tickets auto-saves your work and keeps you logged in. Paid tabs close automatically and move to Closed Tickets.
+						
+									&times;
+
+
+## Step-by-Step
+
+
+**Step 1: From anywhere in the app, tap Open Tickets in the bottom navigation to view the list of all open tabs**
+
+
+**Step 2: Find the tab you want by looking for your employee color and locating it by table number, guest name, or tab number**
+
+
+![Step 2](screenshots/fb-009-step01.png)
+
+
+**Step 3: Tap the tab to open it. You can now add items, fire items to the kitchen, review the order, or take payment**
+
+
+![Step 3](screenshots/fb-009-step02.png)
+
+
+**Step 4: To switch to another tab, tap Open Tickets again (your work saves automatically), then tap the next tab you want to work on**
+
+
+![Step 4](screenshots/fb-009-step03.png)
+
+
+**Step 5: If you have permission to view everyone’s tabs, use the All Tabs view next to Quick Tab at the top to filter by a specific user or view all users. All open tabs display color-coded by employee**
+
+
+![Step 5](screenshots/fb-009-step04.png)
+
+
+**Step 6: When you are done and want to return to the sign-in screen for the next employee, tap Done (bottom right). This returns to the PIN lock screen (it is not the same as switching tabs)**
+
+
+![Step 6](screenshots/fb-009-step05.png)
+
+
+**Step 7: To review tabs that have already been paid, tap Closed Tickets to view closed tabs from the current shift**
+
+Example Scenario:
+You have three active tabs during a busy lunch rush—one table, one bar guest, and one walk-up order. You tap Open Tickets to see all open tabs and quickly identify yours by your employee color. You open the table tab to add a drink, then tap Open Tickets to jump to the bar tab to fire an appetizer. After closing a paid tab, it disappears from Open Tickets, and you can find it later under Closed Tickets if you need to reference it.
+
+
+![Step 7](screenshots/fb-009-step06.png)
+
+
+![Step 7](screenshots/fb-009-step07.png)
+
+
+![Step 7](screenshots/fb-009-step08.png)
+
+
+![Step 7](screenshots/fb-009-step09.png)
+`,
+  },
+  {
+    id: 'fb-010',
+    title: "Assign Items to Other Tabs After a Split",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["move item", "split", "reassign", "new seat order", "tab", "move item to"],
+    relatedIds: ["fb-007", "fb-014"],
+    media: [],
+    content: `## Overview
+
+Assign Items To Other Tabs After An Order Has Been Split 				
+		In this lesson, you’ll learn how to fix a split order by moving a single item to a different tab—or creating a brand-new tab—without starting over. You’ll practice opening a ticket with multiple tabs, selecting the correct tab, and using Move Item to to send an item to an existing tab or Add to New Seat Order. By the end, you’ll be able to quickly adjust checks when guests change their minds about paying separately, keeping every tab accurate before checkout.
+
+		
+						Example Scenario:
+						A group at the turn starts on one tab, but one golfer decides to pay separately after the order is already split. The operator opens the ticket, taps the tab with the golfer’s beverage, and uses Move Item to to send that item to a new seat order. After the system saves, the operator taps the new tab to confirm the item is there. The group can now check out with the correct items on each tab.
+						
+									&times;
+
+
+## Step-by-Step
+
+
+**Step 1: Open the ticket that has already been split. You should see multiple tabs across the top of the order panel Ex. Tab 1, Tab 2, Tab 3, etc**
+
+
+**Step 2: Tap the tab that currently contains the item you need to move**
+
+
+![Step 2](screenshots/fb-010-step01.png)
+
+
+**Step 3: Tap the Move Item to dropdown, then select where you want the item to go:**
+
+• Select Tab 1 / Tab 2 / Tab 3 / … to move it to an existing tab, or
+
+• Select Add to New Seat Order to create a new tab and move the item there.
+
+Wait for the order to finish saving. You may briefly see a message like “saving an order…”
+
+
+![Step 3](screenshots/fb-010-step02.png)
+
+
+**Step 4: Tap Done to close the item options panel**
+
+
+![Step 4](screenshots/fb-010-step03.png)
+
+
+**Step 5: Tap the destination tab to confirm the item moved to the correct tab (or that the new tab was created and contains the item)**
+
+
+![Step 5](screenshots/fb-010-step04.png)
+
+
+![Step 5](screenshots/fb-010-step05.png)
+`,
+  },
+  {
+    id: 'fb-011',
+    title: "How to Review Closed Tickets",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["closed tickets", "reprint receipt", "tip incomplete", "transaction history", "tip"],
+    relatedIds: ["fb-012", "fb-009"],
+    media: [],
+    content: `## Overview
+
+Navigation Overview 				
+		In this lesson, you’ll learn how to use Closed Tickets in the Club Caddie F&B app to review completed transactions from your shift. You’ll practice opening a closed ticket to confirm order details, totals, and payment info, and you’ll learn how to handle tickets marked Tip Incomplete by entering the tip from a signed receipt. You’ll also learn how to quickly reprint receipts—so you can respond to guest requests and keep end-of-shift records accurate.
+
+		
+						Example Scenario:
+						A guest calls saying they need a copy of their receipt from earlier in the day. You tap Closed Tickets, find their transaction, open it, and reprint the receipt. Later, you notice a ticket marked Tip Incomplete, so you open it and enter the tip from the signed slip before finishing your shift.
+						
+									&times;
+							
+		Tickets move to Closed Tickets after payment is completed. If your facility uses tip-on-receipt, some tickets may show as Tip Incomplete until tips are entered.
+
+
+## Step-by-Step
+
+
+**Step 1: In the bottom navigation, tap Closed Tickets (near Tables, Open Tickets, and Sales)**
+
+
+**Step 2: Review the list of closed tickets from your shift. These include cash payments, credit card payments, member charges, and any transactions with tips**
+
+
+![Step 2](screenshots/fb-011-step01.png)
+
+
+**Step 3: Tap a ticket to open it and review the completed transaction details (items ordered, totals, and payment information)**
+
+
+![Step 3](screenshots/fb-011-step02.png)
+
+
+**Step 4: If a ticket shows Tip Incomplete, open the ticket and enter the tip amount (based on the signed receipt), then save/confirm so the tip is applied**
+
+
+![Step 4](screenshots/fb-011-step03.png)
+
+
+**Step 5: To reprint a receipt, open the ticket from Closed Tickets and select the receipt/print option to print the receipt again**
+
+
+![Step 5](screenshots/fb-011-step04.png)
+
+
+![Step 5](screenshots/fb-011-step05.png)
+
+
+![Step 5](screenshots/fb-011-step06.png)
+`,
+  },
+  {
+    id: 'fb-012',
+    title: "How to Process Payments",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["payment", "cash", "credit card", "pay", "change due", "receipt", "member charge", "clover"],
+    relatedIds: ["fb-013", "fb-014"],
+    media: [],
+    content: `## Overview
+
+Process Payments 				
+		In this lesson, you’ll learn how to close tabs confidently in the Club Caddie F&B app by processing payments from start to finish. You’ll practice selecting a tab from Open Tickets, reviewing the balance due, and using Pay to accept common methods like cash (including entering the amount received and confirming change due) and credit card (following on-screen prompts and device approval). You’ll also learn how receipt options work (Print, Email, or Close) and how to handle other workflows like member charges, event charges, and split payments so every tab closes accurately.
+
+		
+						Example Scenario:
+						A guest pays cash for a $37.50 snack bar tab. You open the ticket, tap Pay, choose Cash, enter 50.00, and the system shows $12.50 change due. Later, a dining guest pays by card, so you tap Pay, choose the Clover Go card option, and the guest completes the payment on the device. After they add a tip on the iPad and you select a receipt option, the ticket closes.
+						
+									&times;
+							
+					Payment button and receipt options may vary by setup. Follow the on-screen prompts to finalize payment and close the tab.
+
+
+## Step-by-Step
+
+
+**Step 1: Tap Open Tickets and select the tab you want to close. Review the balance due, then tap Pay**
+
+
+**Step 2: On the payment method screen, choose how the guest is paying (Cash, Card, membership ID etc.)**
+
+
+![Step 2](screenshots/fb-012-step01.png)
+
+
+**Step 3: For cash payments, tap Cash, enter the amount received (for example, enter 70.00 if the guest gives you $70), then select Pay. The system calculates the change due**
+
+
+![Step 3](screenshots/fb-012-step02.png)
+
+
+**Step 4: For credit card payments, tap the card option used at your facility (commonly Card External for a Clover Go device)**
+
+Process the card payment on the Clover Go device (tap/insert/swipe) and follow the prompts until the device shows approval.
+If prompted on the iPad, have the guest add a tip and sign (if required), then confirm to finalize the payment.
+
+
+![Step 4](screenshots/fb-012-step03.png)
+
+
+![Step 4](screenshots/fb-012-step04.png)
+
+
+**Step 5: Select a receipt option (Print, Email, or Close). Once completed, the tab closes and no longer appears as unpaid in Open Tickets**
+
+Other Payment Methods
+
+Member Charge: Tap Pay, select Membership ID. System automatically shows selected member if customer was already assigned to tab, or prompts to search for member. [NEED MORE INFO - confirm if member card scanning is available or manual entry only]. Charge posts to member's account.
+
+Charge to Event: Tap Pay, select Event Charge, You can either search for the event by name in the search bar, or select the magnifying glass to view the list of events.
+
+Split Payment (Multiple Payment Methods on One Tab): Tap Pay, select first payment method (e.g., Cash), enter partial amount (e.g., $50 of $100 total), system calculates remaining balance ($50), select second payment method (e.g., Card External), process card for remaining $50. Both payments complete and tab closes.
+
+		
+						The Done button returns to PIN screen (does NOT close the tab or process payment). The Pay button initiates payment process and closes the tab when payment complete.
+						
+									&times;
+
+
+![Step 5](screenshots/fb-012-step05.png)
+
+
+![Step 5](screenshots/fb-012-step06.png)
+
+
+![Step 5](screenshots/fb-012-step07.png)
+
+
+![Step 5](screenshots/fb-012-step08.png)
+
+
+![Step 5](screenshots/fb-012-step09.png)
+
+
+![Step 5](screenshots/fb-012-step10.png)
+`,
+  },
+  {
+    id: 'fb-013',
+    title: "Opening Drawer & Pre-Receipts",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["open drawer", "pre-receipt", "cash drawer", "receipt", "running total", "bar"],
+    relatedIds: ["fb-012", "fb-011"],
+    media: [],
+    content: `## Overview
+
+Opening Drawer & Pre-Receipts 				
+		You’ll learn how to use two cash-handling tools in the Club Caddie F&B app: printing pre-receipts and using Open Drawer. You’ll practice printing a pre-receipt from an open tab so guests can review totals without closing the tab, and opening the cash drawer from the main screen for change-making or shift tasks. You’ll also learn the difference between a pre-receipt (before payment, tab stays open) and a final receipt (after payment, tab closes) so you print the correct receipt every time.
+
+		
+						Example Scenario:
+						A bartender has a guest running a tab and the guest asks to see their total before closing out. The bartender opens the tab and taps Receipt to print a pre-receipt for review, then keeps the tab open while the guest decides how they want to pay. Later, the bartender needs to make change for another cash customer, so they tap Open Drawer from the main screen to access the cash drawer without starting a new transaction.
+						
+									&times;
+							
+					The cash drawer must be physically connected to the receipt printer. The drawer opens through that printer connection.
+
+
+## Step-by-Step
+
+
+**Step 1: To print a pre-receipt, open the tab you want to print**
+
+
+**Step 2: On the tab screen, tap Receipt (bottom right). A pre-receipt prints showing the current items, subtotal, tax, and total due. The tab stays open because the guest has not paid yet**
+
+Use the pre-receipt when a guest wants to review their running total before paying (common at the bar, in cash-heavy environments, or when presenting a check at the end of a meal).
+
+
+![Step 2](screenshots/fb-013-step01.png)
+
+
+![Step 2](screenshots/fb-013-step02.png)
+
+
+**Step 3: To open the cash drawer without processing a payment, go to the main screen and tap Open Drawer**
+
+
+**Step 4: The connected cash drawer opens. Complete your cash handling (make change, add/remove cash, start/end-of-shift tasks) and close the drawer manually**
+
+
+![Step 4](screenshots/fb-013-step03.png)
+
+
+**Step 5: Know the difference between receipt types so you print the right one:**
+
+Pre-Receipt: Printed before payment, shows current items and total, tab remains open, no payment method shown, printed using the Receipt button on an open tab.
+
+Final Receipt: Printed after payment, shows items, total, payment method, and tip (if applicable), and the tab is closed after payment is completed.
+`,
+  },
+  {
+    id: 'fb-014',
+    title: "How to Split a Check by Seat",
+    module: 'fb-app',
+    role: 'staff',
+    dateUpdated: '2026-02-25',
+    version: '1.0',
+    keywords: ["split check", "split by seat", "separate checks", "seat", "individual payment"],
+    relatedIds: ["fb-007", "fb-012"],
+    media: [],
+    content: `## Overview
+
+Split A Check By Seat 				
+		In this lesson, you’ll learn how to split a single tab into separate checks by seat so each guest can pay individually. You’ll practice reviewing the Seats view, correcting seat assignments before splitting, and using Split by Seat to convert one tab into multiple tabs. You’ll also learn how to find the new tabs in Open Tickets and close each check with the correct payment—without mixing items between guests.
+
+		
+						Example Scenario:
+						A table of three wants separate checks. You open the tab, switch to Seats view, and confirm each guest’s items are assigned to Seat 1, Seat 2, and Seat 3. You tap Split by Seat and confirm, which creates three separate tabs in Open Tickets. You open each tab one at a time, take payment, and close each ticket as the guests finish paying.
+						
+									&times;
+							
+					Splitting by seat converts one tab into multiple separate tabs. Before splitting, you must create seats and assign all items to the correct seats. Once split, tabs are separate and cannot be re-combined, so verify seat assignments before you split.
+
+
+## Step-by-Step
+
+
+**Step 1: Tap Open Tickets and select the tab you want to close. Review the balance due, then tap Pay**
+
+
+**Step 2: On the payment method screen, choose how the guest is paying (Cash, Card, membership ID etc.)**
+
+
+![Step 2](screenshots/fb-014-step01.png)
+
+
+**Step 3: For cash payments, tap Cash, enter the amount received (for example, enter 70.00 if the guest gives you $70), then select Pay. The system calculates the change due**
+
+
+![Step 3](screenshots/fb-014-step02.png)
+
+
+**Step 4: For credit card payments, tap the card option used at your facility (commonly Card External for a Clover Go device)**
+
+Process the card payment on the Clover Go device (tap/insert/swipe) and follow the prompts until the device shows approval.
+If prompted on the iPad, have the guest add a tip and sign (if required), then confirm to finalize the payment.
+
+
+![Step 4](screenshots/fb-014-step03.png)
+
+
+![Step 4](screenshots/fb-014-step04.png)
+
+
+**Step 5: Select a receipt option (Print, Email, or Close). Once completed, the tab closes and no longer appears as unpaid in Open Tickets**
+
+Other Payment Methods
+
+Member Charge: Tap Pay, select Membership ID. System automatically shows selected member if customer was already assigned to tab, or prompts to search for member. [NEED MORE INFO - confirm if member card scanning is available or manual entry only]. Charge posts to member's account.
+
+Charge to Event: Tap Pay, select Event Charge, You can either search for the event by name in the search bar, or select the magnifying glass to view the list of events.
+
+Split Payment (Multiple Payment Methods on One Tab): Tap Pay, select first payment method (e.g., Cash), enter partial amount (e.g., $50 of $100 total), system calculates remaining balance ($50), select second payment method (e.g., Card External), process card for remaining $50. Both payments complete and tab closes.
+
+
+![Step 5](screenshots/fb-014-step05.png)
+
+
+![Step 5](screenshots/fb-014-step06.png)
+
+
+![Step 5](screenshots/fb-014-step07.png)
+
+
+![Step 5](screenshots/fb-014-step08.png)
+
+
+![Step 5](screenshots/fb-014-step09.png)
+
+
+![Step 5](screenshots/fb-014-step10.png)
+`,
   },
 
 ];
