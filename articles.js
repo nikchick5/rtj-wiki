@@ -1525,27 +1525,34 @@ When it is time for a physical inventory count, you may want to print a count sh
 ## Step-by-Step
 
 **Step 1: Open the Inventory Center**
-Navigate to the Inventory Center from the main menu.
+From the left sidebar menu, click **Inventory Center**.
 
-<!-- Screenshot needed: inv-003-step01.png — Inventory Center location in main menu -->
+![Click Inventory Center in the left sidebar menu](screenshots/inv-003-step01.png)
 
 **Step 2: Sort by Merchandise**
-In the first filter/sort cell, select or type **Merchandise**. This is important — if you don't sort, the list will include greens fees, food and beverage items, and other non-merchandise categories.
+On the **Add / Manage Items** tab, use the first dropdown (Department) and select **Merchandise**. This is important — if you don't filter by Merchandise, the list will include greens fees, food and beverage items, and other non-merchandise categories that you don't need on your count sheet.
 
-<!-- Screenshot needed: inv-003-step02.png — Sorting by Merchandise in the first cell -->
+![Filter the Inventory Center by Merchandise in the Department dropdown](screenshots/inv-003-step02.png)
 
 **Step 3: Export to Excel**
-Click the **Excel icon** on the bottom-right corner of the screen. The file will take approximately 30 seconds to download.
+Click the **Excel icon** on the bottom-right corner of the screen (next to "Knowledge Base"). The file will take approximately 30 seconds to download. It will open as an "Inventory Management" spreadsheet with columns for Department, SubDepartment, Category, InventoryType, Item, SKU, Vendor, Stock, ItemCost, SalePrice, and Discount.
 
-<!-- Screenshot needed: inv-003-step03.png — Excel export icon location (bottom right) -->
+![The exported Excel file showing the Inventory Management spreadsheet](screenshots/inv-003-step03.png)
 
-**Step 4: Open and Customize the Excel File**
-Once the Excel file downloads, open it. You can now sort the items however you need and **add a count column** for writing in your physical counts.
+**Step 4: Add a Count Column**
+In the Excel file, scroll to the right and add a **Count** column after the last column. This is where you will write in your physical counts by hand.
 
-<!-- Screenshot needed: inv-003-step04.png — Excel file with count column added -->
+![Excel spreadsheet with a Count column added on the right side](screenshots/inv-003-step04.png)
 
-**Step 5: Print and Count**
+**Step 5: Sort the Spreadsheet (Optional)**
+You can sort the spreadsheet to organize items however you prefer — for example, by **SubDepartment** to group similar items together (Golf Balls, Men's Apparel, Women's Apparel, etc.). Use Excel's **Sort** feature under the Data tab.
+
+![Use the Sort dialog to organize items by SubDepartment or Category](screenshots/inv-003-step05.png)
+
+**Step 6: Print and Count**
 Print the spreadsheet. Use it to walk the shop floor and record your counts by hand. When you are ready to enter the counts into the system, **then** go into the audit module.
+
+![Final sorted spreadsheet ready to print with Count column](screenshots/inv-003-step06.png)
 
 ## Important Reminders
 - **Do NOT start an audit just to get a count sheet.** This creates multiple audits for a single month, which causes confusion.
