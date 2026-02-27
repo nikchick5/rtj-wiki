@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "git.autofetch": true,
+  "git.confirmSync": true,
+  "git.enableSmartCommit": false,
+  "git.suggestSmartCommit": false,
+  "editor.wordWrap": "on",
+  "html.format.wrapLineLength": 120,
+  "javascript.suggest.autoImports": true
+}
