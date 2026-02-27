@@ -31,6 +31,13 @@ const MODULES = {
     color: '#e67e22',
     description: "Take orders, manage tabs, process payments, and handle meal coursing on the Club Caddie F&B tablet app.",
   },
+  INVENTORY: {
+    id: 'inventory',
+    label: 'Inventory',
+    icon: '<i class="fa-solid fa-boxes-stacked"></i>',
+    color: '#2c8c99',
+    description: "Receive merchandise using purchase orders, handle non-PO deliveries, run inventory counts, and print count sheets.",
+  },
   ONE_SHEETS: {
     id: 'one-sheets',
     label: 'RTJ One Sheets',
@@ -1396,6 +1403,154 @@ Split Payment (Multiple Payment Methods on One Tab): Tap Pay, select first paym
 
 
 ![Step 5](screenshots/fb-014-step10.png)
+`,
+  },
+
+  // ── Inventory Module ──────────────────────────────────────
+
+  {
+    id: 'inv-001',
+    title: "Receive Items Using the Purchase Order (PO) Module",
+    module: 'inventory',
+    role: 'staff',
+    dateUpdated: '2026-02-27',
+    version: '1.0',
+    keywords: ["purchase order","PO","receive inventory","receive items","check in merchandise","vendor","backorder","Ashleynn","PO number","PO module","club prophet","receive transfer"],
+    relatedIds: ["inv-002","inv-003"],
+    media: [],
+    content: `## Overview
+The Purchase Order (PO) module is the **primary way** to receive merchandise at RTJ. Whether the order was placed by Ashleynn (corporate purchasing) or by you directly, every delivery should have a corresponding PO in the system. You receive items in the same place you create the PO — do **not** use the Receive/Transfer Inventory tab for PO items.
+
+## When to Use
+- Ashleynn ordered items for your shop — they will already be in the PO module. You receive them there.
+- You ordered something yourself from a vendor — you should have created a PO first. Receive items against that same PO.
+- Any time merchandise arrives **and** a PO exists in the system.
+
+## Why POs Matter
+- **Tracking:** A PO number gives you a reference back to every order.
+- **Accuracy:** Helps you avoid checking in ball orders that were not actually ordered.
+- **Backorders:** Makes it easy to tell the difference between a backorder and a future order.
+- **Reporting:** Receiving against the PO closes it out and gives you meaningful reporting data.
+
+## Step-by-Step
+
+**Step 1: Open the PO Module**
+Navigate to the Purchase Order module from the main menu.
+
+<!-- Screenshot needed: PO module location in main menu -->
+
+**Step 2: Locate the Purchase Order**
+Find the PO for the delivery you are receiving. If Ashleynn placed the order, the PO will already be listed. If you placed the order, find the PO number you gave to the vendor.
+
+<!-- Screenshot needed: PO list screen -->
+
+**Step 3: Receive Items Against the PO**
+Open the PO and receive the items. This works the same as Club Prophet — you create the PO and receive items in the same place.
+
+<!-- Screenshot needed: Receiving screen within a PO -->
+
+**Step 4: Verify and Close**
+Confirm the quantities match what was delivered. The PO will close out once all items are received.
+
+<!-- Screenshot needed: Completed/closed PO -->
+
+## Important Reminders
+- **All orders should have a PO.** When you order from a vendor, create a PO first and give the vendor the PO number.
+- **Do NOT create POs and then receive in the Receive/Transfer Inventory tab.** This will not close the PO and adds an unnecessary step with no meaningful reporting.
+- If something is delivered without a PO, see the article: *Receive Items Without a Purchase Order*.
+`,
+  },
+
+  {
+    id: 'inv-002',
+    title: "Receive Items Without a Purchase Order",
+    module: 'inventory',
+    role: 'staff',
+    dateUpdated: '2026-02-27',
+    version: '1.0',
+    keywords: ["receive inventory","no PO","no purchase order","receive transfer","unexpected delivery","receiving inventory module"],
+    relatedIds: ["inv-001","inv-003"],
+    media: [],
+    content: `## Overview
+In rare cases, merchandise may arrive at your shop without a corresponding Purchase Order (PO) in the system. When this happens — and **only** when this happens — use the Receive Inventory module to check the items in. Do not create a PO after the fact for something already sitting in front of you.
+
+## When to Use
+- An item was delivered that was **never entered** into the PO system.
+- You have physical merchandise in hand but no PO exists for it.
+
+> **Note:** This should be uncommon. All orders placed by Ashleynn or by you should have a PO. If you find yourself using this method frequently, check with your manager to make sure orders are being entered into the PO system properly.
+
+## Step-by-Step
+
+**Step 1: Open the Receive Inventory Module**
+From the main menu, navigate to the Receive/Transfer Inventory section.
+
+<!-- Screenshot needed: Receive Inventory module location -->
+
+**Step 2: Enter the Item Details**
+Enter the item information for what was delivered — item name, quantity, vendor, and cost.
+
+<!-- Screenshot needed: Receive Inventory entry screen -->
+
+**Step 3: Save and Confirm**
+Save the received items. They will now appear in your inventory.
+
+<!-- Screenshot needed: Confirmation screen -->
+
+## Important Reminders
+- **Do NOT use this method for items that have a PO.** Always receive PO items through the PO module.
+- There is no need to create a PO for something already in front of you — that defeats the purpose of a PO.
+- The purpose of a PO is to know what has been ordered and have a number to reference. If the item is already here, just receive it directly.
+`,
+  },
+
+  {
+    id: 'inv-003',
+    title: "Print an Inventory Count Sheet Without Starting an Audit",
+    module: 'inventory',
+    role: 'staff',
+    dateUpdated: '2026-02-27',
+    version: '1.0',
+    keywords: ["inventory count","count sheet","audit","print count sheet","excel","inventory center","merchandise","scanning","physical count","monthly count"],
+    relatedIds: ["inv-001","inv-002"],
+    media: [],
+    content: `## Overview
+When it is time for a physical inventory count, you may want to print a count sheet to write counts on by hand instead of scanning. **Do not start an audit** just to get a count sheet — this creates unnecessary audit records for the month. Instead, export the inventory list from the Inventory Center as an Excel file.
+
+## When to Use
+- You want to print a count sheet for a physical inventory count.
+- You prefer writing counts on paper instead of scanning items.
+- You need a list of your merchandise for any counting purpose.
+
+## Step-by-Step
+
+**Step 1: Open the Inventory Center**
+Navigate to the Inventory Center from the main menu.
+
+<!-- Screenshot needed: inv-003-step01.png — Inventory Center location in main menu -->
+
+**Step 2: Sort by Merchandise**
+In the first filter/sort cell, select or type **Merchandise**. This is important — if you don't sort, the list will include greens fees, food and beverage items, and other non-merchandise categories.
+
+<!-- Screenshot needed: inv-003-step02.png — Sorting by Merchandise in the first cell -->
+
+**Step 3: Export to Excel**
+Click the **Excel icon** on the bottom-right corner of the screen. The file will take approximately 30 seconds to download.
+
+<!-- Screenshot needed: inv-003-step03.png — Excel export icon location (bottom right) -->
+
+**Step 4: Open and Customize the Excel File**
+Once the Excel file downloads, open it. You can now sort the items however you need and **add a count column** for writing in your physical counts.
+
+<!-- Screenshot needed: inv-003-step04.png — Excel file with count column added -->
+
+**Step 5: Print and Count**
+Print the spreadsheet. Use it to walk the shop floor and record your counts by hand. When you are ready to enter the counts into the system, **then** go into the audit module.
+
+## Important Reminders
+- **Do NOT start an audit just to get a count sheet.** This creates multiple audits for a single month, which causes confusion.
+- Only go into the audit module when you are **ready to enter your counts**.
+- If you prefer scanning over paper, you do not need this procedure — go directly to the audit module when ready.
 `,
   },
 
