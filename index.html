@@ -2534,9 +2534,46 @@ function renderContent(raw) {
   let inStep = false;
   let stepBodyLines = [];
 
+  function renderStepBody(bodyLines) {
+    let bHtml = ''; let inUl = false; let inOl = false;
+    function flushBL() {
+      if (inUl) { bHtml += '</ul>'; inUl = false; }
+      if (inOl) { bHtml += '</ol>'; inOl = false; }
+    }
+    for (const ln of bodyLines) {
+      const tr = ln.trim();
+      if (!tr) { flushBL(); continue; }
+      if (tr.startsWith('> ')) { flushBL(); bHtml += `<blockquote>${parseInline(tr.slice(2))}</blockquote>`; continue; }
+      if (tr.startsWith('- ') || tr.startsWith('* ')) {
+        if (inOl) { bHtml += '</ol>'; inOl = false; }
+        if (!inUl) { bHtml += '<ul>'; inUl = true; }
+        bHtml += `<li>${parseInline(tr.slice(2))}</li>`;
+        continue;
+      }
+      const nm = tr.match(/^(\d+)\.\s+(.+)/);
+      if (nm) {
+        if (inUl) { bHtml += '</ul>'; inUl = false; }
+        if (!inOl) { bHtml += '<ol>'; inOl = true; }
+        bHtml += `<li>${parseInline(nm[2])}</li>`;
+        continue;
+      }
+      const im = tr.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (im) {
+        flushBL();
+        const cap = im[1]; const src = im[2];
+        bHtml += `<div class="media-block"><img src="${escHtml(src)}" alt="${escHtml(cap)}" loading="lazy" />${cap ? `<div class="media-caption"><i class="fa-solid fa-camera"></i> ${escHtml(cap)}</div>` : ''}</div>`;
+        continue;
+      }
+      flushBL();
+      bHtml += `<p>${parseInline(tr)}</p>`;
+    }
+    flushBL();
+    return bHtml;
+  }
+
   function flushStep() {
     if (!inStep) return;
-    html += `<div class="step-body">${parseInline(stepBodyLines.join('\n'))}</div></div>`;
+    html += `<div class="step-body">${renderStepBody(stepBodyLines)}</div></div>`;
     stepBodyLines = [];
     inStep = false;
   }
