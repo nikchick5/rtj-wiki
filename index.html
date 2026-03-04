@@ -1091,6 +1091,24 @@
       display: block;
     }
 
+    .video-embed {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 16px 0;
+      border: 1px solid var(--gray-200);
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
     .media-caption {
       background: var(--gray-50);
       padding: 8px 12px;
@@ -2163,6 +2181,20 @@ function filterRole(role) {
 }
 
 // ── Article view ───────────────────────────────────────────────────
+function parseYouTubeId(url) {
+  if (!url) return null;
+  const patterns = [
+    /[?&]v=([a-zA-Z0-9_-]{11})/,
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /embed\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
 function showArticle(id) {
   const article = articleMap[id];
   if (!article) return;
@@ -2197,8 +2229,25 @@ function showArticle(id) {
     </div>
   `;
 
+  const renderedContent = renderContent(article.content);
+  let videoHtml = '';
+  if (article.video) {
+    const ytId = parseYouTubeId(article.video);
+    if (ytId) {
+      videoHtml = `<div class="video-embed"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div>`;
+    }
+  }
+  let finalContent = renderedContent;
+  if (videoHtml) {
+    const hrIdx = renderedContent.indexOf('<hr');
+    if (hrIdx !== -1) {
+      finalContent = renderedContent.slice(0, hrIdx) + videoHtml + renderedContent.slice(hrIdx);
+    } else {
+      finalContent = renderedContent + videoHtml;
+    }
+  }
   document.getElementById('article-body').innerHTML =
-    `<div class="article-content">${renderContent(article.content)}</div>`;
+    `<div class="article-content">${finalContent}</div>`;
 
   // Related articles
   const relatedContainer = document.getElementById('related-section');
@@ -3873,6 +3922,7 @@ function adminNewArticle() {
     keywords: [],
     relatedIds: [],
     media: [],
+    video: '',
     content: '## Overview\n\nWrite your article content here.\n\n## Step-by-Step\n\n**Step 1: First Step**\nDescribe what to do.\n',
   };
   adminShowEditor(newArticle, true);
@@ -3952,6 +4002,11 @@ function adminShowEditor(article, isNew) {
           <div>
             <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">Keywords (comma-separated)</label>
             <input id="editor-keywords" type="text" value="${escHtml((article.keywords||[]).join(', '))}" style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;color:var(--gray-600);display:block;margin-bottom:4px;">YouTube Video URL <span style="font-weight:400;color:var(--gray-400);">(optional)</span></label>
+            <input id="editor-video" type="text" value="${escHtml(article.video||'')}" placeholder="https://www.youtube.com/watch?v=..." style="width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:6px;font-size:14px;" />
           </div>
 
           <div>
@@ -4045,6 +4100,7 @@ function adminSaveArticle(id, isNew) {
     content: document.getElementById('editor-content').value,
     relatedIds: [],
     media: [],
+    video: document.getElementById('editor-video').value.trim(),
   };
 
   saveAdminDraft(id, articleData);
@@ -4069,6 +4125,7 @@ async function adminPublishArticle(id, isNew) {
     content: document.getElementById('editor-content').value,
     relatedIds: articleMap[id] ? (articleMap[id].relatedIds || []) : [],
     media: [],
+    video: document.getElementById('editor-video').value.trim(),
   };
 
   // Persist to localStorage
@@ -4158,6 +4215,7 @@ function buildArticlesJsContent() {
     js += `    keywords: ${JSON.stringify(a.keywords || [])},\n`;
     js += `    relatedIds: ${JSON.stringify(a.relatedIds || [])},\n`;
     js += `    media: ${JSON.stringify(a.media || [])},\n`;
+    if (a.video) js += `    video: ${JSON.stringify(a.video)},\n`;
     js += `    content: ${JSON.stringify(a.content)},\n`;
     js += `  },\n`;
   });
@@ -4206,6 +4264,7 @@ const MODULES = {
     js += `    keywords: ${JSON.stringify(a.keywords || [])},\n`;
     js += `    relatedIds: ${JSON.stringify(a.relatedIds || [])},\n`;
     js += `    media: ${JSON.stringify(a.media || [])},\n`;
+    if (a.video) js += `    video: ${JSON.stringify(a.video)},\n`;
     js += `    content: ${JSON.stringify(a.content)},\n`;
     js += `  },\n`;
   });
