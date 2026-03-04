@@ -200,6 +200,19 @@ const ONE_SHEETS = [
     "filename": "sell-an-rtj-trail-card-membership.pdf",
     "size": "55 KB"
   }
+  {
+    id: 'fb-015',
+    title: "Clover Flex: Log In and Run Your End-of-Shift Report",
+    module: 'fb-app',
+    role: 'all',
+    dateUpdated: '2026-03-04',
+    version: '1.0',
+    keywords: ["clover flex", "beverage cart", "bev cart", "login", "end of shift", "sales report", "sales by department", "employee", "terminal", "passcode", "flex device", "handheld POS"],
+    relatedIds: [],
+    media: [],
+    content: "## Overview\n\nThe Clover Flex is a handheld point-of-sale device used for beverage cart operations. This article walks you through how to log in, select the right role, and run your end-of-shift sales report \u2014 so your day starts and ends on the right foot.\n\n> **Note:** Each staff member should use their own employee login on the Flex device. Do not use the shared Food & Beverage login that is set up for iPad use \u2014 that login is not intended for the Clover Flex.\n\n---\n\n## Logging In to the Clover Flex\n\nFollow these steps each time you start your shift.\n\n**Step 1: Unlock the device**\nEnter passcode **1111** on the Clover Flex lock screen.\n\n![Clover Flex lock screen showing passcode entry](screenshots/fb-015-step01.png)\n\n**Step 2: Open the Club Caddie app**\nSelect the Club Caddie app from the home screen.\n\n**Step 3: Log in with your employee credentials**\nEnter your individual employee username and password.\n\n![Club Caddie login screen on Clover Flex](screenshots/fb-015-step02.png)\n\n**Step 4: Select your role and terminal**\n- Role: **Beverage Cart**\n- Terminal: **Terminal Flex Utility**\n\nThe terminal name is printed on a label on the physical device, so it's easy to match.\n\n![Role selection screen showing Beverage Cart option](screenshots/fb-015-step03.png)\n\n---\n\n## Running Your End-of-Shift Sales Report\n\nWhen your shift wraps up, a manager or supervisor will run a Sales by Department report to review what was sold from the beverage cart that day. This is done from the Club Caddie desktop application \u2014 not on the Flex device itself.\n\n**Step 5: Open Reports**\nFrom the Club Caddie desktop application, navigate to **Reports \u2192 Sales by Department**.\n\n**Step 6: Select Bev Cart**\nIn the first dropdown, select **Bev Cart**.\n\n**Step 7: Select Employee**\nIn the third dropdown, select **Employee**.\n\n**Step 8: Run the report**\nRun the report. You'll see a detailed breakdown of that day's beverage cart sales by employee.\n\n![Sales by Department report screen with Bev Cart and Employee dropdowns selected](screenshots/fb-015-step04.png)\n\n> **Tip:** Because each staff member logs in with their own credentials on the Flex, the Employee filter in this report lets you see a clean breakdown of sales per person \u2014 great for verifying totals and reconciling at the end of the day.\n\n> **Note:** Bev cart employees are not responsible for running a Day End Closing on the Flex device. The Sales by Department report is the only end-of-shift reporting step, and it is handled from the desktop by a manager or supervisor.",
+  },
+
 ];
 
 const articles = [
